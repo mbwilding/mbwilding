@@ -26,6 +26,17 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
 > Racing and Wagering Western Australia ([RWWA](https://www.rwwa.com.au)) is the controlling authority for thoroughbred, harness, and greyhound racing in Western Australia. It also operates the TAB, the principal off-course wagering operator in the state, providing a range of betting services through its retail, online, and mobile platforms under the brand [TABTouch](https://www.tabtouch.com.au).
 
+## Projects (Public-facing projects have clickable links)
+
+> Note: This is meant to be a short summary.
+
+- [TcpFrame](https://www.nuget.org/packages/TcpFrame)
+  - Open source tool that provides event-driven TCP framing capabilities.
+  - Tech: .NET
+- [MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree&hl=en_US)
+  - Open source tool that allows reading and flashing BMW DMEs via Android.
+  - Tech: .NET, Xamarin
+
 ## Tech
 
 ### Things I'm great at (>2 years industry experience)
