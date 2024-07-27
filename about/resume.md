@@ -40,7 +40,7 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
 [egui](https://github.com/emilk/egui)
 
-### Contact
+## Contact
 
 - Email: <matt@wildingstudios.com>
 - GitHub: [mbwilding](http://github.com/mbwilding)
