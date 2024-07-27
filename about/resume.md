@@ -30,18 +30,30 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
 > Note: This is meant to be a short summary.
 
-- [Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)
-  - Open source application switches Dygma keyboard layers based on the focused window.
-  - Tech: [Rust](https://www.rust-lang.org), [egui](https://github.com/emilk/egui)
-- [Dygma Focus](https://crates.io/crates/dygma_focus)
-  - Open source cross platform library that provides a Rust API for interfacing with Dygma keyboards.
-  - Tech: [Rust](https://www.rust-lang.org)
-- [TcpFrame](https://www.nuget.org/packages/TcpFrame)
-  - Open source library that provides event-driven TCP framing capabilities.
-  - Tech: [.NET](https://dotnet.microsoft.com)
-- [MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree&hl=en_US)
-  - Open source Android application that allows reading and writing to select BMW DMEs via Android.
-  - Tech: [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
+- **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
+    > A modern monospaced font that emphasizes legibility.
+
+    **Tech:** [FontForge](https://fontforge.org/en-US)
+
+- **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
+    > Open Source application that switches [Dygma](https://dygma.com) keyboard layers based on the focused window.
+
+    **Tech:** [Rust](https://www.rust-lang.org), [egui](https://github.com/emilk/egui)
+
+- **[Dygma Focus](https://crates.io/crates/dygma_focus)**
+    > Open source cross platform library that provides a Rust API for interfacing with [Dygma](https://dygma.com) keyboards.
+
+    **Tech:** [Rust](https://www.rust-lang.org)
+
+- **[TcpFrame](https://www.nuget.org/packages/TcpFrame)**
+    > Open source library that provides event-driven TCP framing capabilities.
+
+    **Tech:** [.NET](https://dotnet.microsoft.com)
+
+- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree&hl=en_US)**
+    > Open source Android application that allows reading and writing to select BMW DMEs via Android.
+
+    **Tech:** [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
 
 ## Tech
 
