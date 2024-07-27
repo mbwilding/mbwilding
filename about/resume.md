@@ -53,7 +53,7 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 - **[Lambda Benchmark](https://mbwilding.github.io/lambda-benchmark)**
     > Open-source benchmarking tool for comparing languages on AWS Lambda.
 
-    **Tech:** Rust, .NET, Python, NodeJS
+    **Tech:** Rust, .NET, Python, NodeJS, AWS
 
 - **[Sand](https://github.com/mbwilding/sand)**
     > Open source terminal physics sandbox.
