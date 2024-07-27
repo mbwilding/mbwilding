@@ -20,7 +20,7 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 **Roles and Responsibilities:**
 - Developer
 - Cloud Architecture
-- Diagnostician
+- Diagnostics
 
 **AWS Services:** API Gateway, Amplify Hosting, Certificate Manager, CloudFormation, CloudWatch, CodeDeploy, Cognito, DynamoDB, EC2, ECS, EKS, EventBridge, Glue, IAM, KMS, Kinesis Data Firehose, Lambda (.NET/Rust), Route 53, S3, SES, SNS, SQS, Secrets Manager, Step Functions
 
