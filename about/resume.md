@@ -28,42 +28,33 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 
 ## Open Source Projects
 
-> Note: This is meant to be a short summary.
+**[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
+| **Tech:** Rust, egui
+> Switches Dygma keyboard layers based on the focused window.
 
-- **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
-    > Switches Dygma keyboard layers based on the focused window.
+**[Dygma Focus](https://crates.io/crates/dygma_focus)**
+| **Tech:** Rust
+> Cross platform library that provides a Rust API for interfacing with Dygma keyboards.
 
-    **Tech:** Rust, egui
+**[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
+| **Tech:** .NET, Xamarin, Android
+> Read and write to select BMW DMEs via Android.
 
-- **[Dygma Focus](https://crates.io/crates/dygma_focus)**
-    > Cross platform library that provides a Rust API for interfacing with Dygma keyboards.
+**[TcpFrame](https://www.nuget.org/packages/TcpFrame)**
+| **Tech:** .NET
+> Cross platform event-driven TCP framing framework.
 
-    **Tech:** Rust
+**[Lambda Benchmark](https://mbwilding.github.io/lambda-benchmark)**
+| **Tech:** Rust, .NET, Python, NodeJS, AWS
+> Benchmark tool for comparing languages on AWS Lambda.
 
-- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
-    > Read and write to select BMW DMEs via Android.
+**[Sand](https://github.com/mbwilding/sand)**
+| **Tech:** Rust
+> Terminal physics sandbox.
 
-    **Tech:** .NET, Xamarin, Android
-
-- **[TcpFrame](https://www.nuget.org/packages/TcpFrame)**
-    > Cross platform event-driven TCP framing framework.
-
-    **Tech:** .NET
-
-- **[Lambda Benchmark](https://mbwilding.github.io/lambda-benchmark)**
-    > Benchmark tool for comparing languages on AWS Lambda.
-
-    **Tech:** Rust, .NET, Python, NodeJS, AWS
-
-- **[Sand](https://github.com/mbwilding/sand)**
-    > Terminal physics sandbox.
-
-    **Tech:** Rust
-
-- **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
-    > Modern monospaced font that focuses on legibility.
-
-    **Tech:** FontForge
+**[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
+| **Tech:** FontForge
+> Modern monospaced font that focuses on legibility.
 
 ## Tech
 
