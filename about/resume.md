@@ -1,10 +1,10 @@
 # Matthew Wilding
 
-I am a full-stack software engineer who specialises in architecting scalable systems using [Rust](https://www.rust-lang.org), [C#](https://dotnet.microsoft.com/languages/csharp), [TypeScript](https://www.typescriptlang.org), [React](https://react.dev) and various cloud providers.
+I am a full-stack software engineer who specialises in architecting scalable systems using Rust, C# / .NET, TypeScript, React and various cloud providers.
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
-I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
+I use Arch Linux and Neovim and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
@@ -33,37 +33,37 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 - **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
     > Open source application that switches Dygma keyboard layers based on the focused window.
 
-    **Tech:** [Rust](https://www.rust-lang.org), [egui](https://github.com/emilk/egui)
+    **Tech:** Rust, egui
 
 - **[Dygma Focus](https://crates.io/crates/dygma_focus)**
     > Open source cross platform library that provides a Rust API for interfacing with Dygma keyboards.
 
-    **Tech:** [Rust](https://www.rust-lang.org)
+    **Tech:** Rust
 
 - **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
     > Open source Android application that allows reading and writing to select BMW DMEs via Android.
 
-    **Tech:** [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
+    **Tech:** .NET, Xamarin
 
 - **[TcpFrame](https://www.nuget.org/packages/TcpFrame)**
     > Open source library that provides event-driven TCP framing capabilities.
 
-    **Tech:** [.NET](https://dotnet.microsoft.com)
+    **Tech:** .NET
 
 - **[Lambda Benchmark](https://mbwilding.github.io/lambda-benchmark)**
     > Open-source benchmarking tool for comparing languages on AWS Lambda.
 
-    **Tech:** [Rust](https://www.rust-lang.org), [.NET](https://dotnet.microsoft.com), [Python](https://www.python.org), [NodeJS](https://www.nodejs.org)
+    **Tech:** Rust, .NET, Python, NodeJS
 
 - **[Sand](https://github.com/mbwilding/sand)**
     > Open source terminal physics sandbox.
 
-    **Tech:** [Rust](https://www.rust-lang.org)
+    **Tech:** Rust
 
 - **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
     > A modern monospaced font that emphasizes legibility.
 
-    **Tech:** [FontForge](https://fontforge.org)
+    **Tech:** FontForge
 
 ## Tech
 
@@ -73,7 +73,7 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
 ### Things I'm good at (Some industry experience)
 
-[TypeScript](https://www.typescriptlang.org), [React](https://react.dev)
+[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
 
 ### Things I like a lot (Personal)
 
