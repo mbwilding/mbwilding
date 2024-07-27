@@ -73,7 +73,7 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 
 ### Things I'm good at (Some industry experience)
 
-[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
+[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin), [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms), [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf), [Avalonia](https://avaloniaui.net), [DevExpress](https://www.devexpress.com)
 
 ### Things I like a lot (Personal)
 
