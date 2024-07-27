@@ -72,6 +72,4 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 
 ## Contact
 
-- Email: <matt@wildingstudios.com>
-- GitHub: [mbwilding](http://github.com/mbwilding)
-- LinkedIn: [mbwilding](https://www.linkedin.com/in/mbwilding)
+[Email](mailto:matt@wildingstudios.com), [GitHub](http://github.com/mbwilding), [LinkedIn](https://www.linkedin.com/in/mbwilding)
