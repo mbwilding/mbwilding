@@ -30,13 +30,8 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
 > Note: This is meant to be a short summary.
 
-- **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
-    > A modern monospaced font that emphasizes legibility.
-
-    **Tech:** [FontForge](https://fontforge.org)
-
 - **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
-    > Open Source application that switches Dygma keyboard layers based on the focused window.
+    > Open source application that switches Dygma keyboard layers based on the focused window.
 
     **Tech:** [Rust](https://www.rust-lang.org), [egui](https://github.com/emilk/egui)
 
@@ -44,6 +39,11 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
     > Open source cross platform library that provides a Rust API for interfacing with Dygma keyboards.
 
     **Tech:** [Rust](https://www.rust-lang.org)
+
+- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
+    > Open source Android application that allows reading and writing to select BMW DMEs via Android.
+
+    **Tech:** [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
 
 - **[TcpFrame](https://www.nuget.org/packages/TcpFrame)**
     > Open source library that provides event-driven TCP framing capabilities.
@@ -55,10 +55,15 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
     **Tech:** [Rust](https://www.rust-lang.org), [.NET](https://dotnet.microsoft.com), [Python](https://www.python.org), [NodeJS](https://www.nodejs.org)
 
-- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
-    > Open source Android application that allows reading and writing to select BMW DMEs via Android.
+- **[Sand](https://github.com/mbwilding/sand)**
+    > Open source terminal physics sandbox.
 
-    **Tech:** [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
+    **Tech:** [Rust](https://www.rust-lang.org)
+
+- **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
+    > A modern monospaced font that emphasizes legibility.
+
+    **Tech:** [FontForge](https://fontforge.org)
 
 ## Tech
 
