@@ -69,7 +69,7 @@ I use Arch Linux and Neovim and have a deep interest in reverse engineering as w
 
 ### Things I'm great at (>2 years industry experience)
 
-[.NET](https://dotnet.microsoft.com), [Rust](https://www.rust-lang.org)
+[.NET](https://dotnet.microsoft.com), [Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com),
 
 ### Things I'm good at (Some industry experience)
 
