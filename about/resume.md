@@ -36,12 +36,12 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
     **Tech:** [FontForge](https://fontforge.org/en-US)
 
 - **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
-    > Open Source application that switches [Dygma](https://dygma.com) keyboard layers based on the focused window.
+    > Open Source application that switches Dygma keyboard layers based on the focused window.
 
     **Tech:** [Rust](https://www.rust-lang.org), [egui](https://github.com/emilk/egui)
 
 - **[Dygma Focus](https://crates.io/crates/dygma_focus)**
-    > Open source cross platform library that provides a Rust API for interfacing with [Dygma](https://dygma.com) keyboards.
+    > Open source cross platform library that provides a Rust API for interfacing with Dygma keyboards.
 
     **Tech:** [Rust](https://www.rust-lang.org)
 
