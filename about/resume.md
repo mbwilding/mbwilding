@@ -33,7 +33,7 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 - **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
     > A modern monospaced font that emphasizes legibility.
 
-    **Tech:** [FontForge](https://fontforge.org/en-US)
+    **Tech:** [FontForge](https://fontforge.org)
 
 - **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
     > Open Source application that switches Dygma keyboard layers based on the focused window.
@@ -50,7 +50,12 @@ I use [Arch Linux](https://www.archlinux.org) and [Neovim](https://neovim.io) an
 
     **Tech:** [.NET](https://dotnet.microsoft.com)
 
-- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree&hl=en_US)**
+- **[Lambda Benchmark](https://mbwilding.github.io/lambda-benchmark)**
+    > Open-source benchmarking tool for comparing languages on AWS Lambda.
+
+    **Tech:** [Rust](https://www.rust-lang.org), [.NET](https://dotnet.microsoft.com), [Python](https://www.python.org), [NodeJS](https://www.nodejs.org)
+
+- **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
     > Open source Android application that allows reading and writing to select BMW DMEs via Android.
 
     **Tech:** [.NET](https://dotnet.microsoft.com), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
