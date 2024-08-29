@@ -1,10 +1,10 @@
 # Matthew Wilding
 
-I am a full-stack software engineer who specialises in architecting scalable systems using Rust, C# / .NET, TypeScript, React and various cloud providers.
+I am a full-stack software engineer who specialises in architecting scalable systems using Rust, C#, TypeScript, React and various cloud providers.
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
-I use Arch Linux and Neovim and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
+I use Arch Linux/NixOS and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
