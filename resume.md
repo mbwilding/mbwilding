@@ -1,6 +1,6 @@
 # Matthew Wilding
 
-I am a full-stack software engineer who specialises in architecting scalable systems using Rust, C#, TypeScript, React and various cloud providers.
+I am a software engineer who specialises in architecting scalable systems using Rust, C#, TypeScript, React and various cloud providers.
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
