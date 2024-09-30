@@ -63,11 +63,11 @@ I use Arch Linux/NixOS and have a deep interest in reverse engineering as well a
 
 ## Tech
 
-### Things I'm great at (>2 years industry experience)
+### Things I'm great at (>3 years of industry experience)
 
 [.NET](https://dotnet.microsoft.com), [Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com)
 
-### Things I'm good at (Some industry experience)
+### Things I'm good at (>1 year of industry experience)
 
 [TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin), [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms), [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf), [Avalonia](https://avaloniaui.net), [DevExpress](https://www.devexpress.com)
 
