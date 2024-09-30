@@ -6,7 +6,7 @@ In my spare time, I enjoy contributing to open-source projects and consistently 
 
 I use Arch Linux/NixOS and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
 
-![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight)
+![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 
