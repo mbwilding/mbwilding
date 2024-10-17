@@ -74,7 +74,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ### Things I like a lot (Personal)
 
-[egui](https://github.com/emilk/egui)
+[egui](https://www.egui.rs), [Ratatui](https://ratatui.rs)
 
 ## Contact
 
