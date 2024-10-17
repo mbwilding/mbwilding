@@ -1,11 +1,11 @@
 # Matthew Wilding
 
-I am a software engineer who specialises in architecting scalable systems using C#, Rust and TypeScript powered by various cloud providers.
-When I am not building enterprise grade software, I am writing tools in Rust.
+I am a software engineer who specialises in architecting scalable systems using **C#**, **Rust** and **TypeScript** powered by various cloud providers.
+When I am not building enterprise grade software, I am writing tools in Rust, or tinkering with my **Neovim** config.
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
-I use Arch Linux and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
+I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using Unreal Engine (**C++**).
 
 ## Open Source Stats
 
