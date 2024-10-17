@@ -1,4 +1,4 @@
-### Matthew Wilding
+## Matthew Wilding
 
 I am a software engineer who specialises in architecting scalable systems using C#, Rust and TypeScript powered by various cloud providers.
 When I am not building enterprise grade software, I am writing tools in Rust.
@@ -7,7 +7,9 @@ In my spare time, I enjoy contributing to open-source projects and consistently 
 
 I use Arch Linux and have a deep interest in reverse engineering as well as game development using Unreal Engine (C++).
 
-I joined GitHub **10** years ago, pushed **5846** commits, opened **22** issues, submitted **38** pull requests, received **53** stars across **94** personal projects, and contributed to **15** public repositories.
+### Stats
+
+I joined GitHub **10** years ago, pushed **5848** commits, opened **22** issues, submitted **38** pull requests, received **53** stars across **94** personal projects, and contributed to **15** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
