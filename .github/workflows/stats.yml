@@ -1,5 +1,7 @@
 name: Update stats
 
+workflow_dispatch:
+
 on:
   schedule:
     - cron: "0 11 * * *"
