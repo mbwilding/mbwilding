@@ -5,11 +5,11 @@ When I am not building enterprise grade software, I am writing tools in Rust, or
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
-I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using Unreal Engine (**C++**).
+I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using **Unreal Engine** (**C++**).
 
 ### Stats
 
-I joined GitHub **10** years ago, pushed **5852** commits, opened **22** issues, submitted **38** pull requests, received **53** stars across **94** personal projects, and contributed to **15** public repositories.
+I joined GitHub **10** years ago, pushed **5868** commits, opened **22** issues, submitted **38** pull requests, received **53** stars across **94** personal projects, and contributed to **15** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
