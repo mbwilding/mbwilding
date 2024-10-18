@@ -5,7 +5,7 @@ When I am not building enterprise grade software, I am writing tools in Rust, or
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
-I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using Unreal Engine (**C++**).
+I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using **Unreal Engine** (**C++**).
 
 ### Stats
 
