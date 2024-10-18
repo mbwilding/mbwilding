@@ -7,7 +7,7 @@ In my spare time, I enjoy contributing to open-source projects and consistently 
 
 I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using **Unreal Engine** (**C++**).
 
-### Stats
+## Stats
 
 I joined GitHub **{{ ACCOUNT_AGE }}** years ago, pushed **{{ COMMITS }}** commits, opened **{{ ISSUES }}** issues, submitted **{{ PULL_REQUESTS }}** pull requests, received **{{ STARS }}** stars across **{{ REPOSITORIES }}** personal projects, and contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories.
 
