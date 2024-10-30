@@ -9,7 +9,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **5908** commits, opened **22** issues, submitted **38** pull requests, received **54** stars across **94** personal projects, and contributed to **15** public repositories.
+I joined GitHub **10** years ago, pushed **5909** commits, opened **22** issues, submitted **38** pull requests, received **54** stars across **94** personal projects, and contributed to **15** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
