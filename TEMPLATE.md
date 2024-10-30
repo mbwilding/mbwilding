@@ -1,7 +1,7 @@
 ## Matthew Wilding
 
 I am a software engineer who specialises in architecting scalable systems using **C#**, **Rust** and **TypeScript** powered by various cloud providers.
-When I am not building enterprise grade software, I am writing tools in Rust, or tinkering with my **Neovim** config.
+When I am not building enterprise grade software, I am writing tools in Rust, or tinkering with my **Lua** based **Neovim** config.
 
 In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
 
