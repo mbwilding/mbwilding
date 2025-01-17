@@ -40,7 +40,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 **[Dygma Focus](https://crates.io/crates/dygma_focus)**
 | **Tech:** Rust
-> Cross platform library that provides a Rust API for interfacing with Dygma keyboards.
+> Cross platform library that provides a Rust API for interfacing with Dygma devices.
 
 **[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
 | **Tech:** .NET, Xamarin, Android
@@ -64,9 +64,13 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ## Tech
 
+### Things I'm excellent at (>5 years of industry experience)
+
+[.NET](https://dotnet.icrosoft.com)
+
 ### Things I'm great at (>3 years of industry experience)
 
-[.NET](https://dotnet.microsoft.com), [Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com)
+[Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com)
 
 ### Things I'm good at (>1 year of industry experience)
 
