@@ -47,7 +47,7 @@
 
 ## Tech
 
-### Things I'm excellent at (>5 years of industry experience)
+### Things I'm excellent at (>5 years of experience)
 
 [.NET](https://dotnet.icrosoft.com)
 
