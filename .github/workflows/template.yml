@@ -18,11 +18,11 @@ jobs:
         uses: teoxoy/profile-readme-stats@master
         with:
           token: ${{ secrets.USER_TOKEN }}
-          template: ./.templates/README-TEMPLATE.md
+          template: ./.templates/README.md
           readme: ./README.md
-      - name: Add Header to Resume
+      - name: Prepend Readme to Resume
         shell: bash
-        run: cat README.md <(echo) .templates/RESUME-TEMPLATE.md > RESUME.md
+        run: cat README.md <(echo) .templates/RESUME.md > RESUME.md
       - name: Update
         shell: bash
         run: |
