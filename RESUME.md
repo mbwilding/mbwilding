@@ -10,7 +10,7 @@ As a dedicated **Arch Linux** user, I have a keen interest in reverse engineerin
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **6145** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
+I joined GitHub **10** years ago, pushed **6148** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
@@ -71,21 +71,21 @@ Linux, Mac, Windows
 
 ## Languages
 
-C#, Rust, Lua, Bash, Powershell, C, C++, TypeScript
+Rust, C#, Lua, Bash, Powershell, TypeScript, C, C++
 
 ## Tech
 
 ### Things I'm excellent at (>5 years of experience)
 
-[.NET](https://dotnet.icrosoft.com)
+.NET Core
 
 ### Things I'm great at (>3 years of industry experience)
 
-[ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet), [Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com), [GitLab](https://gitlab.com), [GitHub](https://github.com)
+ASP.NET Core, Rust, AWS, GitLab, GitHub
 
 ### Things I'm good at (>1 year of industry experience)
 
-[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin), [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms), [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf), [Avalonia](https://avaloniaui.net), [DevExpress](https://www.devexpress.com), [Azure DevOps](https://azure.microsoft.com/en-us/products/devops), [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
+Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Core, TypeScript, React
 
 ### Things I like a lot (Personal)
 
