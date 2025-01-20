@@ -42,7 +42,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 | **Tech:** Rust
 > Cross platform library that provides a Rust API for interfacing with Dygma devices.
 
-**[MSS6x Tool](https://play.google.com/store/apps/details?id=com.argentraceworx.mss6xfree)**
+**[MSS6x Tool](https://github.com/mbwilding/MSS6x-Tool)**
 | **Tech:** .NET, Xamarin, Android
 > Read and write to select BMW DMEs via Android.
 
