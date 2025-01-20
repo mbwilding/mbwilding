@@ -1,12 +1,10 @@
 ## Matthew Wilding
 
-I am a passionate software engineer with expertise in designing and implementing scalable systems using **C#** and **Rust**, leveraging the power of modern cloud platforms.
-
-I actively contribute to open-source projects and dedicate time to building innovative side projects. With a strong commitment to continuous learning.
-
-Beyond enterprise-grade software development, I enjoy crafting tools in **Rust** and refining my development workflow with a hand-rolled **Neovim** configuration.
-
-As a dedicated **Arch Linux** user, I have a keen interest in reverse engineering and game development, particularly with **Unreal Engine** (**C++**), combining technical depth with creative problem-solving.
+- Passionate about backend development, cloud computing, and DevOps.
+- ❤️ Advocate for open source.
+- C# developer by day, 🦀 Rust enthusiast by night.
+- 🐧 Linux aficionado with a love for terminals and CLI/TUI tools.
+- I use Neovim, because I never learned how to quit.
 
 ## Stats
 
