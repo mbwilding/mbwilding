@@ -70,7 +70,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ### Things I'm great at (>3 years of industry experience)
 
-[Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com)
+[Rust](https://www.rust-lang.org), [AWS](https://aws.amazon.com), [GitLab](https://gitlab.com), [GitHub](https://github.com), [Azure DevOps](https://azure.microsoft.com/en-us/products/devops), 
 
 ### Things I'm good at (>1 year of industry experience)
 
