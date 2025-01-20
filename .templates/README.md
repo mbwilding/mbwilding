@@ -4,7 +4,7 @@ I am a passionate software engineer with expertise in designing and implementing
 
 I actively contribute to open-source projects and dedicate time to building innovative side projects. With a strong commitment to continuous learning.
 
-Beyond enterprise-grade software development, I enjoy crafting tools in Rust and refining my development workflow with a hand-rolled **Neovim** configuration.
+Beyond enterprise-grade software development, I enjoy crafting tools in **Rust** and refining my development workflow with a hand-rolled **Neovim** configuration.
 
 As a dedicated **Arch Linux** user, I have a keen interest in reverse engineering and game development, particularly with **Unreal Engine** (**C++**), combining technical depth with creative problem-solving.
 
