@@ -1,4 +1,4 @@
-name: Update stats
+name: Update Markdown
 
 on:
   schedule:
@@ -18,11 +18,11 @@ jobs:
         uses: teoxoy/profile-readme-stats@master
         with:
           token: ${{ secrets.USER_TOKEN }}
-          template: ./README-TEMPLATE.md
+          template: ./.templates/README-TEMPLATE.md
           readme: ./README.md
       - name: Add Header to Resume
         shell: bash
-        run: cat README-TEMPLATE.md <(echo) RESUME-TEMPLATE.md > COMBINED-RESUME-TEMPLATE.md
+        run: cat .templates/README-TEMPLATE.md <(echo) .templates/RESUME-TEMPLATE.md > COMBINED-RESUME-TEMPLATE.md
       - name: Generate RESUME.md
         uses: teoxoy/profile-readme-stats@master
         with:
