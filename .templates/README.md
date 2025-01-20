@@ -9,7 +9,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ## Languages
 
-[C#](https://learn.microsoft.com/en-us/dotnet/csharp), [Rust](https://www.rust-lang.org), [Lua](https://www.lua.org), [Bash](https://www.gnu.org/software/bash), [Powershell](https://learn.microsoft.com/en-us/powershell), [C](https://en.cppreference.com/w/c), [C++](https://en.cppreference.com/w/cpp), [TypeScript](https://www.typescriptlang.rg)
+[C#](https://learn.microsoft.com/en-us/dotnet/csharp), [Rust](https://www.rust-lang.org), [Lua](https://www.lua.org), [Bash](https://www.gnu.org/software/bash), [Powershell](https://learn.microsoft.com/en-us/powershell), [C](https://en.cppreference.com/w/c), [C++](https://en.cppreference.com/w/cpp), [TypeScript](https://www.typescriptlang.org)
 
 ## Stats
 
