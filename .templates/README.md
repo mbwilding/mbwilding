@@ -1,12 +1,10 @@
 ## Matthew Wilding
 
 - Passionate about backend development, cloud computing, and DevOps.
+- .NET developer by day, 🦀 Rust enthusiast by night.
 - ❤️ Advocate for open source.
-- C# developer by day, 🦀 Rust enthusiast by night.
-- I use Neovim, because I never learned how to quit.
 - 🐧 Linux aficionado with a love for terminals and CLI/TUI tools.
-- I use Arch, btw.
-- I use Neovim, btw.
+- I use Neovim, btw, never learned how to quit.
 - I use a split keyboard with Dvorak, btw.
 - Oh, I use Arch, btw, btw.
 
