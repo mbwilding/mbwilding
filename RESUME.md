@@ -1,19 +1,16 @@
 ## Matthew Wilding
 
-I am a software engineer specializing in architecting scalable systems using **C#** and **Rust**, powered by various cloud providers.
-When I am not building enterprise grade software, I am writing tools in Rust, or tinkering with my **Lua** based **Neovim** config.
+I am a passionate software engineer with expertise in designing and implementing scalable systems using **C#** and **Rust**, leveraging the power of modern cloud platforms.
 
-In my spare time, I enjoy contributing to open-source projects and consistently work on side projects. I am also an avid reader and stay up-to-date with the latest industry trends and best practices.
+I actively contribute to open-source projects and dedicate time to building innovative side projects. With a strong commitment to continuous learning.
 
-I use **Arch Linux** and have a deep interest in reverse engineering as well as game development using **Unreal Engine** (**C++**).
+Beyond enterprise-grade software development, I enjoy crafting tools in Rust and refining my development workflow with a hand-rolled **Neovim** configuration.
 
-## Languages
-
-[C#](https://learn.microsoft.com/en-us/dotnet/csharp), [Rust](https://www.rust-lang.org), [Lua](https://www.lua.org), [Bash](https://www.gnu.org/software/bash), [Powershell](https://learn.microsoft.com/en-us/powershell), [C](https://en.cppreference.com/w/c), [C++](https://en.cppreference.com/w/cpp), [TypeScript](https://www.typescriptlang.rg)
+As a dedicated **Arch Linux** user, I have a keen interest in reverse engineering and game development, particularly with **Unreal Engine** (**C++**), combining technical depth with creative problem-solving.
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **6140** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
+I joined GitHub **10** years ago, pushed **6143** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
@@ -67,6 +64,14 @@ I joined GitHub **10** years ago, pushed **6140** commits, opened **25** issues,
 **[NeoSpleen](https://github.com/mbwilding/NeoSpleen)**
 | **Tech:** FontForge
 > Modern monospaced font that focuses on legibility.
+
+## Operating Systems
+
+Linux, Mac, Windows
+
+## Languages
+
+C#, Rust, Lua, Bash, Powershell, C, C++, TypeScript
 
 ## Tech
 
