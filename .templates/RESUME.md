@@ -45,6 +45,14 @@
 | **Tech:** FontForge
 > Modern monospaced font that focuses on legibility.
 
+## Operating Systems
+
+Linux, Mac, Windows
+
+## Languages
+
+C#, Rust, Lua, Bash, Powershell, C, C++, TypeScript
+
 ## Tech
 
 ### Things I'm excellent at (>5 years of experience)
