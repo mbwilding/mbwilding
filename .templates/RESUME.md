@@ -51,7 +51,7 @@ Linux, Mac, Windows
 
 ## Languages
 
-C#, Rust, Lua, Bash, Powershell, TypeScript, C, C++
+Rust, C#, Lua, Bash, Powershell, TypeScript, C, C++
 
 ## Tech
 
