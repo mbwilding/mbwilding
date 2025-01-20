@@ -74,7 +74,7 @@ I use **Arch Linux** and have a deep interest in reverse engineering as well as 
 
 ### Things I'm good at (>1 year of industry experience)
 
-[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin), [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms), [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf), [Avalonia](https://avaloniaui.net), [DevExpress](https://www.devexpress.com), [Azure DevOps](https://azure.microsoft.com/en-us/products/devops), [Entity Framework Core]([https://dotnet.microsoft.com/en-us/apps/aspnet](https://learn.microsoft.com/en-us/ef/core/)
+[TypeScript](https://www.typescriptlang.org), [React](https://react.dev), [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin), [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms), [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf), [Avalonia](https://avaloniaui.net), [DevExpress](https://www.devexpress.com), [Azure DevOps](https://azure.microsoft.com/en-us/products/devops), [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
 
 ### Things I like a lot (Personal)
 
