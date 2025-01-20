@@ -22,13 +22,7 @@ jobs:
           readme: ./README.md
       - name: Add Header to Resume
         shell: bash
-        run: cat .templates/README-TEMPLATE.md <(echo) .templates/RESUME-TEMPLATE.md > COMBINED-RESUME-TEMPLATE.md
-      - name: Generate RESUME.md
-        uses: teoxoy/profile-readme-stats@master
-        with:
-          token: ${{ secrets.USER_TOKEN }}
-          template: ./COMBINED-RESUME-TEMPLATE.md
-          readme: ./RESUME.md
+        run: cat README.md <(echo) .templates/RESUME-TEMPLATE.md > RESUME.md
       - name: Update
         shell: bash
         run: |
