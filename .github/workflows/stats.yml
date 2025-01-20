@@ -35,7 +35,7 @@ jobs:
           if [[ "$(git status --porcelain)" != "" ]]; then
             git config user.name 'Matthew Wilding'
             git config user.email 'mbwilding@gmail.com'
-            git add *.md
+            git add README-TEMPLATE.md RESUME-TEMPLATE.md
             git commit -m "Update markdown"
             git push
           fi
