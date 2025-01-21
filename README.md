@@ -1,16 +1,16 @@
 ## Matthew Wilding
 
-- Passionate about backend development, cloud computing, and DevOps.
-- .NET developer by day, 🦀 Rust enthusiast by night.
-- ❤️ Advocate for open source.
-- 🐧 Linux aficionado with a love for terminals and CLI/TUI tools.
-- I use Neovim, btw, never learned how to quit.
-- I use a split keyboard with Dvorak, btw.
-- Oh, I use Arch, btw, btw.
+- Backend development, cloud computing, and DevOps.
+- .NET developer by day, 🦀 Rust-acean by night.
+- ❤️ Open source advocate and contributor.
+- 🐧 Linux lover with a soft spot for terminals and CLI/TUI wizardry.
+- Neovim user, still figuring out how to quit, btw.
+- Typing away on a split keyboard with Dvorak, btw.
+- Oh, and yes, I use Arch, btw (btw).
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **6157** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
+I joined GitHub **10** years ago, pushed **6159** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
