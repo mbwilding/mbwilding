@@ -71,7 +71,17 @@ Linux, Mac, Windows
 
 ## Languages
 
-Rust, C#, Lua, Bash, Powershell, TypeScript, C, C++
+### Proficient
+
+Rust, C#, Lua, PowerShell, Bash
+
+### Know
+
+C, C++
+
+### Learning
+
+Zig, Go
 
 ## Tech
 

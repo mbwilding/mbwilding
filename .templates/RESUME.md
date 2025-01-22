@@ -49,9 +49,19 @@
 
 Linux, Mac, Windows
 
-## Languages
+## Language Proficiency
 
-Rust, C#, Lua, Bash, Powershell, TypeScript, C, C++
+### Excellent
+
+Rust, C#, Lua, PowerShell, Bash
+
+### Good
+
+TypeScript, C, C++
+
+### Learning
+
+Zig, Go
 
 ## Tech
 
