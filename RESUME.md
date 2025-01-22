@@ -10,7 +10,7 @@
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **6169** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
+I joined GitHub **10** years ago, pushed **6172** commits, opened **25** issues, submitted **42** pull requests, received **55** stars across **82** personal projects, and contributed to **20** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
@@ -35,7 +35,7 @@ I joined GitHub **10** years ago, pushed **6169** commits, opened **25** issues,
 
 > Racing and Wagering Western Australia (RWWA) is the controlling authority for thoroughbred, harness, and greyhound racing in Western Australia. It also operates the TAB, the principal off-course wagering operator in the state, providing a range of betting services through its retail, online, and mobile platforms under the brand TABTouch.
 
-## Open Source Projects
+## Personal Open Source Projects
 
 **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
 | **Tech:** Rust, egui
@@ -73,7 +73,7 @@ Linux, Mac, Windows
 
 ### Excellent
 
-Rust, C#, Lua, PowerShell, Bash
+C#, Rust, Lua, PowerShell, Bash
 
 ### Good
 
@@ -83,19 +83,19 @@ TypeScript, C, C++
 
 Zig, Go
 
-## Tech
+## Techs
 
 ### Things I'm excellent at (>5 years of experience)
 
-.NET Core
+C#, .NET Core
 
 ### Things I'm great at (>3 years of industry experience)
 
-ASP.NET Core, AWS, GitLab, GitHub
+ASP.NET Core, Rust, Lua, Bash, PowerShell, AWS, GitLab, GitHub
 
 ### Things I'm good at (>1 year of industry experience)
 
-Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Core, React
+Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Core, TypeScript, React
 
 ### Things I like a lot (Personal)
 
