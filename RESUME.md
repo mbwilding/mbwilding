@@ -69,7 +69,7 @@ I joined GitHub **10** years ago, pushed **6169** commits, opened **25** issues,
 
 Linux, Mac, Windows
 
-## Language Proficiency
+## Languages
 
 ### Excellent
 
@@ -91,11 +91,11 @@ Zig, Go
 
 ### Things I'm great at (>3 years of industry experience)
 
-ASP.NET Core, Rust, AWS, GitLab, GitHub
+ASP.NET Core, AWS, GitLab, GitHub
 
 ### Things I'm good at (>1 year of industry experience)
 
-Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Core, TypeScript, React
+Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Core, React
 
 ### Things I like a lot (Personal)
 
