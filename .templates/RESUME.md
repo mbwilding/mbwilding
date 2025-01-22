@@ -15,7 +15,7 @@
 
 > Racing and Wagering Western Australia (RWWA) is the controlling authority for thoroughbred, harness, and greyhound racing in Western Australia. It also operates the TAB, the principal off-course wagering operator in the state, providing a range of betting services through its retail, online, and mobile platforms under the brand TABTouch.
 
-## Open Source Projects
+## Personal Open Source Projects
 
 **[Dygma Layer Switcher](https://github.com/mbwilding/dygma-layer-switcher)**
 | **Tech:** Rust, egui
@@ -49,11 +49,11 @@
 
 Linux, Mac, Windows
 
-## Language Proficiency
+## Languages
 
 ### Excellent
 
-Rust, C#, Lua, PowerShell, Bash
+C#, Rust, Lua, PowerShell, Bash
 
 ### Good
 
@@ -63,15 +63,15 @@ TypeScript, C, C++
 
 Zig, Go
 
-## Tech
+## Techs
 
 ### Things I'm excellent at (>5 years of experience)
 
-.NET Core
+C#, .NET Core
 
 ### Things I'm great at (>3 years of industry experience)
 
-ASP.NET Core, Rust, AWS, GitLab, GitHub
+ASP.NET Core, Rust, Lua, Bash, PowerShell, AWS, GitLab, GitHub
 
 ### Things I'm good at (>1 year of industry experience)
 
