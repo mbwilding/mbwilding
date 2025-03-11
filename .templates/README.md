@@ -1,12 +1,12 @@
 ## Matthew Wilding
 
-- Backend development, cloud computing, and DevOps.
-- .NET developer by day, 🦀 Rust-acean by night.
-- ❤️ Open source advocate and contributor.
-- 🐧 Linux lover with a soft spot for terminals and CLI/TUI wizardry.
-- Neovim user, still figuring out how to quit, btw.
-- Typing away on a split keyboard with Dvorak, btw.
-- Oh, and yes, I use Arch, btw (btw).
+- Backend development, cloud computing, and DevOps
+- .NET developer by day, 🦀 Rust-acean by night
+- Open source advocate and contributor
+- Linux lover with a soft spot for terminals and CLI/TUI wizardry
+- Neovim user, still figuring out how to quit, btw
+- Typing away on a split keyboard with Dvorak, btw
+- Oh, and yes, I use Arch, btw (btw)
 
 ## Stats
 
