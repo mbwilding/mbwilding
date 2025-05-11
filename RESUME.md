@@ -10,13 +10,11 @@
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **7643** commits, opened **26** issues, submitted **49** pull requests, reviewed **8** pull requests, received **69** stars, own **89** public repositories and contributed to **18** public repositories.
-
-![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
+I joined GitHub **10** years ago, pushed **7645** commits, opened **27** issues, submitted **49** pull requests, reviewed **8** pull requests, received **69** stars, own **89** public repositories and contributed to **19** public repositories.
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
-
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
+![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
 ## Employment
 
