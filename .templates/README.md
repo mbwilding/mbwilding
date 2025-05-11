@@ -14,7 +14,7 @@
 - Pushed **{{ COMMITS }}** commits
 - Opened **{{ ISSUES }}** issues
 - Submitted **{{ PULL_REQUESTS }}** pull requests
-- Received **{{ STARS }}** stars across
+- Received **{{ STARS }}** stars
 - Created **{{ REPOSITORIES }}** personal projects
 - Contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories
 
