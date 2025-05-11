@@ -1,6 +1,6 @@
 ## Matthew Wilding
 
-- Backend development, cloud computing, and DevOps
+- Development, cloud computing, and DevOps
 - .NET developer by day, 🦀 Rust-acean by night
 - Open source advocate and contributor
 - Linux lover with a soft spot for terminals and CLI/TUI wizardry
