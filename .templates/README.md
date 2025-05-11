@@ -10,7 +10,13 @@
 
 ## Stats
 
-I joined GitHub **{{ ACCOUNT_AGE }}** years ago, pushed **{{ COMMITS }}** commits, opened **{{ ISSUES }}** issues, submitted **{{ PULL_REQUESTS }}** pull requests, received **{{ STARS }}** stars across **{{ REPOSITORIES }}** personal projects, and contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories.
+- I joined GitHub **{{ ACCOUNT_AGE }}** years ago
+- Pushed **{{ COMMITS }}** commits
+- Opened **{{ ISSUES }}** issues
+- Submitted **{{ PULL_REQUESTS }}** pull requests
+- Received **{{ STARS }}** stars across
+- Created **{{ REPOSITORIES }}** personal projects
+- Contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
