@@ -1,6 +1,6 @@
 ## Matthew Wilding
 
-- Backend development, cloud computing, and DevOps
+- Development, cloud computing, and DevOps
 - .NET developer by day, 🦀 Rust-acean by night
 - Open source advocate and contributor
 - Linux lover with a soft spot for terminals and CLI/TUI wizardry
@@ -10,7 +10,7 @@
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **7629** commits, opened **26** issues, submitted **49** pull requests, received **69** stars across **89** personal projects, and contributed to **18** public repositories.
+I joined GitHub **10** years ago, pushed **7631** commits, opened **26** issues, submitted **49** pull requests, received **69** stars across **89** personal projects, and contributed to **18** public repositories.
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
