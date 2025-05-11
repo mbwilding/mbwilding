@@ -10,7 +10,13 @@
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **7631** commits, opened **26** issues, submitted **49** pull requests, received **69** stars across **89** personal projects, and contributed to **18** public repositories.
+- I joined GitHub **10** years ago
+- Pushed **7633** commits
+- Opened **26** issues
+- Submitted **49** pull requests
+- Received **69** stars across
+- Created **89** personal projects
+- Contributed to **18** public repositories
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
 
