@@ -15,7 +15,7 @@
 - Opened **{{ ISSUES }}** issues
 - Submitted **{{ PULL_REQUESTS }}** pull requests
 - Received **{{ STARS }}** stars
-- Created **{{ REPOSITORIES }}** public projects
+- Created **{{ REPOSITORIES }}** public repositories
 - Contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories
 
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true)
