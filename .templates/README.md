@@ -5,7 +5,7 @@
 - Open source advocate and contributor
 - Linux lover that lives in the terminal
 - Neovim user that's still figuring out how to quit
-- Can't use my co-workers keyboards as I use Dvorak
+- Dvorak > QWERTY
 - I use Arch, btw
 
 ## Stats
