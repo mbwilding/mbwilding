@@ -4,13 +4,13 @@
 - .NET developer by day, Rust enthusiast by night
 - Open source advocate and contributor
 - Linux lover that lives in the terminal
-- Neovim user that's still figuring out how to quit
+- Neovim evangelist
 - Dvorak > QWERTY
 - I use Arch, btw
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **7773** commits, opened **27** issues, submitted **50** pull requests, reviewed **8** pull requests, received **75** stars, own **89** public repositories and contributed to **19** public repositories.
+I joined GitHub **10** years ago, pushed **7775** commits, opened **27** issues, submitted **50** pull requests, reviewed **8** pull requests, received **75** stars, own **89** public repositories and contributed to **19** public repositories.
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
@@ -102,3 +102,7 @@ Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Cor
 ## Contact
 
 [Email](mailto:mbwilding@gmail.com), [GitHub](http://github.com/mbwilding), [LinkedIn](https://www.linkedin.com/in/mbwilding)
+
+## References
+
+Will provide upon request
