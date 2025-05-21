@@ -75,7 +75,7 @@ ASP.NET Core, Rust, Lua, Bash, PowerShell, AWS, GitLab, GitHub
 
 ### Things I'm good at (>1 year of industry experience)
 
-Azure DevOps, Xamarin, WinForms, WPF, Avalonia, DevExpress, Entity Framework Core, TypeScript, React, Pulumi
+Azure DevOps, Azure Cloud, Xamarin, WinForms, WPF, Avalonia, DevExpress, Entity Framework Core, TypeScript, React, Pulumi
 
 ### Things I like a lot (Personal)
 
