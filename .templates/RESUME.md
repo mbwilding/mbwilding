@@ -84,3 +84,7 @@ Xamarin, WinForms, WPF, Avalonia, DevExpress, Azure DevOps, Entity Framework Cor
 ## Contact
 
 [Email](mailto:mbwilding@gmail.com), [GitHub](http://github.com/mbwilding), [LinkedIn](https://www.linkedin.com/in/mbwilding)
+
+## References
+
+Will provide upon request
