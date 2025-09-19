@@ -32,7 +32,7 @@ jobs:
             if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
             print y
           }')
-          sed -i "s/{{ *TIME_GOOD* }}/$GOOD_YEARS/g" RESUME.md
+          sed -i "s/{{ TIME_GOOD }}/$GOOD_YEARS/g" RESUME.md
 
           GREAT_YEARS=$(awk -v date1="2021-01-01" -v date2="$(date +%Y-%m-%d)" 'BEGIN {
             split(date1, d1, "-");
@@ -41,7 +41,7 @@ jobs:
             if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
             print y
           }')
-          sed -i "s/{{ *TIME_GREAT* }}/$GREAT_YEARS/g" RESUME.md
+          sed -i "s/{{ TIME_GREAT }}/$GREAT_YEARS/g" RESUME.md
 
           EXCELLENT_YEARS=$(awk -v date1="2020-01-01" -v date2="$(date +%Y-%m-%d)" 'BEGIN {
             split(date1, d1, "-");
@@ -50,7 +50,7 @@ jobs:
             if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
             print y
           }')
-          sed -i "s/{{ *TIME_EXCELLENT* }}/$EXCELLENT_YEARS/g" RESUME.md
+          sed -i "s/{{ TIME_EXCELLENT }}/$EXCELLENT_YEARS/g" RESUME.md
 
       - name: Prepend Readme to Resume
         shell: bash
