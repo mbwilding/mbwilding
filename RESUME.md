@@ -10,7 +10,7 @@
 
 ## Stats
 
-I joined GitHub **10** years ago, pushed **7143** commits, opened **28** issues, submitted **51** pull requests, reviewed **8** pull requests, received **103** stars, own **85** public repositories and contributed to **18** public repositories.
+I joined GitHub **10** years ago, pushed **7145** commits, opened **28** issues, submitted **51** pull requests, reviewed **8** pull requests, received **103** stars, own **85** public repositories and contributed to **18** public repositories.
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
@@ -83,15 +83,15 @@ Zig
 
 ## Techs
 
-### Things I'm excellent at (>{{ TIME_EXCELLENT }} years of experience)
+### Things I'm excellent at (>5 years of experience)
 
 C#, .NET Core
 
-### Things I'm great at (>{{ TIME_GREAT }} years of industry experience)
+### Things I'm great at (>4 years of industry experience)
 
 ASP.NET Core, Rust, Lua, Bash, PowerShell, AWS, GitLab, GitHub
 
-### Things I'm good at (>{{ TIME_GOOD }} year of industry experience)
+### Things I'm good at (>2 year of industry experience)
 
 Azure DevOps, Azure Cloud, Xamarin, WinForms, WPF, Avalonia, DevExpress, Entity Framework Core, TypeScript, React, Pulumi
 
