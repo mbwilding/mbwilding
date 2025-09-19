@@ -69,11 +69,11 @@ Zig
 
 C#, .NET Core
 
-### Things I'm great at (>3 years of industry experience)
+### Things I'm great at (>4 years of industry experience)
 
 ASP.NET Core, Rust, Lua, Bash, PowerShell, AWS, GitLab, GitHub
 
-### Things I'm good at (>1 year of industry experience)
+### Things I'm good at (>2 year of industry experience)
 
 Azure DevOps, Azure Cloud, Xamarin, WinForms, WPF, Avalonia, DevExpress, Entity Framework Core, TypeScript, React, Pulumi
 
