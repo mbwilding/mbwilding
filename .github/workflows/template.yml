@@ -22,47 +22,13 @@ jobs:
           template: ./.templates/README.md
           readme: ./README.md
 
-      - name: Resume Variables
-        shell: bash
-        run: |
-          GOOD_YEARS=$(awk -v date1="2023-01-01" -v date2="$(date +%Y-%m-%d)" 'BEGIN {
-            split(date1, d1, "-");
-            split(date2, d2, "-");
-            y = d2[1] - d1[1];
-            if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
-            print y
-          }')
-          sed -i "s/{{ TIME_GOOD }}/$GOOD_YEARS/g" .templates/RESUME.md
-
-          GREAT_YEARS=$(awk -v date1="2021-01-01" -v date2="$(date +%Y-%m-%d)" 'BEGIN {
-            split(date1, d1, "-");
-            split(date2, d2, "-");
-            y = d2[1] - d1[1];
-            if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
-            print y
-          }')
-          sed -i "s/{{ TIME_GREAT }}/$GREAT_YEARS/g" .templates/RESUME.md
-
-          EXCELLENT_YEARS=$(awk -v date1="2020-01-01" -v date2="$(date +%Y-%m-%d)" 'BEGIN {
-            split(date1, d1, "-");
-            split(date2, d2, "-");
-            y = d2[1] - d1[1];
-            if (d2[2] < d1[2] || (d2[2] == d1[2] && d2[3] < d1[3])) y--;
-            print y
-          }')
-          sed -i "s/{{ TIME_EXCELLENT }}/$EXCELLENT_YEARS/g" .templates/RESUME.md
-
-      - name: Prepend Readme to Resume
-        shell: bash
-        run: cat README.md <(echo) .templates/RESUME.md > RESUME.md
-
       - name: Update
         shell: bash
         run: |
           if [[ "$(git status --porcelain)" != "" ]]; then
-            git config user.name 'Matthew Wilding'
-            git config user.email 'mbwilding@gmail.com'
-            git add README.md RESUME.md
-            git commit -m "Update markdown"
+            git config user.name "Matthew Wilding"
+            git config user.email "mbwilding@gmail.com"
+            git add README.md
+            git commit -m "Update readme"
             git push
           fi
