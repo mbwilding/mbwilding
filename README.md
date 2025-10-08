@@ -10,7 +10,7 @@
 
 ## Stats
 
-I joined GitHub **11** years ago, pushed **7390** commits, opened **28** issues, submitted **52** pull requests, reviewed **8** pull requests, received **105** stars, own **88** public repositories and contributed to **16** public repositories.
+I joined GitHub **11** years ago, pushed **7408** commits, opened **28** issues, submitted **53** pull requests, reviewed **8** pull requests, received **113** stars, own **88** public repositories and contributed to **16** public repositories.
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
