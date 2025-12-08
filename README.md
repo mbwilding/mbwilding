@@ -10,4 +10,11 @@
 
 ## Stats
 
-I joined GitHub **11** years ago, pushed **7770** commits, opened **28** issues, submitted **54** pull requests, reviewed **9** pull requests, received **125** stars, own **93** public repositories and contributed to **12** public repositories.
+- Joined GitHub **11** years ago
+- Pushed **7772** commits
+- Opened **28** issues
+- Submitted **54** pull requests
+- Reviewed **9** pull requests
+- Received **125** stars
+- Own **93** public repositories
+- Contributed to **12** public repositories
