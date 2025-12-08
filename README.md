@@ -10,11 +10,11 @@
 
 ## Stats
 
-- Joined GitHub **11** years ago
-- Pushed **7772** commits
+- Joined **11** years ago
+- Pushed **7774** commits
 - Opened **28** issues
 - Submitted **54** pull requests
 - Reviewed **9** pull requests
 - Received **125** stars
-- Own **93** public repositories
+- Created **93** public repositories
 - Contributed to **12** public repositories
