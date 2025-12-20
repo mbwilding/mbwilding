@@ -11,15 +11,9 @@
 ## Stats
 
 - Joined **11** years ago
-- Pushed **7868** commits
-- Opened **28** issues
-- Submitted **56** pull requests
+- Pushed **7870** commits
 - Reviewed **9** pull requests
-- Received **125** stars
 - Created **93** public repositories
-- Contributed to **13** public repositories
-
-## Metrics
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 
