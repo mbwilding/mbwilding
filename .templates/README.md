@@ -12,14 +12,8 @@
 
 - Joined **{{ ACCOUNT_AGE }}** years ago
 - Pushed **{{ COMMITS }}** commits
-- Opened **{{ ISSUES }}** issues
-- Submitted **{{ PULL_REQUESTS }}** pull requests
 - Reviewed **{{ CODE_REVIEWS }}** pull requests
-- Received **{{ STARS }}** stars
 - Created **{{ REPOSITORIES }}** public repositories
-- Contributed to **{{ REPOSITORIES_CONTRIBUTED_TO }}** public repositories
-
-## Metrics
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
 
