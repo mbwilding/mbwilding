@@ -11,7 +11,7 @@
 ## Stats
 
 - Joined **11** years ago
-- Pushed **7866** commits
+- Pushed **7868** commits
 - Opened **28** issues
 - Submitted **56** pull requests
 - Reviewed **9** pull requests
@@ -22,5 +22,7 @@
 ## Metrics
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
+
 ![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
+
 ![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true&combine_all_yearly_contributions=true&limit=100&hide=B,B%2B)
