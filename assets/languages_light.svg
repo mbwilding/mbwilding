@@ -5,31 +5,31 @@
   <rect width="350" height="230" rx="4.5" fill="#ffffff"/>
   <text x="25" y="35" fill="#0366d6" font-size="16" font-weight="600">mbwilding's Languages</text>
   <g transform="translate(15, 50)">
-    <path d="M 100.00 40.00 A 60 60 0 0 1 155.39 123.06 L 132.31 113.45 A 35 35 0 0 0 100.00 65.00 Z" fill="#555555"/><path d="M 155.39 123.06 A 60 60 0 0 1 72.52 153.34 L 83.97 131.11 A 35 35 0 0 0 132.31 113.45 Z" fill="#178600"/><path d="M 72.52 153.34 A 60 60 0 0 1 43.58 79.58 L 67.09 88.09 A 35 35 0 0 0 83.97 131.11 Z" fill="#f34b7d"/><path d="M 43.58 79.58 A 60 60 0 0 1 53.69 61.85 L 72.98 77.75 A 35 35 0 0 0 67.09 88.09 Z" fill="#dea584"/><path d="M 53.69 61.85 A 60 60 0 0 1 62.45 53.21 L 78.09 72.70 A 35 35 0 0 0 72.98 77.75 Z" fill="#6866fb"/><path d="M 62.45 53.21 A 60 60 0 0 1 70.50 47.75 L 82.79 69.52 A 35 35 0 0 0 78.09 72.70 Z" fill="#3178c6"/><path d="M 70.50 47.75 A 60 60 0 0 1 77.10 44.54 L 86.64 67.65 A 35 35 0 0 0 82.79 69.52 Z" fill="#000080"/><path d="M 77.10 44.54 A 60 60 0 0 1 82.48 42.61 L 89.78 66.52 A 35 35 0 0 0 86.64 67.65 Z" fill="#ec915c"/>
+    <path d="M 100.00 40.00 A 60 60 0 0 1 145.29 139.35 L 126.42 122.96 A 35 35 0 0 0 100.00 65.00 Z" fill="#dea584"/><path d="M 145.29 139.35 A 60 60 0 0 1 77.53 155.63 L 86.89 132.45 A 35 35 0 0 0 126.42 122.96 Z" fill="#3178c6"/><path d="M 77.53 155.63 A 60 60 0 0 1 42.31 116.49 L 66.35 109.62 A 35 35 0 0 0 86.89 132.45 Z" fill="#178600"/><path d="M 42.31 116.49 A 60 60 0 0 1 51.42 64.78 L 71.66 79.46 A 35 35 0 0 0 66.35 109.62 Z" fill="#000080"/><path d="M 51.42 64.78 A 60 60 0 0 1 87.61 41.29 L 92.77 65.75 A 35 35 0 0 0 71.66 79.46 Z" fill="#ec915c"/><path d="M 87.61 41.29 A 60 60 0 0 1 91.74 40.57 L 95.18 65.33 A 35 35 0 0 0 92.77 65.75 Z" fill="#89e051"/><path d="M 91.74 40.57 A 60 60 0 0 1 93.60 40.34 L 96.27 65.20 A 35 35 0 0 0 95.18 65.33 Z" fill="#e34c26"/><path d="M 93.60 40.34 A 60 60 0 0 1 94.93 40.21 L 97.04 65.13 A 35 35 0 0 0 96.27 65.20 Z" fill="#f34b7d"/>
   </g>
   <g transform="translate(200, 65)">
-                <rect width="12" height="12" rx="2" fill="#555555"/>
-                <text x="18" y="10" fill="#333333" font-size="11">C (31.3%)</text>
-            </g><g transform="translate(200, 87)">
-                <rect width="12" height="12" rx="2" fill="#178600"/>
-                <text x="18" y="10" fill="#333333" font-size="11">C# (26.3%)</text>
-            </g><g transform="translate(200, 109)">
-                <rect width="12" height="12" rx="2" fill="#f34b7d"/>
-                <text x="18" y="10" fill="#333333" font-size="11">C++ (23.0%)</text>
-            </g><g transform="translate(200, 131)">
                 <rect width="12" height="12" rx="2" fill="#dea584"/>
-                <text x="18" y="10" fill="#333333" font-size="11">Rust (5.4%)</text>
-            </g><g transform="translate(200, 153)">
-                <rect width="12" height="12" rx="2" fill="#6866fb"/>
-                <text x="18" y="10" fill="#333333" font-size="11">Objective-C++ (3.3%)</text>
-            </g><g transform="translate(200, 175)">
+                <text x="18" y="10" fill="#333333" font-size="11">Rust (36.4%)</text>
+            </g><g transform="translate(200, 87)">
                 <rect width="12" height="12" rx="2" fill="#3178c6"/>
-                <text x="18" y="10" fill="#333333" font-size="11">TypeScript (2.6%)</text>
-            </g><g transform="translate(200, 197)">
+                <text x="18" y="10" fill="#333333" font-size="11">TypeScript (19.7%)</text>
+            </g><g transform="translate(200, 109)">
+                <rect width="12" height="12" rx="2" fill="#178600"/>
+                <text x="18" y="10" fill="#333333" font-size="11">C# (14.5%)</text>
+            </g><g transform="translate(200, 131)">
                 <rect width="12" height="12" rx="2" fill="#000080"/>
-                <text x="18" y="10" fill="#333333" font-size="11">Lua (1.9%)</text>
-            </g><g transform="translate(200, 219)">
+                <text x="18" y="10" fill="#333333" font-size="11">Lua (14.4%)</text>
+            </g><g transform="translate(200, 153)">
                 <rect width="12" height="12" rx="2" fill="#ec915c"/>
-                <text x="18" y="10" fill="#333333" font-size="11">Zig (1.5%)</text>
+                <text x="18" y="10" fill="#333333" font-size="11">Zig (11.7%)</text>
+            </g><g transform="translate(200, 175)">
+                <rect width="12" height="12" rx="2" fill="#89e051"/>
+                <text x="18" y="10" fill="#333333" font-size="11">Shell (1.1%)</text>
+            </g><g transform="translate(200, 197)">
+                <rect width="12" height="12" rx="2" fill="#e34c26"/>
+                <text x="18" y="10" fill="#333333" font-size="11">HTML (0.5%)</text>
+            </g><g transform="translate(200, 219)">
+                <rect width="12" height="12" rx="2" fill="#f34b7d"/>
+                <text x="18" y="10" fill="#333333" font-size="11">C++ (0.4%)</text>
             </g>
 </svg>
