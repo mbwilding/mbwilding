@@ -12,9 +12,9 @@
 - **Layout:** [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/stats_dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/stats_light.svg" />
-  <img src="./assets/stats_dark.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/statistics_dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/statistics_light.svg" />
+  <img src="./assets/statistics_dark.svg" />
 </picture>
 
 <picture>
@@ -24,7 +24,7 @@
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/contribs_dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/contribs_light.svg" />
-  <img src="./assets/contribs_dark.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions_dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/contributions_light.svg" />
+  <img src="./assets/contributions_dark.svg" />
 </picture>

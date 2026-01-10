@@ -209,7 +209,7 @@ async fn main() -> Result<()> {
         let contribs_svg = generate_contribs_svg(&contribs, username, theme);
 
         fs::write(
-            output_path.join(format!("stats_{}.svg", theme.name)),
+            output_path.join(format!("statistics_{}.svg", theme.name)),
             stats_svg,
         )?;
         fs::write(
@@ -217,7 +217,7 @@ async fn main() -> Result<()> {
             langs_svg,
         )?;
         fs::write(
-            output_path.join(format!("contribs_{}.svg", theme.name)),
+            output_path.join(format!("contributions_{}.svg", theme.name)),
             contribs_svg,
         )?;
 
