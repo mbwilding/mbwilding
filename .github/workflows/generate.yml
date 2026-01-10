@@ -17,7 +17,7 @@ jobs:
 
       - name: Cache
         id: cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             target
@@ -29,7 +29,9 @@ jobs:
 
       - name: Build
         if: steps.cache.outputs.cache-hit != 'true'
-        run: cargo build --release
+        run: |
+          echo "Running build due to cache hit being ${{ steps.cache.outputs.cache-hit }}"
+          cargo build --release
 
       - name: Generate SVGs
         env:
