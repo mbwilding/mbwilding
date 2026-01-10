@@ -25,6 +25,10 @@ struct Args {
     /// Include private repositories (public only by default)
     #[arg(long, default_value = "false")]
     private: bool,
+
+    /// Hide username prefix in titles (e.g. "Statistics" instead of "username's Statistics")
+    #[arg(long, default_value = "false")]
+    no_username: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -220,10 +224,21 @@ async fn main() -> Result<()> {
     fs::create_dir_all(output_path)?;
 
     // Generate SVGs for both themes
+    let show_username = !args.no_username;
     for theme in [LIGHT_THEME, DARK_THEME] {
-        let stats_svg = optimize_svg(&generate_stats_svg(&stats, username, theme));
-        let langs_svg = optimize_svg(&generate_languages_svg(&languages, username, theme));
-        let contribs_svg = optimize_svg(&generate_contribs_svg(&contribs, username, theme));
+        let stats_svg = optimize_svg(&generate_stats_svg(&stats, username, theme, show_username));
+        let langs_svg = optimize_svg(&generate_languages_svg(
+            &languages,
+            username,
+            theme,
+            show_username,
+        ));
+        let contribs_svg = optimize_svg(&generate_contribs_svg(
+            &contribs,
+            username,
+            theme,
+            show_username,
+        ));
 
         fs::write(
             output_path.join(format!("statistics_{}.svg", theme.name)),
@@ -445,7 +460,7 @@ fn extract_contribs(user: &User, username: &str) -> ContribStats {
     ContribStats { repos }
 }
 
-fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
+fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme, show_username: bool) -> String {
     let items = [
         ("stars", "Total Stars", stats.total_stars, star_icon()),
         ("forks", "Total Forks", stats.total_forks, fork_icon()),
@@ -490,20 +505,31 @@ fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
         ));
     }
 
+    let title = if show_username {
+        format!("{}'s Statistics", name)
+    } else {
+        "Statistics".to_string()
+    };
+
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
   <rect width="350" height="{}" rx="4.5" fill="{}"/>
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Statistics</text>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-        height, height, height, theme.bg, theme.title, name, rows
+        height, height, height, theme.bg, theme.title, title, rows
     )
 }
 
-fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> String {
+fn generate_languages_svg(
+    langs: &LanguageStats,
+    name: &str,
+    theme: Theme,
+    show_username: bool,
+) -> String {
     let top_langs: Vec<_> = langs.languages.iter().take(8).collect();
 
     if top_langs.is_empty() {
@@ -572,23 +598,34 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
     let donut_height = 50 + 190 + 15; // title area + donut + padding
     let height = legend_height.max(donut_height);
 
+    let title = if show_username {
+        format!("{}'s Languages", name)
+    } else {
+        "Languages".to_string()
+    };
+
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
   <rect width="350" height="{}" rx="4.5" fill="{}"/>
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Languages</text>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
   <g transform="translate(160, 50)">
     {}
   </g>
 </svg>"#,
-        height, height, height, theme.bg, theme.title, name, legend, paths
+        height, height, height, theme.bg, theme.title, title, legend, paths
     )
 }
 
-fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> String {
+fn generate_contribs_svg(
+    contribs: &ContribStats,
+    name: &str,
+    theme: Theme,
+    show_username: bool,
+) -> String {
     if contribs.repos.is_empty() {
         return generate_empty_svg("No External Contributions", theme);
     }
@@ -658,6 +695,12 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
         ));
     }
 
+    let title = if show_username {
+        format!("{}'s Contributions", name)
+    } else {
+        "Contributions".to_string()
+    };
+
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>
@@ -666,10 +709,10 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
     a:hover text {{ text-decoration: underline; }}
   </style>
   <rect width="{}" height="{}" rx="4.5" fill="{}"/>
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Contributions</text>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-        width, height, width, height, width, height, theme.bg, theme.title, name, rows
+        width, height, width, height, width, height, theme.bg, theme.title, title, rows
     )
 }
 
