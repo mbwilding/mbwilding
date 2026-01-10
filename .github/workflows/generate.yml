@@ -12,68 +12,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate
-        shell: bash
+      - name: Generate SVGs
         env:
-          name: Matthew Wilding
-          email: mbwilding@gmail.com
-          username: mbwilding
-          commit: Generate assets
-          args: username=mbwilding&hide_border=true&limit=100
+          GITHUB_USERNAME: mbwilding
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cargo run --output assets
+
+      - name: Commit changes
         run: |
-          output="assets"
-          mkdir -p "$output"
+          git add assets/*.svg
 
-          function commit() {
-              if [[ "$(git status --porcelain)" != "" ]]; then
-                  git config user.name "$name"
-                  git config user.email "$email"
-
-                  git commit -m "$commit"
-                  git push
-              else
-                  echo "No changes"
-              fi
-          }
-
-          function download() {
-              local path="$1"
-              local url="$2"
-
-              echo "Downloading: $path | $url"
-
-              if ! wget --quiet "$url" -O "$path"; then
-                  echo "Failed: Download"
-                  rm -f "$path"
-                  return
-              fi
-
-              if grep -q "Something went wrong" "$path"; then
-                  echo "Failed: Error message in file"
-                  rm -f "$path"
-                  return
-              fi
-
-              if ! grep -q "</svg>" "$path"; then
-                  echo "Failed: Not an SVG"
-                  rm -f "$path"
-                  return
-              fi
-
-              git add "$path"
-          }
-
-          function generate() {
-              local name="$1"
-              local url="$2"
-              local base_path="$output/$name"
-
-              download "${base_path}_light.svg" "${url}&${args}&theme=default"
-              download "${base_path}_dark.svg"  "${url}&${args}&theme=github_dark"
-          }
-
-          generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
-          generate languages "https://readme-stats-nu.vercel.app/api/top-langs/?layout=donut"
-          generate contribs "https://github-contributor-stats.vercel.app/api?combine_all_yearly_contributions=true&hide=B,B%2B"
-
-          commit
+          if [[ "$(git status --porcelain)" != "" ]]; then
+            git config user.name "Matthew Wilding"
+            git config user.email "mbwilding@gmail.com"
+            git commit -m "Update stats"
+            git push
+          else
+            echo "No changes"
+          fi

@@ -1,0 +1,24 @@
+[package]
+name = "github-stats"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+reqwest = { version = "0.13", features = ["json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.5", features = ["derive", "env"] }
+anyhow = "1.0"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+
+[profile.release]
+opt-level = "z"         # Optimize for size.
+lto = true              # Enable Link Time Optimization.
+codegen-units = 1       # Reduce the number of codegen units to enhance optimization.
+strip = true            # Remove symbol information for a smaller binary.
+panic = "abort"         # Aborts on panic, reducing the binary size.
+incremental = false     # Disable incremental compilation.
+overflow-checks = false # Disable overflow checks if not required (unsafe).
+
+[profile.dev.package."*"]
+opt-level = 2
