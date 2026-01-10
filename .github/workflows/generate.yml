@@ -19,6 +19,7 @@ jobs:
           email: mbwilding@gmail.com
           username: mbwilding
           commit: Generate assets
+          args: username=mbwilding&hide_border=true&limit=100
         run: |
           output="assets"
           mkdir -p "$output"
@@ -40,10 +41,16 @@ jobs:
               url="$2"
 
               echo "Downloading: $path | $url"
+
               if wget --quiet "$url" -O "$path"; then
-                  git add "$path"
+                  if grep -q '</svg>' "$path"; then
+                      git add "$path"
+                  else
+                      echo "Not a valid SVG"
+                      rm -f "$path"
+                  fi
               else
-                  echo "Failed"
+                  echo "Failed to download $url"
               fi
           }
 
@@ -52,7 +59,6 @@ jobs:
               local url="$2"
 
               base="$output/$name"
-              args="username=$username&hide_border=true"
 
               path="${base}_dark.svg"
               full="${url}&${args}&theme=github_dark"
@@ -65,5 +71,6 @@ jobs:
 
           generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
           generate languages "https://readme-stats-nu.vercel.app/api/top-langs/?layout=donut"
+          generate contribs "https://github-contributor-stats.vercel.app/api?combine_all_yearly_contributions=true&hide=B,B%2B"
 
           commit

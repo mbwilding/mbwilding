@@ -46,4 +46,22 @@
       align="bottom"
     />
   </a>
+
+  <br />
+
+  <a href="https://github.com/mbwilding#gh-dark-mode-only">
+    <img
+      src="./assets/contribs_dark.svg"
+      alt="mbwilding's top contribs (dark mode)"
+      align="bottom"
+    />
+  </a>
+
+  <a href="https://github.com/mbwilding#gh-light-mode-only">
+    <img
+      src="./assets/contribs_light.svg"
+      alt="mbwilding's top contribs (light mode)"
+      align="bottom"
+    />
+  </a>
 </div>
