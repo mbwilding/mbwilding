@@ -1,0 +1,178 @@
+use std::collections::HashMap;
+
+use anyhow::Result;
+use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
+
+use super::{RenderConfig, SVG_STYLES, Tile, empty_svg};
+use crate::github::User;
+use crate::icons;
+use crate::svg::format_number;
+
+/// A repository contribution entry
+pub struct ContributionEntry {
+    pub owner: String,
+    pub repo: String,
+    pub stars: u32,
+    pub avatar_data: String, // base64 encoded avatar
+}
+
+/// Contributions data extracted from GitHub user
+pub struct Contributions {
+    pub repos: Vec<ContributionEntry>,
+}
+
+impl Contributions {
+    /// Extract contribution data from GitHub user data
+    pub fn from_user(user: &User, username: &str) -> Self {
+        let mut seen: HashMap<(String, String), (u32, String)> = HashMap::new();
+
+        for pr in &user.merged_pull_requests.nodes {
+            let owner = &pr.repository.owner.login;
+            if owner.to_lowercase() == username.to_lowercase() {
+                continue;
+            }
+            let key = (owner.clone(), pr.repository.name.clone());
+            seen.entry(key).or_insert((
+                pr.repository.stargazer_count,
+                pr.repository.owner.avatar_url.clone(),
+            ));
+        }
+
+        let mut repos: Vec<_> = seen
+            .into_iter()
+            .map(|((owner, repo), (stars, avatar_url))| ContributionEntry {
+                owner,
+                repo,
+                stars,
+                avatar_data: avatar_url, // Will be replaced with base64 data
+            })
+            .collect();
+
+        repos.sort_by(|a, b| b.stars.cmp(&a.stars));
+        repos.truncate(10);
+
+        Self { repos }
+    }
+
+    /// Fetch avatars and convert to base64 for embedding in SVG
+    pub async fn fetch_avatars(&mut self, client: &reqwest::Client) -> Result<()> {
+        for entry in &mut self.repos {
+            let base64_data = match client.get(&entry.avatar_data).send().await {
+                Ok(response) => {
+                    if let Ok(bytes) = response.bytes().await {
+                        let encoded = BASE64.encode(&bytes);
+                        format!("data:image/png;base64,{}", encoded)
+                    } else {
+                        String::new()
+                    }
+                }
+                Err(_) => String::new(),
+            };
+            entry.avatar_data = base64_data;
+        }
+
+        Ok(())
+    }
+}
+
+impl Tile for Contributions {
+    fn name(&self) -> &'static str {
+        "contributions"
+    }
+
+    fn render(&self, config: &RenderConfig) -> String {
+        let theme = config.theme;
+        let title = config.title("Contributions");
+
+        if self.repos.is_empty() {
+            return empty_svg("No External Contributions", theme);
+        }
+
+        let row_height = 32;
+        let title_height = 50;
+        let padding = 15;
+        let avatar_size = 20;
+
+        // Calculate the longest repo text to determine star position
+        let char_width = 7.0;
+        let max_repo_len = self
+            .repos
+            .iter()
+            .map(|e| e.owner.len() + 1 + e.repo.len())
+            .max()
+            .unwrap_or(0);
+
+        let text_x = 25 + avatar_size + 8;
+        let star_x = text_x + (max_repo_len as f64 * char_width) as usize + 15;
+        let width = star_x + 60;
+
+        let height = title_height + self.repos.len() * row_height + padding;
+        let mut rows = String::new();
+
+        for (i, entry) in self.repos.iter().enumerate() {
+            let y = title_height + i * row_height;
+            let repo_url = format!("https://github.com/{}/{}", entry.owner, entry.repo);
+            rows.push_str(&format!(
+                r#"<g transform="translate(25, {})">
+                <clipPath id="avatar-clip-{}">
+                    <circle cx="{}" cy="{}" r="{}"/>
+                </clipPath>
+                <a href="{}" target="_blank">
+                    <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
+                    <text x="{}" y="14" fill="{}" font-size="12">
+                        <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
+                    </text>
+                </a>
+                <g transform="translate({}, 0)" fill="{}">
+                    <g transform="translate(0, 4)">{}</g>
+                    <text x="18" y="14" fill="{}" font-size="11">{}</text>
+                </g>
+            </g>"#,
+                y,
+                i,
+                avatar_size / 2,
+                avatar_size / 2,
+                avatar_size / 2,
+                repo_url,
+                entry.avatar_data,
+                avatar_size,
+                avatar_size,
+                i,
+                text_x - 25,
+                theme.text,
+                theme.icon,
+                entry.owner,
+                entry.repo,
+                star_x - 25,
+                theme.star,
+                icons::star(),
+                theme.text,
+                format_number(entry.stars)
+            ));
+        }
+
+        format!(
+            r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
+  <style>
+    {}
+    a {{ text-decoration: none; }}
+    a:hover text {{ text-decoration: underline; }}
+  </style>
+  <rect width="{}" height="{}" rx="4.5" fill="{}"/>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
+  {}
+</svg>"#,
+            width,
+            height,
+            width,
+            height,
+            SVG_STYLES,
+            width,
+            height,
+            theme.bg,
+            theme.title,
+            title,
+            rows
+        )
+    }
+}
