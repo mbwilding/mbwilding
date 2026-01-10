@@ -30,9 +30,9 @@ jobs:
                   git config user.email "$email"
 
                   git commit -m "$commit"
-                  git push || true
+                  git push
               else
-                  "No changes"
+                  echo "No changes"
               fi
           }
 
