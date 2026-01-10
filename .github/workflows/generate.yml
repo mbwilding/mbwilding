@@ -12,12 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build
+        run: cargo build --profile ci
+
       - name: Generate SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: cargo run --profile ci
 
-      - name: Commit changes
+      - name: Commit
         run: |
           git add assets/*.svg
 
