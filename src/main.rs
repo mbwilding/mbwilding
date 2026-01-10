@@ -1,6 +1,10 @@
 use anyhow::{Context, Result};
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
 use clap::Parser;
+use oxvg_ast::parse::roxmltree::parse;
+use oxvg_ast::serialize::Node as _;
+use oxvg_ast::visitor::Info;
+use oxvg_optimiser::Jobs;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
@@ -157,6 +161,19 @@ const DARK_THEME: Theme = Theme {
     star: "#e3b341",
 };
 
+/// Optimizes an SVG string using oxvg_optimiser
+fn optimize_svg(svg: &str) -> String {
+    parse(svg, |dom, allocator| {
+        let jobs = Jobs::default();
+        if jobs.run(dom, &Info::new(allocator)).is_ok() {
+            dom.serialize().unwrap_or_else(|_| svg.to_string())
+        } else {
+            svg.to_string()
+        }
+    })
+    .unwrap_or_else(|_| svg.to_string())
+}
+
 struct Stats {
     total_stars: u32,
     total_forks: u32,
@@ -204,21 +221,21 @@ async fn main() -> Result<()> {
 
     // Generate SVGs for both themes
     for theme in [LIGHT_THEME, DARK_THEME] {
-        let stats_svg = generate_stats_svg(&stats, username, theme);
-        let langs_svg = generate_languages_svg(&languages, username, theme);
-        let contribs_svg = generate_contribs_svg(&contribs, username, theme);
+        let stats_svg = optimize_svg(&generate_stats_svg(&stats, username, theme));
+        let langs_svg = optimize_svg(&generate_languages_svg(&languages, username, theme));
+        let contribs_svg = optimize_svg(&generate_contribs_svg(&contribs, username, theme));
 
         fs::write(
             output_path.join(format!("statistics_{}.svg", theme.name)),
-            stats_svg,
+            &stats_svg,
         )?;
         fs::write(
             output_path.join(format!("languages_{}.svg", theme.name)),
-            langs_svg,
+            &langs_svg,
         )?;
         fs::write(
             output_path.join(format!("contributions_{}.svg", theme.name)),
-            contribs_svg,
+            &contribs_svg,
         )?;
 
         println!("Generated {} theme SVGs", theme.name);
