@@ -27,6 +27,7 @@ overflow-checks = false # Disable overflow checks if not required (unsafe).
 opt-level = 2
 
 [profile.ci]
+inherits = "dev"
 opt-level = 0
 codegen-units = 16
 lto = false
