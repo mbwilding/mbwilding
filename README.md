@@ -14,7 +14,7 @@
 
 > Did I mention I use Arch, btw?
 
-<div align="center">
+<div>
   <a href="https://github.com/mbwilding#gh-dark-mode-only">
     <img src="./assets/stats_dark.svg" />
     <img src="./assets/languages_dark.svg" />
