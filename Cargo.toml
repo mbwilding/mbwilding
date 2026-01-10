@@ -24,14 +24,3 @@ overflow-checks = true
 
 [profile.dev.package."*"]
 opt-level = 2
-
-[profile.ci]
-inherits = "dev"
-opt-level = 0
-codegen-units = 16
-lto = false
-incremental = true
-strip = false
-panic = "unwind"
-debug = false
-overflow-checks = false
