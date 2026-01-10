@@ -60,6 +60,15 @@ jobs:
                   return
               fi
 
+              tmp="$(mktemp)"
+              if xmllint --format "$path" > "$tmp"; then
+                  mv "$tmp" "$path"
+              else
+                  echo "Failed: Formatting" >&2
+                  rm "$tmp"
+                  return
+              fi
+
               git add "$path"
           }
 
