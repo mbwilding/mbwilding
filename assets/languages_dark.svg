@@ -3,7 +3,7 @@
     text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
   </style>
   <rect width="350" height="230" rx="4.5" fill="#0d1117"/>
-  <text x="25" y="35" fill="#58a6ff" font-size="16" font-weight="600">Matthew Wilding's Languages</text>
+  <text x="25" y="35" fill="#58a6ff" font-size="16" font-weight="600">mbwilding's Languages</text>
   <g transform="translate(15, 50)">
     <path d="M 100.00 40.00 A 60 60 0 0 1 155.39 123.06 L 132.31 113.45 A 35 35 0 0 0 100.00 65.00 Z" fill="#555555"/><path d="M 155.39 123.06 A 60 60 0 0 1 72.52 153.34 L 83.97 131.11 A 35 35 0 0 0 132.31 113.45 Z" fill="#178600"/><path d="M 72.52 153.34 A 60 60 0 0 1 43.58 79.58 L 67.09 88.09 A 35 35 0 0 0 83.97 131.11 Z" fill="#f34b7d"/><path d="M 43.58 79.58 A 60 60 0 0 1 53.69 61.85 L 72.98 77.75 A 35 35 0 0 0 67.09 88.09 Z" fill="#dea584"/><path d="M 53.69 61.85 A 60 60 0 0 1 62.45 53.21 L 78.09 72.70 A 35 35 0 0 0 72.98 77.75 Z" fill="#6866fb"/><path d="M 62.45 53.21 A 60 60 0 0 1 70.50 47.75 L 82.79 69.52 A 35 35 0 0 0 78.09 72.70 Z" fill="#3178c6"/><path d="M 70.50 47.75 A 60 60 0 0 1 77.10 44.54 L 86.64 67.65 A 35 35 0 0 0 82.79 69.52 Z" fill="#000080"/><path d="M 77.10 44.54 A 60 60 0 0 1 82.48 42.61 L 89.78 66.52 A 35 35 0 0 0 86.64 67.65 Z" fill="#ec915c"/>
   </g>

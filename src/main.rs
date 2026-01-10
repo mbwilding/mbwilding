@@ -9,10 +9,6 @@ use std::path::Path;
 #[command(name = "github-stats")]
 #[command(about = "Generate GitHub stats SVGs for light and dark mode")]
 struct Args {
-    /// GitHub username
-    #[arg(short, long, env = "GITHUB_USERNAME")]
-    username: String,
-
     /// GitHub token (requires read:user and repo scopes)
     #[arg(short, long, env = "GITHUB_TOKEN")]
     token: String,
@@ -35,13 +31,13 @@ struct GraphQLError {
 
 #[derive(Debug, Deserialize)]
 struct UserData {
-    user: Option<User>,
+    viewer: Option<User>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct User {
-    name: Option<String>,
+    login: String,
     contributions_collection: ContributionsCollection,
     repositories: RepositoryConnection,
     pull_requests: PullRequestConnection,
@@ -152,7 +148,6 @@ const DARK_THEME: Theme = Theme {
 };
 
 struct Stats {
-    name: String,
     total_stars: u32,
     total_forks: u32,
     total_commits: u32,
@@ -176,17 +171,18 @@ async fn main() -> Result<()> {
 
     let client = reqwest::Client::new();
 
-    println!("Fetching GitHub data for {}...", args.username);
+    println!("Fetching GitHub data...");
 
-    let data = fetch_github_data(&client, &args.token, &args.username).await?;
+    let data = fetch_github_data(&client, &args.token).await?;
 
     let user = data
-        .user
-        .context("User not found or API returned no data")?;
+        .viewer
+        .context("Failed to get authenticated user data")?;
 
+    let username = &user.login;
     let stats = extract_stats(&user);
     let languages = extract_languages(&user);
-    let contribs = extract_contribs(&user, &args.username);
+    let contribs = extract_contribs(&user, username);
 
     // Create output directory
     let output_path = Path::new(&args.output);
@@ -194,10 +190,9 @@ async fn main() -> Result<()> {
 
     // Generate SVGs for both themes
     for theme in [LIGHT_THEME, DARK_THEME] {
-        let name = if stats.name.is_empty() { "GitHub" } else { &stats.name };
-        let stats_svg = generate_stats_svg(&stats, name, theme);
-        let langs_svg = generate_languages_svg(&languages, name, theme);
-        let contribs_svg = generate_contribs_svg(&contribs, name, theme);
+        let stats_svg = generate_stats_svg(&stats, username, theme);
+        let langs_svg = generate_languages_svg(&languages, username, theme);
+        let contribs_svg = generate_contribs_svg(&contribs, username, theme);
 
         fs::write(
             output_path.join(format!("stats_{}.svg", theme.name)),
@@ -223,12 +218,11 @@ async fn main() -> Result<()> {
 async fn fetch_github_data(
     client: &reqwest::Client,
     token: &str,
-    username: &str,
 ) -> Result<UserData> {
     let query = r#"
-        query($username: String!) {
-            user(login: $username) {
-                name
+        query {
+            viewer {
+                login
                 contributionsCollection {
                     totalCommitContributions
                     restrictedContributionsCount
@@ -272,10 +266,7 @@ async fn fetch_github_data(
     "#;
 
     let body = serde_json::json!({
-        "query": query,
-        "variables": {
-            "username": username
-        }
+        "query": query
     });
 
     let response: GraphQLResponse<UserData> = client
@@ -317,7 +308,6 @@ fn extract_stats(user: &User) -> Stats {
         + user.contributions_collection.restricted_contributions_count;
 
     Stats {
-        name: user.name.clone().unwrap_or_default(),
         total_stars,
         total_forks,
         total_commits,
