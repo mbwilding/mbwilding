@@ -30,7 +30,7 @@ jobs:
                   git config user.email "$email"
 
                   git commit -m "$commit"
-                  git push
+                  git push || true
               else
                   "No changes"
               fi
@@ -43,14 +43,15 @@ jobs:
               echo "Downloading: $path | $url"
 
               if wget --quiet "$url" -O "$path"; then
-                  if grep -q '</svg>' "$path"; then
+                  if grep -q "</svg>" "$path"; then
                       git add "$path"
                   else
-                      echo "Failed: Not a valid SVG"
+                      echo "Failed: Not an SVG"
                       rm -f "$path"
                   fi
               else
                   echo "Failed: Download"
+                  rm -f "$path"
               fi
           }
 
