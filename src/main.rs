@@ -1,4 +1,5 @@
 use anyhow::{Context, Result};
+use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
 use clap::Parser;
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -190,6 +191,10 @@ async fn main() -> Result<()> {
     let languages = extract_languages(&user);
     let contribs = extract_contribs(&user, username);
 
+    // Fetch avatars and convert to base64
+    println!("Fetching avatars...");
+    let contribs = fetch_avatars_as_base64(&client, contribs).await?;
+
     // Create output directory
     let output_path = Path::new(&args.output);
     fs::create_dir_all(output_path)?;
@@ -294,6 +299,30 @@ async fn fetch_github_data(
     }
 
     response.data.context("No data in response")
+}
+
+async fn fetch_avatars_as_base64(
+    client: &reqwest::Client,
+    contribs: ContribStats,
+) -> Result<ContribStats> {
+    let mut repos_with_base64 = Vec::new();
+
+    for (owner, name, stars, avatar_url) in contribs.repos {
+        let base64_data = match client.get(&avatar_url).send().await {
+            Ok(response) => {
+                if let Ok(bytes) = response.bytes().await {
+                    let encoded = BASE64.encode(&bytes);
+                    format!("data:image/png;base64,{}", encoded)
+                } else {
+                    String::new()
+                }
+            }
+            Err(_) => String::new(),
+        };
+        repos_with_base64.push((owner, name, stars, base64_data));
+    }
+
+    Ok(ContribStats { repos: repos_with_base64 })
 }
 
 fn extract_stats(user: &User) -> Stats {
@@ -559,10 +588,8 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
     let height = title_height + contribs.repos.len() * row_height + padding;
     let mut rows = String::new();
 
-    for (i, (owner, repo_name, stars, avatar_url)) in contribs.repos.iter().enumerate() {
+    for (i, (owner, repo_name, stars, avatar_data)) in contribs.repos.iter().enumerate() {
         let y = title_height + i * row_height;
-        // Escape & for XML
-        let escaped_avatar_url = avatar_url.replace('&', "&amp;");
         rows.push_str(&format!(
             r#"<g transform="translate(25, {})">
                 <clipPath id="avatar-clip-{}">
@@ -582,7 +609,7 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
             avatar_size / 2,
             avatar_size / 2,
             avatar_size / 2,
-            escaped_avatar_url,
+            avatar_data,
             avatar_size,
             avatar_size,
             i,
