@@ -26,13 +26,21 @@ jobs:
           mkdir -p "$output"
 
           function commit() {
-              if [[ "$(git status --porcelain)" != "" ]]; then
+              status=$(git status --porcelain)
+
+              if [[ "$status" != "" ]]; then
+                  echo "$status"
+
                   echo "Configuring Git"
                   git config user.name "$name"
                   git config user.email "$email"
 
-                  echo "Pushing"
+                  echo "Committing"
+                  git commit -m "Generate"
                   git push
+                  echo "Committed"
+              else
+                  "No changes"
               fi
           }
 
@@ -67,7 +75,5 @@ jobs:
 
           generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
           generate languages "https://readme-stats-nu.vercel.app/api/top-langs/?layout=donut"
-
-          git status # TODO: Remove
 
           commit
