@@ -12,6 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Dependencies
+        shell: bash
+        run: apt-get install -y --no-install-recommends libxml2-utils
+
       - name: Generate
         shell: bash
         env:
