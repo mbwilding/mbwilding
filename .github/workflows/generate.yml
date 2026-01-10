@@ -18,7 +18,7 @@ jobs:
       - name: Generate SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: cargo run --token --profile ci
+        run: cargo run --profile ci
 
       - name: Commit
         run: |
