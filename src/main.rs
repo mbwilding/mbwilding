@@ -389,10 +389,10 @@ fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
         ("commits", "Total Commits", stats.total_commits, commit_icon()),
         ("prs", "Total PRs", stats.total_prs, pr_icon()),
         ("issues", "Total Issues", stats.total_issues, issue_icon()),
-        ("contribs", "Merged PRs (external)", stats.contributed_to, contrib_icon()),
+        ("contribs", "Merged PRs", stats.contributed_to, contrib_icon()),
     ];
 
-    let height = 170;
+    let height = 180;
     let mut rows = String::new();
 
     for (i, (_, label, value, icon)) in items.iter().enumerate() {
@@ -452,11 +452,11 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
         })
         .collect();
 
-    // Generate donut chart
-    let cx = 100.0;
-    let cy = 100.0;
-    let r = 60.0;
-    let inner_r = 35.0;
+    // Generate donut chart - positioned on the right
+    let cx = 80.0;
+    let cy = 80.0;
+    let r = 55.0;
+    let inner_r = 32.0;
 
     let mut paths = String::new();
     let mut start_angle = -90.0_f64;
@@ -487,12 +487,12 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
         start_angle = end_angle;
     }
 
-    // Generate legend - positioned after title
+    // Generate legend - positioned on the left
     let mut legend = String::new();
     for (i, (name, pct, color)) in lang_data.iter().enumerate() {
-        let y = 65 + i * 22;
+        let y = 55 + i * 22;
         legend.push_str(&format!(
-            r#"<g transform="translate(200, {})">
+            r#"<g transform="translate(25, {})">
                 <rect width="12" height="12" rx="2" fill="{}"/>
                 <text x="18" y="10" fill="{}" font-size="11">{} ({:.1}%)</text>
             </g>"#,
@@ -500,7 +500,10 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
         ));
     }
 
-    let height = 230;
+    // Dynamic height based on number of languages
+    let legend_height = 55 + lang_data.len() * 22 + 15;
+    let donut_height = 50 + 160 + 15; // title area + donut + padding
+    let height = legend_height.max(donut_height);
 
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
@@ -509,10 +512,10 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
   </style>
   <rect width="350" height="{}" rx="4.5" fill="{}"/>
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Languages</text>
-  <g transform="translate(15, 50)">
+  {}
+  <g transform="translate(190, 50)">
     {}
   </g>
-  {}
 </svg>"#,
         height,
         height,
@@ -520,8 +523,8 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
         theme.bg,
         theme.title,
         name,
-        paths,
-        legend
+        legend,
+        paths
     )
 }
 
