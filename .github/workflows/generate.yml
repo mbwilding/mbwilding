@@ -12,10 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install SVGO
-        shell: bash
-        run: npm install --global svgo
-
       - name: Generate
         shell: bash
         env:
@@ -61,13 +57,6 @@ jobs:
               if ! grep -q "</svg>" "$path"; then
                   echo "Failed: Not an SVG"
                   rm -f "$path"
-                  return
-              fi
-
-              echo "Optimizing SVG"
-              if ! svgo "$path" -o "$path"; then
-                  echo "Failed: Optimizing SVG"
-                  rm "$tmp"
                   return
               fi
 
