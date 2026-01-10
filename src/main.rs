@@ -14,7 +14,7 @@ use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
 
 #[derive(Parser)]
 #[command(name = "github-stats")]
-#[command(about = "Generate GitHub stats SVGs for light and dark mode")]
+#[command(about = "Generate GitHub stats SVGs")]
 struct Args {
     /// GitHub token (requires read:user and repo scopes)
     #[arg(short, long, env = "GITHUB_TOKEN")]
@@ -25,12 +25,12 @@ struct Args {
     output: String,
 
     /// Include private repositories (public only by default)
-    #[arg(long, default_value = "false")]
+    #[arg(short, long, default_value = "false")]
     private: bool,
 
-    /// Hide username prefix in titles (e.g. "Statistics" instead of "username's Statistics")
+    /// Show username prefix in titles (e.g. "Statistics" instead of "username's Statistics")
     #[arg(short, long, default_value = "false")]
-    no_username: bool,
+    username: bool,
 }
 
 #[tokio::main]
@@ -46,7 +46,7 @@ async fn main() -> Result<()> {
         .context("Failed to get authenticated user data")?;
 
     let username = &user.login;
-    let show_username = !args.no_username;
+    let show_username = args.username;
 
     // Extract tile data from user
     let statistics = Statistics::from_user(&user);

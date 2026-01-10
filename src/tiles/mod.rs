@@ -36,7 +36,7 @@ impl<'a> RenderConfig<'a> {
 
 /// Trait for generating SVG tiles
 pub trait Tile {
-    /// The base name of the tile (e.g., "statistics", "languages")
+    /// The base name of the tile
     fn name(&self) -> &'static str;
 
     /// Render the tile as an SVG string
