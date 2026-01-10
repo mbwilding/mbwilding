@@ -136,6 +136,7 @@ struct Theme {
     title: &'static str,
     text: &'static str,
     icon: &'static str,
+    star: &'static str,
 }
 
 const LIGHT_THEME: Theme = Theme {
@@ -144,6 +145,7 @@ const LIGHT_THEME: Theme = Theme {
     title: "#0366d6",
     text: "#333333",
     icon: "#586069",
+    star: "#e3b341",
 };
 
 const DARK_THEME: Theme = Theme {
@@ -152,6 +154,7 @@ const DARK_THEME: Theme = Theme {
     title: "#58a6ff",
     text: "#c9d1d9",
     icon: "#8b949e",
+    star: "#e3b341",
 };
 
 struct Stats {
@@ -619,7 +622,7 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
             owner,
             repo_name,
             star_x - 25, // relative to the group's x=25
-            theme.icon,
+            theme.star,
             star_icon(),
             theme.text,
             format_number(*stars)
