@@ -42,17 +42,25 @@ jobs:
 
               echo "Downloading: $path | $url"
 
-              if wget --quiet "$url" -O "$path"; then
-                  if grep -q "</svg>" "$path"; then
-                      git add "$path"
-                  else
-                      echo "Failed: Not an SVG"
-                      rm -f "$path"
-                  fi
-              else
+              if ! wget --quiet "$url" -O "$path"; then
                   echo "Failed: Download"
                   rm -f "$path"
+                  return
               fi
+
+              if grep -q "Something went wrong" "$path"; then
+                  echo "Failed: Error message in file"
+                  rm -f "$path"
+                  return
+              fi
+
+              if ! grep -q "</svg>" "$path"; then
+                  echo "Failed: Not an SVG"
+                  rm -f "$path"
+                  return
+              fi
+
+              git add "$path"
           }
 
           function generate() {
@@ -66,7 +74,7 @@ jobs:
               download "$path" "$full"
 
               path="${base}_light.svg"
-              full="${url}&${args}&theme=default"
+              full="${url}&${args}"
               download "$path" "$full"
           }
 

@@ -16,52 +16,14 @@
 
 <div align="center">
   <a href="https://github.com/mbwilding#gh-dark-mode-only">
-    <img
-      src="./assets/stats_dark.svg"
-      alt="mbwilding's GitHub stats (dark mode)"
-    />
+    <img src="./assets/stats_dark.svg" />
+    <img src="./assets/languages_dark.svg" />
+    <img src="./assets/contribs_dark.svg" />
   </a>
 
   <a href="https://github.com/mbwilding#gh-light-mode-only">
-    <img
-      src="./assets/stats_light.svg"
-      alt="mbwilding's GitHub stats (light mode)"
-    />
-  </a>
-
-  <br />
-
-  <a href="https://github.com/mbwilding#gh-dark-mode-only">
-    <img
-      src="./assets/languages_dark.svg"
-      alt="mbwilding's top languages (dark mode)"
-      align="bottom"
-    />
-  </a>
-
-  <a href="https://github.com/mbwilding#gh-light-mode-only">
-    <img
-      src="./assets/languages_light.svg"
-      alt="mbwilding's top languages (light mode)"
-      align="bottom"
-    />
-  </a>
-
-  <br />
-
-  <a href="https://github.com/mbwilding#gh-dark-mode-only">
-    <img
-      src="./assets/contribs_dark.svg"
-      alt="mbwilding's top contribs (dark mode)"
-      align="bottom"
-    />
-  </a>
-
-  <a href="https://github.com/mbwilding#gh-light-mode-only">
-    <img
-      src="./assets/contribs_light.svg"
-      alt="mbwilding's top contribs (light mode)"
-      align="bottom"
-    />
+    <img src="./assets/stats_light.svg" />
+    <img src="./assets/languages_light.svg" />
+    <img src="./assets/contribs_light.svg" />
   </a>
 </div>
