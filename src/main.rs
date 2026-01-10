@@ -563,7 +563,7 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
   <rect width="350" height="{}" rx="4.5" fill="{}"/>
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Languages</text>
   {}
-  <g transform="translate(190, 50)">
+  <g transform="translate(160, 50)">
     {}
   </g>
 </svg>"#,
