@@ -16,6 +16,10 @@ struct Args {
     /// Output directory
     #[arg(short, long, default_value = "assets")]
     output: String,
+
+    /// Include private repositories (public only by default)
+    #[arg(long, default_value = "false")]
+    private: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -173,7 +177,7 @@ async fn main() -> Result<()> {
 
     println!("Fetching GitHub data...");
 
-    let data = fetch_github_data(&client, &args.token).await?;
+    let data = fetch_github_data(&client, &args.token, args.private).await?;
 
     let user = data
         .viewer
@@ -218,52 +222,54 @@ async fn main() -> Result<()> {
 async fn fetch_github_data(
     client: &reqwest::Client,
     token: &str,
+    include_private: bool,
 ) -> Result<UserData> {
-    let query = r#"
-        query {
-            viewer {
+    let privacy = if include_private { "" } else { ", privacy: PUBLIC" };
+    let query = format!(r#"
+        query {{
+            viewer {{
                 login
-                contributionsCollection {
+                contributionsCollection {{
                     totalCommitContributions
                     restrictedContributionsCount
-                }
-                repositories(first: 100, ownerAffiliations: OWNER, orderBy: {field: STARGAZERS, direction: DESC}) {
-                    nodes {
+                }}
+                repositories(first: 100, ownerAffiliations: OWNER{}, orderBy: {{field: STARGAZERS, direction: DESC}}) {{
+                    nodes {{
                         stargazerCount
                         forkCount
                         isFork
-                        languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
-                            edges {
+                        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
+                            edges {{
                                 size
-                                node {
+                                node {{
                                     name
                                     color
-                                }
-                            }
-                        }
-                    }
-                }
-                pullRequests(first: 1) {
+                                }}
+                            }}
+                        }}
+                    }}
+                }}
+                pullRequests(first: 1) {{
                     totalCount
-                }
-                issues(first: 1) {
+                }}
+                issues(first: 1) {{
                     totalCount
-                }
-                mergedPullRequests: pullRequests(first: 100, states: MERGED, orderBy: {field: CREATED_AT, direction: DESC}) {
+                }}
+                mergedPullRequests: pullRequests(first: 100, states: MERGED, orderBy: {{field: CREATED_AT, direction: DESC}}) {{
                     totalCount
-                    nodes {
-                        repository {
+                    nodes {{
+                        repository {{
                             name
-                            owner {
+                            owner {{
                                 login
-                            }
+                            }}
                             stargazerCount
-                        }
-                    }
-                }
-            }
-        }
-    "#;
+                        }}
+                    }}
+                }}
+            }}
+        }}
+    "#, privacy);
 
     let body = serde_json::json!({
         "query": query
