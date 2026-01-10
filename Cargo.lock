@@ -637,7 +637,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "github-stats"
+name = "github-tiles"
 version = "0.1.0"
 dependencies = [
  "anyhow",
