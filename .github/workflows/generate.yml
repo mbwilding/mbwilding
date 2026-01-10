@@ -21,20 +21,18 @@ jobs:
           name: Matthew Wilding
           email: mbwilding@gmail.com
           username: mbwilding
+          commit: Generate assets
         run: |
           output="assets"
           mkdir -p "$output"
 
           function commit() {
               if [[ "$(git status --porcelain)" != "" ]]; then
-                  echo "Configuring Git"
                   git config user.name "$name"
                   git config user.email "$email"
 
-                  echo "Committing"
-                  git commit -m "Generate"
+                  git commit -m "$commit"
                   git push
-                  echo "Committed"
               else
                   "No changes"
               fi
