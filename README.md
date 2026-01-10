@@ -1,5 +1,3 @@
-## Matthew Wilding
-
 ### About Me
 
 - **.NET Developer** by day
