@@ -1,6 +1,19 @@
 ## Matthew Wilding
 
-Hey there! I'm Matthew Wilding, a developer who loves all things code, cloud, and DevOps. By day, I'm a .NET dev, and by night I'm diving into Rust and learning new stuff. I'm into open source, always happy to help out and give back to the community. You'll usually find me in the terminal on Arch Linux, using Neovim. Oh, and I use a Dvorak split keyboard (Dygma Defy) and run Arch Linux. Did I mention I use Arch, btw?
+### About Me
+- **.NET Developer** by day
+- **Rust Enthusiast** by night
+- Passionate about **cloud**, **DevOps**, and **open source**
+- Always learning, always sharing
+
+### Setup
+- **Editor:** Neovim
+- **OS:** Arch Linux (btw 😉)
+- **Keyboard:** Dygma Defy (Split Dvorak)
+
+> Did I mention I use Arch, btw?
+
+---
 
 <div align="center">
   <a href="https://github.com/mbwilding#gh-dark-mode-only">
