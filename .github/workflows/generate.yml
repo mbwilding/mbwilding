@@ -37,8 +37,8 @@ jobs:
           }
 
           function download() {
-              path="$1"
-              url="$2"
+              local path="$1"
+              local url="$2"
 
               echo "Downloading: $path | $url"
 
@@ -66,16 +66,10 @@ jobs:
           function generate() {
               local name="$1"
               local url="$2"
+              local base_path="$output/$name"
 
-              base="$output/$name"
-
-              path="${base}_dark.svg"
-              full="${url}&${args}&theme=github_dark"
-              download "$path" "$full"
-
-              path="${base}_light.svg"
-              full="${url}&${args}"
-              download "$path" "$full"
+              download "${base_path}_light.svg" "${url}&${args}&theme=default"
+              download "${base_path}_dark.svg"  "${url}&${args}&theme=github_dark"
           }
 
           generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
