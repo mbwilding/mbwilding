@@ -12,9 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Dependencies
+      - name: Install SVGO
         shell: bash
-        run: sudo apt-get install -y --no-install-recommends libxml2-utils
+        run: npm install --global svgo
 
       - name: Generate
         shell: bash
@@ -64,11 +64,9 @@ jobs:
                   return
               fi
 
-              tmp="$(mktemp)"
-              if xmllint --format "$path" > "$tmp"; then
-                  mv "$tmp" "$path"
-              else
-                  echo "Failed: Formatting" >&2
+              echo "Optimizing SVG"
+              if ! svgo "$path" -o "$path"; then
+                  echo "Failed: Optimizing SVG"
                   rm "$tmp"
                   return
               fi
