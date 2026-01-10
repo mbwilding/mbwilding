@@ -11,16 +11,20 @@
 - **Keyboard:** [Dygma Defy](https://dygma.com/pages/defy)
 - **Layout:** [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
-<div>
-  <a href="https://github.com/mbwilding#gh-dark-mode-only">
-    <img src="./assets/stats_dark.svg" />
-    <img src="./assets/languages_dark.svg" />
-    <img src="./assets/contribs_dark.svg" />
-  </a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/stats_dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/stats_light.svg" />
+  <img src="./assets/stats_dark.svg" />
+</picture>
 
-  <a href="https://github.com/mbwilding#gh-light-mode-only">
-    <img src="./assets/stats_light.svg" />
-    <img src="./assets/languages_light.svg" />
-    <img src="./assets/contribs_light.svg" />
-  </a>
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/languages_dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/languages_light.svg" />
+  <img src="./assets/languages_dark.svg" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/contribs_dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/contribs_light.svg" />
+  <img src="./assets/contribs_dark.svg" />
+</picture>
