@@ -15,27 +15,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Git Config
+      - name: Generate
         shell: bash
         env:
           name: Matthew Wilding
           email: mbwilding@gmail.com
-        run: |
-
-      - name: Generate
-        shell: bash
+          username: mbwilding
         run: |
           function generate() {
               local name="$1"
               local url="$2"
 
               base="assets/$name"
+              args="username=$username&hide_border=true"
 
               path="${path}_dark.svg"
-              wget "${url}&${args}&theme=github_dark" -O $path && git add $path
+              full="${url}&${args}&theme=github_dark"
+              wget "$full" -O $path && git add $path
 
               path="${path}_light.svg"
-              wget "${url}&${args}&theme=default" -O $path && git add $path
+              full="${url}&${args}&theme=default"
+              wget "$full" -O $path && git add $path
           }
 
           generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
