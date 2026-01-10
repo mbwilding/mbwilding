@@ -11,9 +11,8 @@
 - **OS:** Arch Linux (btw 😉)
 - **Keyboard:** Dygma Defy (Split Dvorak)
 
-> Did I mention I use Arch, btw?
 
----
+> Did I mention I use Arch, btw?
 
 <div align="center">
   <a href="https://github.com/mbwilding#gh-dark-mode-only">
