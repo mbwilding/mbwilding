@@ -130,7 +130,6 @@ struct RepoOwner {
 struct Theme {
     name: &'static str,
     bg: &'static str,
-    border: &'static str,
     title: &'static str,
     text: &'static str,
     icon: &'static str,
@@ -139,7 +138,6 @@ struct Theme {
 const LIGHT_THEME: Theme = Theme {
     name: "light",
     bg: "#ffffff",
-    border: "#e4e2e2",
     title: "#0366d6",
     text: "#333333",
     icon: "#586069",
@@ -148,7 +146,6 @@ const LIGHT_THEME: Theme = Theme {
 const DARK_THEME: Theme = Theme {
     name: "dark",
     bg: "#0d1117",
-    border: "#30363d",
     title: "#58a6ff",
     text: "#c9d1d9",
     icon: "#8b949e",
@@ -197,9 +194,10 @@ async fn main() -> Result<()> {
 
     // Generate SVGs for both themes
     for theme in [LIGHT_THEME, DARK_THEME] {
-        let stats_svg = generate_stats_svg(&stats, theme);
-        let langs_svg = generate_languages_svg(&languages, theme);
-        let contribs_svg = generate_contribs_svg(&contribs, theme);
+        let name = if stats.name.is_empty() { "GitHub" } else { &stats.name };
+        let stats_svg = generate_stats_svg(&stats, name, theme);
+        let langs_svg = generate_languages_svg(&languages, name, theme);
+        let contribs_svg = generate_contribs_svg(&contribs, name, theme);
 
         fs::write(
             output_path.join(format!("stats_{}.svg", theme.name)),
@@ -388,7 +386,7 @@ fn extract_contribs(user: &User, username: &str) -> ContribStats {
     ContribStats { repos }
 }
 
-fn generate_stats_svg(stats: &Stats, theme: Theme) -> String {
+fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
     let items = [
         ("stars", "Total Stars", stats.total_stars, star_icon()),
         ("forks", "Total Forks", stats.total_forks, fork_icon()),
@@ -428,26 +426,21 @@ fn generate_stats_svg(stats: &Stats, theme: Theme) -> String {
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="349" height="{}" x="0.5" y="0.5" rx="4.5" fill="{}" stroke="{}"/>
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s GitHub Stats</text>
+  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Statistics</text>
   {}
 </svg>"#,
         height,
         height,
-        height - 1,
+        height,
         theme.bg,
-        theme.border,
         theme.title,
-        if stats.name.is_empty() {
-            "GitHub"
-        } else {
-            &stats.name
-        },
+        name,
         rows
     )
 }
 
-fn generate_languages_svg(langs: &LanguageStats, theme: Theme) -> String {
+fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> String {
     let top_langs: Vec<_> = langs.languages.iter().take(8).collect();
 
     if top_langs.is_empty() {
@@ -498,10 +491,10 @@ fn generate_languages_svg(langs: &LanguageStats, theme: Theme) -> String {
         start_angle = end_angle;
     }
 
-    // Generate legend
+    // Generate legend - positioned after title
     let mut legend = String::new();
     for (i, (name, pct, color)) in lang_data.iter().enumerate() {
-        let y = 35 + i * 22;
+        let y = 65 + i * 22;
         legend.push_str(&format!(
             r#"<g transform="translate(200, {})">
                 <rect width="12" height="12" rx="2" fill="{}"/>
@@ -511,39 +504,44 @@ fn generate_languages_svg(langs: &LanguageStats, theme: Theme) -> String {
         ));
     }
 
-    let height = 200;
+    let height = 230;
 
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="349" height="{}" x="0.5" y="0.5" rx="4.5" fill="{}" stroke="{}"/>
-  <g transform="translate(15, 15)">
+  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Languages</text>
+  <g transform="translate(15, 50)">
     {}
   </g>
   {}
 </svg>"#,
         height,
         height,
-        height - 1,
+        height,
         theme.bg,
-        theme.border,
+        theme.title,
+        name,
         paths,
         legend
     )
 }
 
-fn generate_contribs_svg(contribs: &ContribStats, theme: Theme) -> String {
+fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> String {
     if contribs.repos.is_empty() {
         return generate_empty_svg("No External Contributions", theme);
     }
 
-    let height = 35 + contribs.repos.len() * 28 + 15;
+    let row_height = 28;
+    let title_height = 50;
+    let padding = 15;
+    let height = title_height + contribs.repos.len() * row_height + padding;
     let mut rows = String::new();
 
     for (i, (owner, name, stars)) in contribs.repos.iter().enumerate() {
-        let y = 50 + i * 28;
+        let y = title_height + i * row_height;
         rows.push_str(&format!(
             r#"<g transform="translate(25, {})">
                 <g fill="{}">{}</g>
@@ -574,16 +572,16 @@ fn generate_contribs_svg(contribs: &ContribStats, theme: Theme) -> String {
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="349" height="{}" x="0.5" y="0.5" rx="4.5" fill="{}" stroke="{}"/>
-  <text x="25" y="30" fill="{}" font-size="16" font-weight="600">Merged PRs (External Repos)</text>
+  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Contributions</text>
   {}
 </svg>"#,
         height,
         height,
-        height - 1,
+        height,
         theme.bg,
-        theme.border,
         theme.title,
+        name,
         rows
     )
 }
@@ -594,10 +592,10 @@ fn generate_empty_svg(message: &str, theme: Theme) -> String {
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="349" height="99" x="0.5" y="0.5" rx="4.5" fill="{}" stroke="{}"/>
+  <rect width="350" height="100" rx="4.5" fill="{}"/>
   <text x="175" y="55" fill="{}" font-size="14" text-anchor="middle">{}</text>
 </svg>"#,
-        theme.bg, theme.border, theme.text, message
+        theme.bg, theme.text, message
     )
 }
 
