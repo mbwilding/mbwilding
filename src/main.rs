@@ -234,8 +234,13 @@ async fn fetch_github_data(
     token: &str,
     include_private: bool,
 ) -> Result<UserData> {
-    let privacy = if include_private { "" } else { ", privacy: PUBLIC" };
-    let query = format!(r#"
+    let privacy = if include_private {
+        ""
+    } else {
+        ", privacy: PUBLIC"
+    };
+    let query = format!(
+        r#"
         query {{
             viewer {{
                 login
@@ -280,7 +285,9 @@ async fn fetch_github_data(
                 }}
             }}
         }}
-    "#, privacy);
+    "#,
+        privacy
+    );
 
     let body = serde_json::json!({
         "query": query
@@ -325,7 +332,9 @@ async fn fetch_avatars_as_base64(
         repos_with_base64.push((owner, name, stars, base64_data));
     }
 
-    Ok(ContribStats { repos: repos_with_base64 })
+    Ok(ContribStats {
+        repos: repos_with_base64,
+    })
 }
 
 fn extract_stats(user: &User) -> Stats {
@@ -400,8 +409,10 @@ fn extract_contribs(user: &User, username: &str) -> ContribStats {
             continue;
         }
         let key = (owner.clone(), pr.repository.name.clone());
-        seen.entry(key)
-            .or_insert((pr.repository.stargazer_count, pr.repository.owner.avatar_url.clone()));
+        seen.entry(key).or_insert((
+            pr.repository.stargazer_count,
+            pr.repository.owner.avatar_url.clone(),
+        ));
     }
 
     // Sort by stars descending
@@ -421,10 +432,20 @@ fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
     let items = [
         ("stars", "Total Stars", stats.total_stars, star_icon()),
         ("forks", "Total Forks", stats.total_forks, fork_icon()),
-        ("commits", "Total Commits", stats.total_commits, commit_icon()),
+        (
+            "commits",
+            "Total Commits",
+            stats.total_commits,
+            commit_icon(),
+        ),
         ("prs", "Total PRs", stats.total_prs, pr_icon()),
         ("issues", "Total Issues", stats.total_issues, issue_icon()),
-        ("contribs", "Merged PRs", stats.contributed_to, contrib_icon()),
+        (
+            "contribs",
+            "Merged PRs",
+            stats.contributed_to,
+            contrib_icon(),
+        ),
     ];
 
     let height = 180;
@@ -461,13 +482,7 @@ fn generate_stats_svg(stats: &Stats, name: &str, theme: Theme) -> String {
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Statistics</text>
   {}
 </svg>"#,
-        height,
-        height,
-        height,
-        theme.bg,
-        theme.title,
-        name,
-        rows
+        height, height, height, theme.bg, theme.title, name, rows
     )
 }
 
@@ -552,14 +567,7 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
     {}
   </g>
 </svg>"#,
-        height,
-        height,
-        height,
-        theme.bg,
-        theme.title,
-        name,
-        legend,
-        paths
+        height, height, height, theme.bg, theme.title, name, legend, paths
     )
 }
 
@@ -605,9 +613,9 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
                         <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
                     </text>
                 </a>
-                <g transform="translate({}, 2)" fill="{}">
-                    {}
-                    <text x="18" y="12" fill="{}" font-size="11">{}</text>
+                <g transform="translate({}, 0)" fill="{}">
+                    <g transform="translate(0, 4)">{}</g>
+                    <text x="18" y="14" fill="{}" font-size="11">{}</text>
                 </g>
             </g>"#,
             y,
@@ -644,16 +652,7 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Contributions</text>
   {}
 </svg>"#,
-        width,
-        height,
-        width,
-        height,
-        width,
-        height,
-        theme.bg,
-        theme.title,
-        name,
-        rows
+        width, height, width, height, width, height, theme.bg, theme.title, name, rows
     )
 }
 

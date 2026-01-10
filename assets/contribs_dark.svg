@@ -16,9 +16,9 @@
                         <tspan fill="#8b949e">rust-lang</tspan>/<tspan font-weight="600">rust-analyzer</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">15.9k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">15.9k</text>
                 </g>
             </g><g transform="translate(25, 82)">
                 <clipPath id="avatar-clip-1">
@@ -30,9 +30,9 @@
                         <tspan fill="#8b949e">neovim</tspan>/<tspan font-weight="600">nvim-lspconfig</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">13.2k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">13.2k</text>
                 </g>
             </g><g transform="translate(25, 114)">
                 <clipPath id="avatar-clip-2">
@@ -44,9 +44,9 @@
                         <tspan fill="#8b949e">stevearc</tspan>/<tspan font-weight="600">oil.nvim</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">6.1k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">6.1k</text>
                 </g>
             </g><g transform="translate(25, 146)">
                 <clipPath id="avatar-clip-3">
@@ -58,9 +58,9 @@
                         <tspan fill="#8b949e">dotnet</tspan>/<tspan font-weight="600">aspire</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">5.3k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">5.3k</text>
                 </g>
             </g><g transform="translate(25, 178)">
                 <clipPath id="avatar-clip-4">
@@ -72,9 +72,9 @@
                         <tspan fill="#8b949e">nvimdev</tspan>/<tspan font-weight="600">dashboard-nvim</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">2.8k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">2.8k</text>
                 </g>
             </g><g transform="translate(25, 210)">
                 <clipPath id="avatar-clip-5">
@@ -86,9 +86,9 @@
                         <tspan fill="#8b949e">ImGuiNET</tspan>/<tspan font-weight="600">ImGui.NET</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">2.2k</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">2.2k</text>
                 </g>
             </g><g transform="translate(25, 242)">
                 <clipPath id="avatar-clip-6">
@@ -100,9 +100,9 @@
                         <tspan fill="#8b949e">aws</tspan>/<tspan font-weight="600">aws-toolkit-jetbrains</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">835</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">835</text>
                 </g>
             </g><g transform="translate(25, 274)">
                 <clipPath id="avatar-clip-7">
@@ -114,9 +114,9 @@
                         <tspan fill="#8b949e">A7Lavinraj</tspan>/<tspan font-weight="600">fyler.nvim</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">645</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">645</text>
                 </g>
             </g><g transform="translate(25, 306)">
                 <clipPath id="avatar-clip-8">
@@ -128,9 +128,9 @@
                         <tspan fill="#8b949e">Ramilito</tspan>/<tspan font-weight="600">kubectl.nvim</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">493</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">493</text>
                 </g>
             </g><g transform="translate(25, 338)">
                 <clipPath id="avatar-clip-9">
@@ -142,9 +142,9 @@
                         <tspan fill="#8b949e">ninjanye</tspan>/<tspan font-weight="600">SearchExtensions</tspan>
                     </text>
                 </a>
-                <g transform="translate(218, 2)" fill="#e3b341">
-                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/>
-                    <text x="18" y="12" fill="#c9d1d9" font-size="11">342</text>
+                <g transform="translate(218, 0)" fill="#e3b341">
+                    <g transform="translate(0, 4)"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" transform="scale(0.875)"/></g>
+                    <text x="18" y="14" fill="#c9d1d9" font-size="11">342</text>
                 </g>
             </g>
 </svg>
