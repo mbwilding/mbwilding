@@ -124,6 +124,8 @@ struct PullRequestRepo {
 #[derive(Debug, Deserialize)]
 struct RepoOwner {
     login: String,
+    #[serde(rename = "avatarUrl")]
+    avatar_url: String,
 }
 
 #[derive(Clone, Copy)]
@@ -166,7 +168,7 @@ struct LanguageStats {
 }
 
 struct ContribStats {
-    repos: Vec<(String, String, u32)>, // owner, name, stars
+    repos: Vec<(String, String, u32, String)>, // owner, name, stars, avatar_url
 }
 
 #[tokio::main]
@@ -262,6 +264,7 @@ async fn fetch_github_data(
                             name
                             owner {{
                                 login
+                                avatarUrl(size: 32)
                             }}
                             stargazerCount
                         }}
@@ -357,7 +360,7 @@ fn extract_languages(user: &User) -> LanguageStats {
 
 fn extract_contribs(user: &User, username: &str) -> ContribStats {
     // Collect unique repos from merged PRs, excluding user's own repos
-    let mut seen: HashMap<(String, String), u32> = HashMap::new();
+    let mut seen: HashMap<(String, String), (u32, String)> = HashMap::new();
 
     for pr in &user.merged_pull_requests.nodes {
         let owner = &pr.repository.owner.login;
@@ -366,13 +369,13 @@ fn extract_contribs(user: &User, username: &str) -> ContribStats {
         }
         let key = (owner.clone(), pr.repository.name.clone());
         seen.entry(key)
-            .or_insert(pr.repository.stargazer_count);
+            .or_insert((pr.repository.stargazer_count, pr.repository.owner.avatar_url.clone()));
     }
 
     // Sort by stars descending
     let mut repos: Vec<_> = seen
         .into_iter()
-        .map(|((owner, name), stars)| (owner, name, stars))
+        .map(|((owner, name), (stars, avatar_url))| (owner, name, stars, avatar_url))
         .collect();
     repos.sort_by(|a, b| b.2.cmp(&a.2));
 
@@ -533,9 +536,10 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
         return generate_empty_svg("No External Contributions", theme);
     }
 
-    let row_height = 28;
+    let row_height = 32;
     let title_height = 50;
     let padding = 15;
+    let avatar_size = 20;
 
     // Calculate the longest repo text to determine star position
     // Approximate character width: ~7px for 12px font size
@@ -543,33 +547,46 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
     let max_repo_len = contribs
         .repos
         .iter()
-        .map(|(owner, repo, _)| owner.len() + 1 + repo.len()) // +1 for "/"
+        .map(|(owner, repo, _, _)| owner.len() + 1 + repo.len()) // +1 for "/"
         .max()
         .unwrap_or(0);
 
-    // Base offset: 25 (left margin) + 22 (icon + gap) + text width + 15 (gap before stars)
-    let star_x = 25 + 22 + (max_repo_len as f64 * char_width) as usize + 15;
+    // Base offset: 25 (left margin) + avatar_size + 8 (gap) + text width + 15 (gap before stars)
+    let text_x = 25 + avatar_size + 8;
+    let star_x = text_x + (max_repo_len as f64 * char_width) as usize + 15;
     let width = star_x + 60; // 60 for star icon + count
 
     let height = title_height + contribs.repos.len() * row_height + padding;
     let mut rows = String::new();
 
-    for (i, (owner, repo_name, stars)) in contribs.repos.iter().enumerate() {
+    for (i, (owner, repo_name, stars, avatar_url)) in contribs.repos.iter().enumerate() {
         let y = title_height + i * row_height;
+        // Escape & for XML
+        let escaped_avatar_url = avatar_url.replace('&', "&amp;");
         rows.push_str(&format!(
             r#"<g transform="translate(25, {})">
-                <g fill="{}">{}</g>
-                <text x="22" y="12" fill="{}" font-size="12">
+                <clipPath id="avatar-clip-{}">
+                    <circle cx="{}" cy="{}" r="{}"/>
+                </clipPath>
+                <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
+                <text x="{}" y="14" fill="{}" font-size="12">
                     <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
                 </text>
-                <g transform="translate({}, 0)" fill="{}">
+                <g transform="translate({}, 2)" fill="{}">
                     {}
                     <text x="18" y="12" fill="{}" font-size="11">{}</text>
                 </g>
             </g>"#,
             y,
-            theme.icon,
-            repo_icon(),
+            i,
+            avatar_size / 2,
+            avatar_size / 2,
+            avatar_size / 2,
+            escaped_avatar_url,
+            avatar_size,
+            avatar_size,
+            i,
+            text_x - 25, // relative to the group's x=25
             theme.text,
             theme.icon,
             owner,
@@ -648,8 +665,4 @@ fn issue_icon() -> &'static str {
 
 fn contrib_icon() -> &'static str {
     r#"<path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1v9h-8a2.5 2.5 0 00-.732.107V2.5a1 1 0 011-1h7.732zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" transform="scale(0.875)"/>"#
-}
-
-fn repo_icon() -> &'static str {
-    r#"<path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1v9h-8a2.5 2.5 0 00-.732.107V2.5a1 1 0 011-1h7.732z" transform="scale(0.875)"/>"#
 }
