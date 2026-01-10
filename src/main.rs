@@ -537,10 +537,25 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
     let row_height = 28;
     let title_height = 50;
     let padding = 15;
+
+    // Calculate the longest repo text to determine star position
+    // Approximate character width: ~7px for 12px font size
+    let char_width = 7.0;
+    let max_repo_len = contribs
+        .repos
+        .iter()
+        .map(|(owner, repo, _)| owner.len() + 1 + repo.len()) // +1 for "/"
+        .max()
+        .unwrap_or(0);
+
+    // Base offset: 25 (left margin) + 22 (icon + gap) + text width + 15 (gap before stars)
+    let star_x = 25 + 22 + (max_repo_len as f64 * char_width) as usize + 15;
+    let width = star_x + 60; // 60 for star icon + count
+
     let height = title_height + contribs.repos.len() * row_height + padding;
     let mut rows = String::new();
 
-    for (i, (owner, name, stars)) in contribs.repos.iter().enumerate() {
+    for (i, (owner, repo_name, stars)) in contribs.repos.iter().enumerate() {
         let y = title_height + i * row_height;
         rows.push_str(&format!(
             r#"<g transform="translate(25, {})">
@@ -548,7 +563,7 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
                 <text x="22" y="12" fill="{}" font-size="12">
                     <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
                 </text>
-                <g transform="translate(290, 0)" fill="{}">
+                <g transform="translate({}, 0)" fill="{}">
                     {}
                     <text x="18" y="12" fill="{}" font-size="11">{}</text>
                 </g>
@@ -559,7 +574,8 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
             theme.text,
             theme.icon,
             owner,
-            name,
+            repo_name,
+            star_x - 25, // relative to the group's x=25
             theme.icon,
             star_icon(),
             theme.text,
@@ -568,16 +584,19 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
     }
 
     format!(
-        r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
+        r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  <rect width="{}" height="{}" rx="4.5" fill="{}"/>
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Contributions</text>
   {}
 </svg>"#,
+        width,
         height,
+        width,
         height,
+        width,
         height,
         theme.bg,
         theme.title,
