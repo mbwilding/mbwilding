@@ -22,6 +22,8 @@ jobs:
           email: mbwilding@gmail.com
           username: mbwilding
         run: |
+          set -ax # TODO: Remove
+
           output="assets"
           mkdir -p "$output"
 
@@ -39,8 +41,8 @@ jobs:
 
               echo "Downloading: $path | $url"
               if wget --quiet "$url" -O "$path"; then
-                  git add "$path"
                   echo "Downloaded"
+                  git add "$path"
               else
                   echo "Failed"
               fi
