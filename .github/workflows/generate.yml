@@ -24,7 +24,7 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: Build
-        run: cargo build --profile ci
+        run: cargo build --release
 
       - name: Generate SVGs
         env:
