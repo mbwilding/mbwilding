@@ -46,11 +46,11 @@ jobs:
                   if grep -q '</svg>' "$path"; then
                       git add "$path"
                   else
-                      echo "Not a valid SVG"
+                      echo "Failed: Not a valid SVG"
                       rm -f "$path"
                   fi
               else
-                  echo "Failed to download $url"
+                  echo "Failed: Download"
               fi
           }
 
