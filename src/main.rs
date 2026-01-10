@@ -453,10 +453,10 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
         .collect();
 
     // Generate donut chart - positioned on the right
-    let cx = 80.0;
-    let cy = 80.0;
-    let r = 55.0;
-    let inner_r = 32.0;
+    let cx = 85.0;
+    let cy = 85.0;
+    let r = 70.0;
+    let inner_r = 42.0;
 
     let mut paths = String::new();
     let mut start_angle = -90.0_f64;
@@ -502,7 +502,7 @@ fn generate_languages_svg(langs: &LanguageStats, name: &str, theme: Theme) -> St
 
     // Dynamic height based on number of languages
     let legend_height = 55 + lang_data.len() * 22 + 15;
-    let donut_height = 50 + 160 + 15; // title area + donut + padding
+    let donut_height = 50 + 190 + 15; // title area + donut + padding
     let height = legend_height.max(donut_height);
 
     format!(
