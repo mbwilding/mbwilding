@@ -34,11 +34,11 @@ jobs:
 
               path="${base}_dark.svg"
               full="${url}&${args}&theme=github_dark"
-              wget --quite "$full" -O $path && git add $path
+              wget --quiet "$full" -O "$path" && git add "$path"
 
               path="${base}_light.svg"
               full="${url}&${args}&theme=default"
-              wget --quite "$full" -O $path && git add $path
+              wget --quiet "$full" -O "$path" && git add "$path"
           }
 
           generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
