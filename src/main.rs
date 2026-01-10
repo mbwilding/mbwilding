@@ -593,15 +593,18 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
 
     for (i, (owner, repo_name, stars, avatar_data)) in contribs.repos.iter().enumerate() {
         let y = title_height + i * row_height;
+        let repo_url = format!("https://github.com/{}/{}", owner, repo_name);
         rows.push_str(&format!(
             r#"<g transform="translate(25, {})">
                 <clipPath id="avatar-clip-{}">
                     <circle cx="{}" cy="{}" r="{}"/>
                 </clipPath>
-                <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
-                <text x="{}" y="14" fill="{}" font-size="12">
-                    <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
-                </text>
+                <a href="{}" target="_blank">
+                    <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
+                    <text x="{}" y="14" fill="{}" font-size="12">
+                        <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
+                    </text>
+                </a>
                 <g transform="translate({}, 2)" fill="{}">
                     {}
                     <text x="18" y="12" fill="{}" font-size="11">{}</text>
@@ -612,6 +615,7 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
             avatar_size / 2,
             avatar_size / 2,
             avatar_size / 2,
+            repo_url,
             avatar_data,
             avatar_size,
             avatar_size,
@@ -633,6 +637,8 @@ fn generate_contribs_svg(contribs: &ContribStats, name: &str, theme: Theme) -> S
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
+    a {{ text-decoration: none; }}
+    a:hover text {{ text-decoration: underline; }}
   </style>
   <rect width="{}" height="{}" rx="4.5" fill="{}"/>
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}'s Contributions</text>
