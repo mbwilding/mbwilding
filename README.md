@@ -8,15 +8,17 @@
 - Dvorak > QWERTY
 - I use Arch, btw
 
-## Stats
-
-- Joined **11** years ago
-- Pushed **8083** commits
-- Reviewed **9** pull requests
-- Created **94** public repositories
-
-![Stats](https://github-readme-stats.vercel.app/api?username=mbwilding&show_icons=true&theme=tokyonight&hide_border=true)
-
-![Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mbwilding&layout=donut&theme=tokyonight&hide_border=true)
-
-![Contribs](https://github-contributor-stats.vercel.app/api?username=mbwilding&theme=tokyonight&hide_border=true&combine_all_yearly_contributions=true&limit=100&hide=B,B%2B)
+<div align="center">
+  <a href="https://github.com/mbwilding#gh-dark-mode-only">
+    <img src="./assets/stats_dark.svg" alt="mbwilding's stats" />
+  </a>
+  <a href="https://github.com/mbwilding#gh-light-mode-only">
+    <img src="./assets/stats_light.svg" alt="mbwilding's stats" />
+  </a>
+  <a href="https://github.com/mbwilding#gh-dark-mode-only">
+    <img align="bottom" src="./assets/languages_dark.svg" alt="mbwilding's top langs" />
+  </a>
+  <a href="https://github.com/mbwilding#gh-light-mode-only">
+    <img align="bottom" src="./assets/languages_light.svg" alt="mbwilding's top langs" />
+  </a>
+</div>

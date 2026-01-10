@@ -1,0 +1,48 @@
+name: Generate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 11 * * *"
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Git Config
+        shell: bash
+        env:
+          name: Matthew Wilding
+          email: mbwilding@gmail.com
+        run: |
+
+      - name: Generate
+        shell: bash
+        run: |
+          function generate() {
+              local name="$1"
+              local url="$2"
+
+              base="assets/$name"
+
+              path="${path}_dark.svg"
+              wget "${url}&${args}&theme=github_dark" -O $path && git add $path
+
+              path="${path}_light.svg"
+              wget "${url}&${args}&theme=default" -O $path && git add $path
+          }
+
+          generate stats "https://readme-stats-nu.vercel.app/api?show_icons=true"
+          generate languages "https://readme-stats-nu.vercel.app/api/top-langs/?layout=donut"
+
+          if [[ "$(git status --porcelain)" != "" ]]; then
+            git config user.name "$name"
+            git config user.email "$email"
+            git push
+          fi
