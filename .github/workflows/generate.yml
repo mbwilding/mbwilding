@@ -26,11 +26,7 @@ jobs:
           mkdir -p "$output"
 
           function commit() {
-              status=$(git status --porcelain)
-
-              if [[ "$status" != "" ]]; then
-                  echo "$status"
-
+              if [[ "$(git status --porcelain)" != "" ]]; then
                   echo "Configuring Git"
                   git config user.name "$name"
                   git config user.email "$email"
@@ -50,7 +46,6 @@ jobs:
 
               echo "Downloading: $path | $url"
               if wget --quiet "$url" -O "$path"; then
-                  echo "Downloaded"
                   git add "$path"
               else
                   echo "Failed"
