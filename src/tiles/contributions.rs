@@ -11,7 +11,7 @@ pub struct ContributionEntry {
     pub owner: String,
     pub repo: String,
     pub stars: u32,
-    pub avatar_data: String,
+    pub avatar_data: Option<String>,
 }
 
 /// Contributions data extracted from GitHub user
@@ -43,7 +43,7 @@ impl Contributions {
                 repo,
                 stars,
                 // Will be replaced with base64 data
-                avatar_data: avatar_url,
+                avatar_data: Some(avatar_url),
             })
             .collect();
 
@@ -56,16 +56,20 @@ impl Contributions {
     /// Fetch avatars and convert to base64 for embedding in SVG
     pub async fn fetch_avatars(&mut self, client: &reqwest::Client) -> Result<()> {
         for entry in &mut self.repos {
-            let base64_data = match client.get(&entry.avatar_data).send().await {
+            let avatar_url = match &entry.avatar_data {
+                Some(url) => url.clone(),
+                None => continue,
+            };
+            let base64_data = match client.get(&avatar_url).send().await {
                 Ok(response) => {
                     if let Ok(bytes) = response.bytes().await {
                         let encoded = BASE64.encode(&bytes);
-                        format!("data:image/png;base64,{}", encoded)
+                        Some(format!("data:image/png;base64,{}", encoded))
                     } else {
-                        String::new()
+                        None
                     }
                 }
-                Err(_) => String::new(),
+                Err(_) => None,
             };
             entry.avatar_data = base64_data;
         }
@@ -131,7 +135,7 @@ impl Tile for Contributions {
                 avatar_size / 2,
                 avatar_size / 2,
                 repo_url,
-                entry.avatar_data,
+                entry.avatar_data.as_deref().unwrap_or(""),
                 avatar_size,
                 avatar_size,
                 i,
