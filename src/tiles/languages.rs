@@ -17,8 +17,8 @@ const LEGEND_RECT_SIZE: usize = 12;
 const LEGEND_RECT_RADIUS: usize = 2;
 const LEGEND_TEXT_X: usize = 18;
 const LEGEND_TEXT_Y: usize = 10;
-const LEGEND_WIDTH: usize = 140;
-const LEGEND_DONUT_GAP: usize = 10;
+const LEGEND_WIDTH: usize = 130;
+const LEGEND_DONUT_GAP: usize = 0;
 
 /// Language with byte count and color
 pub struct LanguageEntry {
