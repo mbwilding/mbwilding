@@ -1,4 +1,5 @@
 name: GitHub Tiles
+run-name: GitHub Tiles
 
 on:
   workflow_dispatch:
@@ -6,8 +7,8 @@ on:
     - cron: "0 11 * * *"
 
 jobs:
-  ["GitHub Tiles"]:
+  github-tiles:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: GitHub Tiles
         uses: mbwilding/github-tiles@main
