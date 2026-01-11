@@ -30,13 +30,29 @@ struct Args {
     #[arg(long, default_value = "false")]
     opaque: bool,
 
+    /// Include forked repositories
+    #[arg(long, default_value = "false")]
+    include_forks: bool,
+
     /// Languages to display
     #[arg(long, default_value = "5")]
-    languages: u8,
+    languages_limit: u8,
 
     /// Contributions to display
     #[arg(long, default_value = "10")]
-    contributions: u8,
+    contributions_limit: u8,
+
+    /// Contributions minimum stars
+    #[arg(long, default_value = "0")]
+    contributions_min_stars: u32,
+
+    /// SVG optimization
+    #[arg(long, default_value = "true")]
+    optimize: bool,
+
+    /// Tiles to generate (comma-separated: statistics,languages,contributions)
+    #[arg(long, default_value = "statistics,languages,contributions")]
+    tiles: String,
 }
 
 #[tokio::main]
@@ -74,29 +90,71 @@ async fn main() -> Result<()> {
     let username = &user.login;
     debug!("Authenticated as: {}", username);
 
-    // Extract tile data from user
-    let statistics = Statistics::from_user(&user);
-    let languages = Languages::from_user(&user, args.languages);
-    let mut contributions = Contributions::from_user(&user, username, args.contributions);
+    // Parse tile selection
+    let tile_selection: Vec<&str> = args.tiles.split(',').map(|s| s.trim()).collect();
+
+    // Extract tile data from user based on selection
+    let statistics = if tile_selection.contains(&"statistics") {
+        Some(Statistics::from_user(&user, args.include_forks))
+    } else {
+        None
+    };
+
+    let languages = if tile_selection.contains(&"languages") {
+        Some(Languages::from_user(
+            &user,
+            args.languages_limit,
+            args.include_forks,
+        ))
+    } else {
+        None
+    };
+
+    let mut contributions = if tile_selection.contains(&"contributions") {
+        Some(Contributions::from_user(
+            &user,
+            username,
+            args.contributions_limit,
+            args.contributions_min_stars,
+        ))
+    } else {
+        None
+    };
 
     // Fetch avatars for contributions
-    info!("Fetching avatars...");
-    contributions.fetch_avatars(&client).await?;
+    if let Some(ref mut contrib) = contributions {
+        info!("Fetching avatars...");
+        contrib.fetch_avatars(&client).await?;
+    }
 
     // Create output directory
     let output_path = Path::new(&args.output);
     debug!("Output directory: {}", output_path.display());
     fs::create_dir_all(output_path).await?;
 
-    // Collect all tiles
-    let tiles: Vec<&dyn Tile> = vec![&statistics, &languages, &contributions];
+    // Collect selected tiles
+    let mut tiles: Vec<&dyn Tile> = Vec::new();
+    if let Some(ref s) = statistics {
+        tiles.push(s);
+    }
+    if let Some(ref l) = languages {
+        tiles.push(l);
+    }
+    if let Some(ref c) = contributions {
+        tiles.push(c);
+    }
 
     // Generate SVGs for all themes
     for theme in theme::ALL {
         let config = RenderConfig::new(theme, args.opaque);
 
         for tile in &tiles {
-            let svg = svg::optimize(&tile.render(&config));
+            let svg_content = tile.render(&config);
+            let svg = if args.optimize {
+                svg::optimize(&svg_content)
+            } else {
+                svg_content
+            };
             let filename = tile.filename(theme.name);
             debug!("Writing: {}", filename);
             fs::write(output_path.join(&filename), &svg).await?;

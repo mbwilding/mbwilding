@@ -26,13 +26,16 @@ pub struct Statistics {
 
 impl Statistics {
     /// Extract statistics from GitHub user data
-    pub fn from_user(user: &User) -> Self {
-        debug!("Extracting user statistics");
+    pub fn from_user(user: &User, include_forks: bool) -> Self {
+        debug!(
+            "Extracting user statistics (include_forks: {})",
+            include_forks
+        );
         let total_stars: u32 = user
             .repositories
             .nodes
             .iter()
-            .filter(|r| !r.is_fork)
+            .filter(|r| include_forks || !r.is_fork)
             .map(|r| r.stargazer_count)
             .sum();
 
@@ -40,7 +43,7 @@ impl Statistics {
             .repositories
             .nodes
             .iter()
-            .filter(|r| !r.is_fork)
+            .filter(|r| include_forks || !r.is_fork)
             .map(|r| r.fork_count)
             .sum();
 

@@ -63,7 +63,7 @@ pub async fn fetch_user_data(
     };
 
     // Fetch initial page with all data
-    let initial_data = fetch_initial_page(client, token, &privacy).await?;
+    let initial_data = fetch_initial_page(client, token, privacy).await?;
     let initial_user = initial_data.viewer.context("No viewer in response")?;
 
     // Paginate repositories and merged PRs in parallel
@@ -71,7 +71,7 @@ pub async fn fetch_user_data(
         paginate_repositories(
             client,
             token,
-            &privacy,
+            privacy,
             initial_user.repositories.nodes,
             initial_user.repositories.page_info,
         ),

@@ -36,13 +36,19 @@ pub struct Contributions {
 
 impl Contributions {
     /// Extract contribution data from GitHub user data
-    pub fn from_user(user: &User, username: &str, limit: u8) -> Self {
-        debug!("Extracting contributions for user: {}", username);
+    pub fn from_user(user: &User, username: &str, limit: u8, min_stars: u32) -> Self {
+        debug!(
+            "Extracting contributions for user: {} (min_stars: {})",
+            username, min_stars
+        );
         let mut seen: HashMap<(String, String), (u32, String)> = HashMap::new();
 
         for pr in &user.merged_pull_requests.nodes {
             let owner = &pr.repository.owner.login;
             if owner.to_lowercase() == username.to_lowercase() {
+                continue;
+            }
+            if pr.repository.stargazer_count < min_stars {
                 continue;
             }
             let key = (owner.clone(), pr.repository.name.clone());

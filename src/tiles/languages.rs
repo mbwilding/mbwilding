@@ -34,12 +34,15 @@ pub struct Languages {
 
 impl Languages {
     /// Extract language statistics from GitHub user data
-    pub fn from_user(user: &User, limit: u8) -> Self {
-        debug!("Extracting language statistics");
+    pub fn from_user(user: &User, limit: u8, include_forks: bool) -> Self {
+        debug!(
+            "Extracting language statistics (include_forks: {})",
+            include_forks
+        );
         let mut lang_bytes: HashMap<String, (u64, String)> = HashMap::new();
 
         for repo in &user.repositories.nodes {
-            if repo.is_fork {
+            if !include_forks && repo.is_fork {
                 continue;
             }
             if let Some(languages) = &repo.languages {
