@@ -22,17 +22,17 @@ struct Args {
     #[arg(long, default_value = "assets")]
     output: String,
 
+    /// Tiles to generate (comma-separated: statistics,languages,contributions)
+    #[arg(long, default_value = "statistics,languages,contributions")]
+    tiles: String,
+
     /// Include private repositories
     #[arg(long, default_value = "false")]
     private: bool,
 
-    /// Render opaque background
-    #[arg(long, default_value = "false")]
-    opaque: bool,
-
     /// Include forked repositories
     #[arg(long, default_value = "false")]
-    include_forks: bool,
+    forks: bool,
 
     /// Languages to display
     #[arg(long, default_value = "5")]
@@ -46,13 +46,13 @@ struct Args {
     #[arg(long, default_value = "0")]
     contributions_min_stars: u32,
 
+    /// Render opaque background
+    #[arg(long, default_value = "false")]
+    opaque: bool,
+
     /// SVG optimization
     #[arg(long, default_value = "true")]
     optimize: bool,
-
-    /// Tiles to generate (comma-separated: statistics,languages,contributions)
-    #[arg(long, default_value = "statistics,languages,contributions")]
-    tiles: String,
 }
 
 #[tokio::main]
@@ -95,7 +95,7 @@ async fn main() -> Result<()> {
 
     // Extract tile data from user based on selection
     let statistics = if tile_selection.contains(&"statistics") {
-        Some(Statistics::from_user(&user, args.include_forks))
+        Some(Statistics::from_user(&user, args.forks))
     } else {
         None
     };
@@ -104,7 +104,7 @@ async fn main() -> Result<()> {
         Some(Languages::from_user(
             &user,
             args.languages_limit,
-            args.include_forks,
+            args.forks,
         ))
     } else {
         None
