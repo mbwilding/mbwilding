@@ -11,9 +11,7 @@
 - **Keyboard:** [Dygma Defy](https://dygma.com/pages/defy)
 - **Layout:** [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
-### Stats
-
-#### Statistics
+### Statistics
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/statistics_dark.svg" />
@@ -21,7 +19,7 @@
   <img src="./assets/statistics_dark.svg" />
 </picture>
 
-#### Languages
+### Languages
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/languages_dark.svg" />
@@ -29,7 +27,7 @@
   <img src="./assets/languages_dark.svg" />
 </picture>
 
-#### Contributions
+### Contributions
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions_dark.svg" />
