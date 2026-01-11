@@ -11,6 +11,13 @@ pub struct GraphQLError {
     pub message: String,
 }
 
+#[derive(Debug, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct PageInfo {
+    pub has_next_page: bool,
+    pub end_cursor: Option<String>,
+}
+
 #[derive(Debug, Deserialize)]
 pub struct UserData {
     pub viewer: Option<User>,
@@ -38,6 +45,7 @@ pub struct ContributionsCollection {
 #[serde(rename_all = "camelCase")]
 pub struct RepositoryConnection {
     pub nodes: Vec<Repository>,
+    pub page_info: PageInfo,
 }
 
 #[derive(Debug, Deserialize)]
@@ -83,6 +91,7 @@ pub struct IssueConnection {
 pub struct MergedPullRequestConnection {
     pub total_count: u32,
     pub nodes: Vec<MergedPullRequest>,
+    pub page_info: PageInfo,
 }
 
 #[derive(Debug, Deserialize)]
