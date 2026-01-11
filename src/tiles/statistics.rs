@@ -9,10 +9,9 @@ const ROW_HEIGHT: usize = 20;
 const NUM_ROWS: usize = 3;
 const NUM_COLS: usize = 2;
 const CONTENT_HEIGHT: usize = 16;
-const COL_WIDTH: usize = 170;
+const COL_GAP: usize = 20;
 const ICON_OFFSET: usize = 22;
 const TEXT_Y: usize = 12;
-const SEPARATOR_LEN: usize = 2; // ": "
 
 /// Statistics data extracted from GitHub user
 pub struct Statistics {
@@ -85,33 +84,41 @@ impl Tile for Statistics {
             ("Total Commits", self.total_commits, icons::COMMIT),
             ("Total PRs", self.total_prs, icons::PULL_REQUEST),
             ("Total Issues", self.total_issues, icons::ISSUE),
-            ("Merged PRs", self.merged_prs, icons::CONTRIBUTION),
+            ("Merged PRs (ext)", self.merged_prs, icons::CONTRIBUTION),
         ];
 
         let height = (NUM_ROWS - 1) * ROW_HEIGHT + CONTENT_HEIGHT;
         let mut rows = String::new();
 
-        // Calculate max text width for each column
-        let mut max_col_widths = [0usize; NUM_COLS];
+        // Calculate max label width and max number width for each column
+        let mut max_label_widths = [0usize; NUM_COLS];
+        let mut max_number_widths = [0usize; NUM_COLS];
 
         for (i, (label, value, _)) in items.iter().enumerate() {
             let col = i % NUM_COLS;
-            let text_len = label.len() + SEPARATOR_LEN + format_number(*value).len();
-            let item_width = ICON_OFFSET + (text_len as f64 * CHAR_WIDTH) as usize;
-            max_col_widths[col] = max_col_widths[col].max(item_width);
+            max_label_widths[col] = max_label_widths[col].max(label.len());
+            max_number_widths[col] = max_number_widths[col].max(format_number(*value).len());
         }
 
         for (i, (label, value, icon)) in items.iter().enumerate() {
             let row = i / NUM_COLS;
             let col = i % NUM_COLS;
-            let x = col * COL_WIDTH;
+            // Column 0 starts at 0, column 1 starts after column 0's content + gap
+            let col0_width = ICON_OFFSET
+                + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize;
+            let x = if col == 0 { 0 } else { col0_width + COL_GAP };
             let y = row * ROW_HEIGHT;
+
+            // Position for right-aligned number at end of column
+            let number_x = ICON_OFFSET
+                + (((max_label_widths[col] + max_number_widths[col]) as f64) * CHAR_WIDTH) as usize;
 
             rows.push_str(&format!(
                 r#"
             <g transform="translate({}, {})">
                 <g fill="{}">{}</g>
-                <text x="{}" y="{}" fill="{}" font-size="{}">{}: <tspan font-weight="bold">{}</tspan></text>
+                <text x="{}" y="{}" fill="{}" font-size="{}">{}: </text>
+                <text x="{}" y="{}" fill="{}" font-size="{}" font-weight="bold" text-anchor="end">{}</text>
             </g>"#,
                 x,
                 y,
@@ -122,11 +129,20 @@ impl Tile for Statistics {
                 theme.text,
                 FONT_SIZE,
                 label,
+                number_x,
+                TEXT_Y,
+                theme.text,
+                FONT_SIZE,
                 format_number(*value)
             ));
         }
 
-        let width = COL_WIDTH + max_col_widths[1];
+        // Calculate total width based on actual content
+        let col0_width = ICON_OFFSET
+            + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize;
+        let col1_width = ICON_OFFSET
+            + (((max_label_widths[1] + max_number_widths[1]) as f64) * CHAR_WIDTH) as usize;
+        let width = col0_width + COL_GAP + col1_width;
         let bg_rect = if config.opaque {
             format!(
                 r#"<rect width="{}" height="{}" rx="{}" fill="{}"/>"#,
