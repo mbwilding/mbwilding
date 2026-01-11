@@ -66,25 +66,23 @@ pub async fn fetch_user_data(
     let initial_data = fetch_initial_page(client, token, &privacy).await?;
     let initial_user = initial_data.viewer.context("No viewer in response")?;
 
-    // Paginate repositories if needed
-    let all_repos = paginate_repositories(
-        client,
-        token,
-        &privacy,
-        initial_user.repositories.nodes,
-        initial_user.repositories.page_info,
-    )
-    .await?;
-
-    // Paginate merged PRs if needed
-    let (all_merged_prs, merged_pr_total_count) = paginate_merged_prs(
-        client,
-        token,
-        initial_user.merged_pull_requests.nodes,
-        initial_user.merged_pull_requests.page_info,
-        initial_user.merged_pull_requests.total_count,
-    )
-    .await?;
+    // Paginate repositories and merged PRs in parallel
+    let (all_repos, (all_merged_prs, merged_pr_total_count)) = tokio::try_join!(
+        paginate_repositories(
+            client,
+            token,
+            &privacy,
+            initial_user.repositories.nodes,
+            initial_user.repositories.page_info,
+        ),
+        paginate_merged_prs(
+            client,
+            token,
+            initial_user.merged_pull_requests.nodes,
+            initial_user.merged_pull_requests.page_info,
+            initial_user.merged_pull_requests.total_count,
+        )
+    )?;
 
     // Construct the final UserData
     Ok(UserData {
