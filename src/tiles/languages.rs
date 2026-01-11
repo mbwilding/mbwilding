@@ -5,7 +5,7 @@ use std::collections::HashMap;
 
 // Layout constants
 const DEFAULT_LANGUAGE_COLOR: &str = "#858585";
-const MAX_LANGUAGES: usize = 8;
+const MAX_LANGUAGES: usize = 5;
 
 // Donut chart constants
 const DONUT_CX: f64 = 70.0;
