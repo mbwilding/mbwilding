@@ -57,7 +57,6 @@ impl Tile for Languages {
 
     fn render(&self, config: &RenderConfig) -> String {
         let theme = config.theme;
-        let title = config.title("Languages");
 
         let top_langs: Vec<_> = self.languages.iter().take(8).collect();
 
@@ -75,8 +74,8 @@ impl Tile for Languages {
             .collect();
 
         // Generate donut chart
-        let cx = 85.0;
-        let cy = 85.0;
+        let cx = 70.0;
+        let cy = 70.0;
         let r = 70.0;
         let inner_r = 42.0;
 
@@ -111,10 +110,11 @@ impl Tile for Languages {
 
         // Generate legend
         let mut legend = String::new();
+        let row_height = 22;
         for (i, (name, pct, color)) in lang_data.iter().enumerate() {
-            let y = 55 + i * 22;
+            let y = i * row_height;
             legend.push_str(&format!(
-                r#"<g transform="translate(25, {})">
+                r#"<g transform="translate(0, {})">
                 <rect width="12" height="12" rx="2" fill="{}"/>
                 <text x="18" y="10" fill="{}" font-size="11">{} ({:.1}%)</text>
             </g>"#,
@@ -123,30 +123,38 @@ impl Tile for Languages {
         }
 
         // Dynamic height based on number of languages
-        let legend_height = 55 + lang_data.len() * 22 + 15;
-        let donut_height = 50 + 190 + 15;
-        let height = legend_height.max(donut_height);
+        let legend_height = lang_data.len() * row_height;
+        let donut_diameter = 140;
+        let height = legend_height.max(donut_diameter);
+        let width = 140 + 10 + 140; // legend width + gap + donut
 
         let bg_rect = if config.opaque {
             format!(
-                r#"<rect width="350" height="{}" rx="4.5" fill="{}"/>"#,
-                height, theme.bg
+                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
+                width, height, theme.bg
             )
         } else {
             String::new()
         };
 
         format!(
-            r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
+            r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>{}</style>
   {}
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
-  <g transform="translate(160, 50)">
+  <g transform="translate(150, {})">
     {}
   </g>
 </svg>"#,
-            height, height, SVG_STYLES, bg_rect, theme.title, title, legend, paths
+            width,
+            height,
+            width,
+            height,
+            SVG_STYLES,
+            bg_rect,
+            legend,
+            (height - donut_diameter) / 2,
+            paths
         )
     }
 }

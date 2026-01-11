@@ -81,15 +81,12 @@ impl Tile for Contributions {
 
     fn render(&self, config: &RenderConfig) -> String {
         let theme = config.theme;
-        let title = config.title("Contributions");
 
         if self.repos.is_empty() {
             return empty_svg("No External Contributions", theme, config.opaque);
         }
 
         let row_height = 32;
-        let title_height = 50;
-        let padding = 15;
         let avatar_size = 20;
 
         // Calculate the longest repo text to determine star position
@@ -101,18 +98,18 @@ impl Tile for Contributions {
             .max()
             .unwrap_or(0);
 
-        let text_x = 25 + avatar_size + 8;
+        let text_x = avatar_size + 8;
         let star_x = text_x + (max_repo_len as f64 * char_width) as usize + 15;
         let width = star_x + 60;
 
-        let height = title_height + self.repos.len() * row_height + padding;
+        let height = self.repos.len() * row_height;
         let mut rows = String::new();
 
         for (i, entry) in self.repos.iter().enumerate() {
-            let y = title_height + i * row_height;
+            let y = i * row_height;
             let repo_url = format!("https://github.com/{}/{}", entry.owner, entry.repo);
             rows.push_str(&format!(
-                r#"<g transform="translate(25, {})">
+                r#"<g transform="translate(0, {})">
                 <clipPath id="avatar-clip-{}">
                     <circle cx="{}" cy="{}" r="{}"/>
                 </clipPath>
@@ -137,12 +134,12 @@ impl Tile for Contributions {
                 avatar_size,
                 avatar_size,
                 i,
-                text_x - 25,
+                text_x,
                 theme.text,
                 theme.icon,
                 entry.owner,
                 entry.repo,
-                star_x - 25,
+                star_x,
                 theme.star,
                 icons::STAR,
                 theme.text,
@@ -167,10 +164,9 @@ impl Tile for Contributions {
     a:hover text {{ text-decoration: underline; }}
   </style>
   {}
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-            width, height, width, height, SVG_STYLES, bg_rect, theme.title, title, rows
+            width, height, width, height, SVG_STYLES, bg_rect, rows
         )
     }
 }

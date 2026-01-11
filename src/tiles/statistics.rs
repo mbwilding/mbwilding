@@ -53,7 +53,6 @@ impl Tile for Statistics {
 
     fn render(&self, config: &RenderConfig) -> String {
         let theme = config.theme;
-        let title = config.title("Statistics");
 
         let items: [(&str, u32, &str); 6] = [
             ("Total Stars", self.total_stars, icons::STAR),
@@ -64,14 +63,16 @@ impl Tile for Statistics {
             ("Merged PRs", self.merged_prs, icons::CONTRIBUTION),
         ];
 
-        let height = 180;
+        let row_height = 35;
+        let num_rows = 3;
+        let height = num_rows * row_height;
         let mut rows = String::new();
 
         for (i, (label, value, icon)) in items.iter().enumerate() {
             let row = i / 2;
             let col = i % 2;
-            let x = 25 + col * 170;
-            let y = 55 + row * 35;
+            let x = col * 170;
+            let y = row * row_height;
 
             rows.push_str(&format!(
                 r#"
@@ -89,23 +90,23 @@ impl Tile for Statistics {
             ));
         }
 
+        let width = 340;
         let bg_rect = if config.opaque {
             format!(
-                r#"<rect width="350" height="{}" rx="4.5" fill="{}"/>"#,
-                height, theme.bg
+                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
+                width, height, theme.bg
             )
         } else {
             String::new()
         };
 
         format!(
-            r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
+            r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>{}</style>
   {}
-  <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-            height, height, SVG_STYLES, bg_rect, theme.title, title, rows
+            width, height, width, height, SVG_STYLES, bg_rect, rows
         )
     }
 }

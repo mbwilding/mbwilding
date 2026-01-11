@@ -25,10 +25,6 @@ struct Args {
     #[arg(long, default_value = "false")]
     private: bool,
 
-    /// Show username in titles
-    #[arg(long, default_value = "false")]
-    username: bool,
-
     /// Render opaque background
     #[arg(long, default_value = "false")]
     opaque: bool,
@@ -47,7 +43,6 @@ async fn main() -> Result<()> {
         .context("Failed to get authenticated user data")?;
 
     let username = &user.login;
-    let show_username = args.username;
 
     // Extract tile data from user
     let statistics = Statistics::from_user(&user);
@@ -67,7 +62,7 @@ async fn main() -> Result<()> {
 
     // Generate SVGs for all themes
     for theme in theme::ALL {
-        let config = RenderConfig::new(username, show_username, theme, args.opaque);
+        let config = RenderConfig::new(theme, args.opaque);
 
         for tile in &tiles {
             let svg = svg::optimize(&tile.render(&config));

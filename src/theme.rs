@@ -2,7 +2,6 @@
 pub struct Theme {
     pub name: &'static str,
     pub bg: &'static str,
-    pub title: &'static str,
     pub text: &'static str,
     pub icon: &'static str,
     pub star: &'static str,
@@ -11,7 +10,6 @@ pub struct Theme {
 pub const LIGHT: Theme = Theme {
     name: "light",
     bg: "#ffffff",
-    title: "#0366d6",
     text: "#333333",
     icon: "#586069",
     star: "#e3b341",
@@ -20,7 +18,6 @@ pub const LIGHT: Theme = Theme {
 pub const DARK: Theme = Theme {
     name: "dark",
     bg: "#0d1117",
-    title: "#58a6ff",
     text: "#c9d1d9",
     icon: "#8b949e",
     star: "#e3b341",

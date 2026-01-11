@@ -8,30 +8,14 @@ pub use languages::Languages;
 pub use statistics::Statistics;
 
 /// Configuration for rendering a tile
-pub struct RenderConfig<'a> {
-    pub username: &'a str,
-    pub show_username: bool,
+pub struct RenderConfig {
     pub theme: Theme,
     pub opaque: bool,
 }
 
-impl<'a> RenderConfig<'a> {
-    pub fn new(username: &'a str, show_username: bool, theme: Theme, opaque: bool) -> Self {
-        Self {
-            username,
-            show_username,
-            theme,
-            opaque,
-        }
-    }
-
-    /// Generate title with optional username prefix
-    pub fn title(&self, base_title: &str) -> String {
-        if self.show_username {
-            format!("{}'s {}", self.username, base_title)
-        } else {
-            base_title.to_string()
-        }
+impl RenderConfig {
+    pub fn new(theme: Theme, opaque: bool) -> Self {
+        Self { theme, opaque }
     }
 }
 
