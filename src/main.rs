@@ -6,9 +6,9 @@ mod tiles;
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use std::fs;
 use std::path::Path;
 use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
+use tokio::fs;
 
 #[derive(Parser)]
 #[command(about = "Generate GitHub stats SVGs")]
@@ -55,7 +55,7 @@ async fn main() -> Result<()> {
 
     // Create output directory
     let output_path = Path::new(&args.output);
-    fs::create_dir_all(output_path)?;
+    fs::create_dir_all(output_path).await?;
 
     // Collect all tiles
     let tiles: Vec<&dyn Tile> = vec![&statistics, &languages, &contributions];
@@ -67,7 +67,7 @@ async fn main() -> Result<()> {
         for tile in &tiles {
             let svg = svg::optimize(&tile.render(&config));
             let filename = tile.filename(theme.name);
-            fs::write(output_path.join(&filename), &svg)?;
+            fs::write(output_path.join(&filename), &svg).await?;
         }
 
         println!("Generated {} theme SVGs", theme.name);
