@@ -1,19 +1,17 @@
-use std::collections::HashMap;
-
-use anyhow::Result;
-use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
-
 use super::{RenderConfig, SVG_STYLES, Tile, empty_svg};
 use crate::github::User;
 use crate::icons;
 use crate::svg::format_number;
+use anyhow::Result;
+use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
+use std::collections::HashMap;
 
 /// A repository contribution entry
 pub struct ContributionEntry {
     pub owner: String,
     pub repo: String,
     pub stars: u32,
-    pub avatar_data: String, // base64 encoded avatar
+    pub avatar_data: String,
 }
 
 /// Contributions data extracted from GitHub user
@@ -44,7 +42,8 @@ impl Contributions {
                 owner,
                 repo,
                 stars,
-                avatar_data: avatar_url, // Will be replaced with base64 data
+                // Will be replaced with base64 data
+                avatar_data: avatar_url,
             })
             .collect();
 
@@ -145,7 +144,7 @@ impl Tile for Contributions {
                 entry.repo,
                 star_x - 25,
                 theme.star,
-                icons::star(),
+                icons::STAR,
                 theme.text,
                 format_number(entry.stars)
             ));

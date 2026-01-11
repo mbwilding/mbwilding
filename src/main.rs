@@ -4,18 +4,16 @@ mod svg;
 mod theme;
 mod tiles;
 
-use std::fs;
-use std::path::Path;
-
 use anyhow::{Context, Result};
 use clap::Parser;
-
+use std::fs;
+use std::path::Path;
 use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
 
 #[derive(Parser)]
 #[command(about = "Generate GitHub stats SVGs")]
 struct Args {
-    /// GitHub token (requires read:user and repo scopes)
+    /// GitHub token (https://github.com/settings/tokens/new?scopes=repo,read:user&description=GitHub%20Tiles)
     #[arg(short, long, env = "GITHUB_TOKEN")]
     token: String,
 
@@ -23,11 +21,11 @@ struct Args {
     #[arg(short, long, default_value = "assets")]
     output: String,
 
-    /// Include private repositories (public only by default)
+    /// Include private repositories
     #[arg(short, long, default_value = "false")]
     private: bool,
 
-    /// Show username prefix in titles (e.g. "Statistics" instead of "username's Statistics")
+    /// Show username in titles
     #[arg(short, long, default_value = "false")]
     username: bool,
 }

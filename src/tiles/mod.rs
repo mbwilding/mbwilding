@@ -2,11 +2,10 @@ mod contributions;
 mod languages;
 mod statistics;
 
+use crate::theme::Theme;
 pub use contributions::Contributions;
 pub use languages::Languages;
 pub use statistics::Statistics;
-
-use crate::theme::Theme;
 
 /// Configuration for rendering a tile
 pub struct RenderConfig<'a> {

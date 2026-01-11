@@ -3,7 +3,7 @@ use oxvg_ast::serialize::Node as _;
 use oxvg_ast::visitor::Info;
 use oxvg_optimiser::Jobs;
 
-/// Optimizes an SVG string using oxvg_optimiser
+/// Optimizes an SVG string
 pub fn optimize(svg: &str) -> String {
     parse(svg, |dom, allocator| {
         let jobs = Jobs::default();

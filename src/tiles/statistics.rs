@@ -56,12 +56,12 @@ impl Tile for Statistics {
         let title = config.title("Statistics");
 
         let items: [(&str, u32, &str); 6] = [
-            ("Total Stars", self.total_stars, icons::star()),
-            ("Total Forks", self.total_forks, icons::fork()),
-            ("Total Commits", self.total_commits, icons::commit()),
-            ("Total PRs", self.total_prs, icons::pull_request()),
-            ("Total Issues", self.total_issues, icons::issue()),
-            ("Merged PRs", self.merged_prs, icons::contribution()),
+            ("Total Stars", self.total_stars, icons::STAR),
+            ("Total Forks", self.total_forks, icons::FORK),
+            ("Total Commits", self.total_commits, icons::COMMIT),
+            ("Total PRs", self.total_prs, icons::PULL_REQUEST),
+            ("Total Issues", self.total_issues, icons::ISSUE),
+            ("Merged PRs", self.merged_prs, icons::CONTRIBUTION),
         ];
 
         let height = 180;

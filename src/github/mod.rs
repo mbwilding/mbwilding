@@ -1,8 +1,7 @@
 mod types;
 
-pub use types::*;
-
 use anyhow::{Context, Result};
+pub use types::*;
 
 /// Fetch GitHub user data via GraphQL API
 pub async fn fetch_user_data(

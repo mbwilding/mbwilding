@@ -1,7 +1,6 @@
-use std::collections::HashMap;
-
 use super::{RenderConfig, SVG_STYLES, Tile, empty_svg};
 use crate::github::User;
+use std::collections::HashMap;
 
 /// Language with byte count and color
 pub struct LanguageEntry {
