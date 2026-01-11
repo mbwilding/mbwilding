@@ -150,7 +150,7 @@ impl Tile for Languages {
             legend.push_str(&format!(
                 r#"<g transform="translate(0, {})">
                 <rect width="{}" height="{}" rx="{}" fill="{}"/>
-                <text x="{}" y="{}" fill="{}" font-size="{}">{} ({:.1}%)</text>
+                <text x="{}" y="{}" fill="{}" font-size="{}">{} <tspan fill="{}">{:.1}%</tspan></text>
             </g>"#,
                 y,
                 LEGEND_RECT_SIZE,
@@ -162,6 +162,7 @@ impl Tile for Languages {
                 theme.text,
                 FONT_SIZE_SMALL,
                 name,
+                theme.icon,
                 pct
             ));
         }
