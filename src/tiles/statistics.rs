@@ -63,9 +63,10 @@ impl Tile for Statistics {
             ("Merged PRs", self.merged_prs, icons::CONTRIBUTION),
         ];
 
-        let row_height = 35;
+        let row_height = 20;
         let num_rows = 3;
-        let height = num_rows * row_height;
+        let content_height = 16; // icon/text height
+        let height = (num_rows - 1) * row_height + content_height;
         let mut rows = String::new();
 
         for (i, (label, value, icon)) in items.iter().enumerate() {

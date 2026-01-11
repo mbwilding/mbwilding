@@ -110,7 +110,8 @@ impl Tile for Languages {
 
         // Generate legend
         let mut legend = String::new();
-        let row_height = 22;
+        let row_height = 16;
+        let content_height = 12; // rect height
         for (i, (name, pct, color)) in lang_data.iter().enumerate() {
             let y = i * row_height;
             legend.push_str(&format!(
@@ -123,10 +124,24 @@ impl Tile for Languages {
         }
 
         // Dynamic height based on number of languages
-        let legend_height = lang_data.len() * row_height;
-        let donut_diameter = 140;
+        let legend_height = (lang_data.len() - 1) * row_height + content_height;
+        let donut_diameter: usize = 140;
         let height = legend_height.max(donut_diameter);
-        let width = 140 + 10 + 140; // legend width + gap + donut
+        let width = 140 + 10 + donut_diameter; // legend width + gap + donut
+
+        // Center legend vertically if shorter than donut
+        let legend_y_offset = (height as isize - legend_height as isize) / 2;
+        let legend_translated = if legend_y_offset > 0 {
+            format!(
+                r#"<g transform="translate(0, {})">{}</g>"#,
+                legend_y_offset, legend
+            )
+        } else {
+            legend
+        };
+
+        // Center donut vertically
+        let donut_y_offset = (height as isize - donut_diameter as isize) / 2;
 
         let bg_rect = if config.opaque {
             format!(
@@ -152,8 +167,8 @@ impl Tile for Languages {
             height,
             SVG_STYLES,
             bg_rect,
-            legend,
-            (height - donut_diameter) / 2,
+            legend_translated,
+            donut_y_offset,
             paths
         )
     }

@@ -86,8 +86,9 @@ impl Tile for Contributions {
             return empty_svg("No External Contributions", theme, config.opaque);
         }
 
-        let row_height = 32;
+        let row_height = 24;
         let avatar_size = 20;
+        let content_height = avatar_size; // avatar is the tallest element
 
         // Calculate the longest repo text to determine star position
         let char_width = 7.0;
@@ -102,7 +103,7 @@ impl Tile for Contributions {
         let star_x = text_x + (max_repo_len as f64 * char_width) as usize + 15;
         let width = star_x + 60;
 
-        let height = self.repos.len() * row_height;
+        let height = (self.repos.len() - 1) * row_height + content_height;
         let mut rows = String::new();
 
         for (i, entry) in self.repos.iter().enumerate() {
