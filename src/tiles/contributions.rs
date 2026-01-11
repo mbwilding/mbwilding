@@ -12,11 +12,10 @@ use log::debug;
 use std::collections::HashMap;
 
 // Layout constants
-const MAX_CONTRIBUTIONS: usize = 10;
 const ROW_HEIGHT: usize = 24;
 const AVATAR_SIZE: usize = 20;
 const AVATAR_TEXT_GAP: usize = 8;
-const REPO_STAR_GAP: usize = 15;
+const REPO_STAR_GAP: usize = 10;
 const STAR_AREA_WIDTH: usize = 60;
 const TEXT_Y: usize = 14;
 const STAR_ICON_X_OFFSET: usize = 18;
@@ -37,7 +36,7 @@ pub struct Contributions {
 
 impl Contributions {
     /// Extract contribution data from GitHub user data
-    pub fn from_user(user: &User, username: &str) -> Self {
+    pub fn from_user(user: &User, username: &str, limit: u8) -> Self {
         debug!("Extracting contributions for user: {}", username);
         let mut seen: HashMap<(String, String), (u32, String)> = HashMap::new();
 
@@ -65,7 +64,7 @@ impl Contributions {
             .collect();
 
         repos.sort_by(|a, b| b.stars.cmp(&a.stars));
-        repos.truncate(MAX_CONTRIBUTIONS);
+        repos.truncate(limit as usize);
 
         debug!("Found {} external contributions", repos.len());
         for entry in &repos {

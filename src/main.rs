@@ -29,6 +29,14 @@ struct Args {
     /// Render opaque background
     #[arg(long, default_value = "false")]
     opaque: bool,
+
+    /// Languages to display
+    #[arg(long, default_value = "5")]
+    languages: u8,
+
+    /// Contributions to display
+    #[arg(long, default_value = "10")]
+    contributions: u8,
 }
 
 #[tokio::main]
@@ -68,8 +76,8 @@ async fn main() -> Result<()> {
 
     // Extract tile data from user
     let statistics = Statistics::from_user(&user);
-    let languages = Languages::from_user(&user);
-    let mut contributions = Contributions::from_user(&user, username);
+    let languages = Languages::from_user(&user, args.languages);
+    let mut contributions = Contributions::from_user(&user, username, args.contributions);
 
     // Fetch avatars for contributions
     info!("Fetching avatars...");

@@ -8,7 +8,7 @@ pub use languages::Languages;
 pub use statistics::Statistics;
 
 // Shared layout constants
-pub const CHAR_WIDTH: f64 = 7.0;
+pub const CHAR_WIDTH: f64 = 6.5;
 pub const BORDER_RADIUS: f64 = 4.5;
 pub const FONT_SIZE: usize = 12;
 pub const FONT_SIZE_SMALL: usize = 11;

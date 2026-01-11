@@ -3,11 +3,8 @@ use crate::github::User;
 use log::debug;
 use std::collections::HashMap;
 
-// Layout constants
-const DEFAULT_LANGUAGE_COLOR: &str = "#858585";
-const MAX_LANGUAGES: usize = 5;
-
 // Donut chart constants
+const DEFAULT_LANGUAGE_COLOR: &str = "#858585";
 const DONUT_INNER_RATIO: f64 = 0.6;
 const START_ANGLE_DEGREES: f64 = -90.0;
 const DEGREES_PER_PERCENT: f64 = 360.0 / 100.0;
@@ -37,7 +34,7 @@ pub struct Languages {
 
 impl Languages {
     /// Extract language statistics from GitHub user data
-    pub fn from_user(user: &User) -> Self {
+    pub fn from_user(user: &User, limit: u8) -> Self {
         debug!("Extracting language statistics");
         let mut lang_bytes: HashMap<String, (u64, String)> = HashMap::new();
 
@@ -73,10 +70,13 @@ impl Languages {
             languages.len(),
             total_bytes
         );
-        for lang in languages.iter().take(MAX_LANGUAGES) {
+
+        for lang in languages.iter() {
             let pct = (lang.bytes as f64 / total_bytes as f64) * 100.0;
             debug!("{}: {} bytes ({:.1}%)", lang.name, lang.bytes, pct);
         }
+
+        languages.truncate(limit as usize);
 
         Self { languages }
     }
@@ -91,7 +91,7 @@ impl Tile for Languages {
         debug!("Rendering languages tile");
         let theme = config.theme;
 
-        let top_langs: Vec<_> = self.languages.iter().take(MAX_LANGUAGES).collect();
+        let top_langs: Vec<_> = self.languages.iter().collect();
 
         if top_langs.is_empty() {
             return empty_svg("No Languages Found", theme, config.opaque);
