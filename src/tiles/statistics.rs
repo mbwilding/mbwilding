@@ -105,7 +105,8 @@ impl Tile for Statistics {
             let row = i / NUM_COLS;
             let col = i % NUM_COLS;
             let col0_width = ICON_OFFSET
-                + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize;
+                + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize
+                + LABEL_NUMBER_GAP;
             let x = if col == 0 { 0 } else { col0_width + COL_GAP };
             let y = row * ROW_HEIGHT;
 
@@ -141,9 +142,11 @@ impl Tile for Statistics {
 
         // Calculate total width based on actual content
         let col0_width = ICON_OFFSET
-            + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize;
+            + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize
+            + LABEL_NUMBER_GAP;
         let col1_width = ICON_OFFSET
-            + (((max_label_widths[1] + max_number_widths[1]) as f64) * CHAR_WIDTH) as usize;
+            + (((max_label_widths[1] + max_number_widths[1]) as f64) * CHAR_WIDTH) as usize
+            + LABEL_NUMBER_GAP;
         let width = col0_width + COL_GAP + col1_width;
         let bg_rect = if config.opaque {
             format!(
