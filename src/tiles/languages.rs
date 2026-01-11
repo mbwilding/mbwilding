@@ -36,7 +36,6 @@ pub struct LanguageEntry {
 /// Languages data extracted from GitHub user
 pub struct Languages {
     pub languages: Vec<LanguageEntry>,
-    pub total_bytes: u64,
 }
 
 impl Languages {
@@ -82,10 +81,7 @@ impl Languages {
             debug!("{}: {} bytes ({:.1}%)", lang.name, lang.bytes, pct);
         }
 
-        Self {
-            languages,
-            total_bytes,
-        }
+        Self { languages }
     }
 }
 
@@ -105,10 +101,11 @@ impl Tile for Languages {
         }
 
         // Calculate percentages
+        let top_bytes: u64 = top_langs.iter().map(|l| l.bytes).sum();
         let lang_data: Vec<_> = top_langs
             .iter()
             .map(|lang| {
-                let pct = (lang.bytes as f64 / self.total_bytes as f64) * 100.0;
+                let pct = (lang.bytes as f64 / top_bytes as f64) * 100.0;
                 (lang.name.as_str(), pct, lang.color.as_str())
             })
             .collect();
