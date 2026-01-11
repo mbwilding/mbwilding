@@ -10,7 +10,7 @@ const NUM_ROWS: usize = 3;
 const NUM_COLS: usize = 2;
 const CONTENT_HEIGHT: usize = 16;
 const COL_GAP: usize = 20;
-const ICON_OFFSET: usize = 22;
+const ICON_OFFSET: usize = 18;
 const TEXT_Y: usize = 12;
 
 /// Statistics data extracted from GitHub user
@@ -103,7 +103,6 @@ impl Tile for Statistics {
         for (i, (label, value, icon)) in items.iter().enumerate() {
             let row = i / NUM_COLS;
             let col = i % NUM_COLS;
-            // Column 0 starts at 0, column 1 starts after column 0's content + gap
             let col0_width = ICON_OFFSET
                 + (((max_label_widths[0] + max_number_widths[0]) as f64) * CHAR_WIDTH) as usize;
             let x = if col == 0 { 0 } else { col0_width + COL_GAP };
@@ -117,7 +116,7 @@ impl Tile for Statistics {
                 r#"
             <g transform="translate({}, {})">
                 <g fill="{}">{}</g>
-                <text x="{}" y="{}" fill="{}" font-size="{}">{}: </text>
+                <text x="{}" y="{}" fill="{}" font-size="{}" font-weight="bold">{}: </text>
                 <text x="{}" y="{}" fill="{}" font-size="{}" font-weight="bold" text-anchor="end">{}</text>
             </g>"#,
                 x,

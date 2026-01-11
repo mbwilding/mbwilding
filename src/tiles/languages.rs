@@ -153,7 +153,7 @@ impl Tile for Languages {
             legend.push_str(&format!(
                 r#"<g transform="translate(0, {})">
                 <rect width="{}" height="{}" rx="{}" fill="{}"/>
-                <text x="{}" y="{}" fill="{}" font-size="{}">{} <tspan fill="{}">{:.1}%</tspan></text>
+                <text x="{}" y="{}" fill="{}" font-size="{}" font-weight="bold">{} <tspan fill="{}">{:.1}%</tspan></text>
             </g>"#,
                 y,
                 LEGEND_RECT_SIZE,
