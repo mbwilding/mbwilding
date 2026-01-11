@@ -10,16 +10,16 @@ pub struct Theme {
 pub const LIGHT: Theme = Theme {
     name: "light",
     bg: "#ffffff",
-    text: "#333333",
-    icon: "#586069",
+    text: "#1f2328",
+    icon: "#59636e",
     star: "#e3b341",
 };
 
 pub const DARK: Theme = Theme {
     name: "dark",
     bg: "#0d1117",
-    text: "#c9d1d9",
-    icon: "#8b949e",
+    text: "#f0f6fc",
+    icon: "#7d8590",
     star: "#e3b341",
 };
 
