@@ -13,7 +13,6 @@ use clap::Parser;
 use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
 
 #[derive(Parser)]
-#[command(name = "github-stats")]
 #[command(about = "Generate GitHub stats SVGs")]
 struct Args {
     /// GitHub token (requires read:user and repo scopes)

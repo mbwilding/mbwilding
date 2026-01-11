@@ -11,6 +11,8 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      project: github-tiles
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,13 +21,10 @@ jobs:
         id: cache
         uses: actions/cache@v5
         with:
-          path: |
-            target
-            ~/.cargo/registry
-            ~/.cargo/git
+          path: target/release/${{ env.project }}
           key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.toml') }}-${{ hashFiles('Cargo.lock') }}-${{ hashFiles('src/**/*.rs') }}
           restore-keys: |
-            ${{ runner.os }}-cargo-
+            ${{ runner.os }}-${{ env.project }}-
 
       - name: Build
         if: steps.cache.outputs.cache-hit != 'true'
@@ -34,7 +33,7 @@ jobs:
       - name: Generate SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: ./target/release/github-tiles
+        run: ./target/release/${{ env.project }}
 
       - name: Commit
         run: |
