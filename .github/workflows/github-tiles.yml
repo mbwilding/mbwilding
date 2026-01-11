@@ -9,7 +9,12 @@ on:
 jobs:
   github-tiles:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: GitHub Tiles
         uses: mbwilding/github-tiles@main
         with:
