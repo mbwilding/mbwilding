@@ -6,7 +6,7 @@ on:
     - cron: "0 11 * * *"
 
 jobs:
-  generate:
+  ["GitHub Tiles"]:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
