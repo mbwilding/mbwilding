@@ -4,14 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 11 * * *"
-  push:
-    paths:
-      - .github/workflows/generate.yml
-      - .github/actions/github-tiles/action.yml
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: mbwilding/mbwilding/.github/actions/github-tiles@main
+        uses: mbwilding/github-tiles@main
