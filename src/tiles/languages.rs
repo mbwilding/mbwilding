@@ -8,12 +8,9 @@ const DEFAULT_LANGUAGE_COLOR: &str = "#858585";
 const MAX_LANGUAGES: usize = 5;
 
 // Donut chart constants
-const DONUT_CX: f64 = 70.0;
-const DONUT_CY: f64 = 70.0;
-const DONUT_OUTER_RADIUS: f64 = 70.0;
-const DONUT_INNER_RADIUS: f64 = 42.0;
+const DONUT_INNER_RATIO: f64 = 0.6;
 const START_ANGLE_DEGREES: f64 = -90.0;
-const DEGREES_PER_PERCENT: f64 = 3.6; // 360.0 / 100.0
+const DEGREES_PER_PERCENT: f64 = 360.0 / 100.0;
 const LARGE_ARC_THRESHOLD: f64 = 180.0;
 
 // Legend constants
@@ -110,6 +107,15 @@ impl Tile for Languages {
             })
             .collect();
 
+        // Calculate dimensions based on legend height
+        let legend_height = (lang_data.len() - 1) * LEGEND_ROW_HEIGHT + LEGEND_ITEM_HEIGHT;
+
+        // Scale donut to fit the legend height
+        let donut_outer_radius = legend_height as f64 / 2.0;
+        let donut_inner_radius = donut_outer_radius * DONUT_INNER_RATIO;
+        let donut_cx = donut_outer_radius;
+        let donut_cy = donut_outer_radius;
+
         // Generate donut chart
         let mut paths = String::new();
         let mut start_angle = START_ANGLE_DEGREES;
@@ -121,20 +127,20 @@ impl Tile for Languages {
             let start_rad = start_angle.to_radians();
             let end_rad = end_angle.to_radians();
 
-            let x1 = DONUT_CX + DONUT_OUTER_RADIUS * start_rad.cos();
-            let y1 = DONUT_CY + DONUT_OUTER_RADIUS * start_rad.sin();
-            let x2 = DONUT_CX + DONUT_OUTER_RADIUS * end_rad.cos();
-            let y2 = DONUT_CY + DONUT_OUTER_RADIUS * end_rad.sin();
-            let x3 = DONUT_CX + DONUT_INNER_RADIUS * end_rad.cos();
-            let y3 = DONUT_CY + DONUT_INNER_RADIUS * end_rad.sin();
-            let x4 = DONUT_CX + DONUT_INNER_RADIUS * start_rad.cos();
-            let y4 = DONUT_CY + DONUT_INNER_RADIUS * start_rad.sin();
+            let x1 = donut_cx + donut_outer_radius * start_rad.cos();
+            let y1 = donut_cy + donut_outer_radius * start_rad.sin();
+            let x2 = donut_cx + donut_outer_radius * end_rad.cos();
+            let y2 = donut_cy + donut_outer_radius * end_rad.sin();
+            let x3 = donut_cx + donut_inner_radius * end_rad.cos();
+            let y3 = donut_cy + donut_inner_radius * end_rad.sin();
+            let x4 = donut_cx + donut_inner_radius * start_rad.cos();
+            let y4 = donut_cy + donut_inner_radius * start_rad.sin();
 
             let large_arc = if sweep > LARGE_ARC_THRESHOLD { 1 } else { 0 };
 
             paths.push_str(&format!(
-                r#"<path d="M {:.2} {:.2} A {} {} 0 {} 1 {:.2} {:.2} L {:.2} {:.2} A {} {} 0 {} 0 {:.2} {:.2} Z" fill="{}"/>"#,
-                x1, y1, DONUT_OUTER_RADIUS, DONUT_OUTER_RADIUS, large_arc, x2, y2, x3, y3, DONUT_INNER_RADIUS, DONUT_INNER_RADIUS, large_arc, x4, y4, color
+                r#"<path d="M {:.2} {:.2} A {:.2} {:.2} 0 {} 1 {:.2} {:.2} L {:.2} {:.2} A {:.2} {:.2} 0 {} 0 {:.2} {:.2} Z" fill="{}"/>"#,
+                x1, y1, donut_outer_radius, donut_outer_radius, large_arc, x2, y2, x3, y3, donut_inner_radius, donut_inner_radius, large_arc, x4, y4, color
             ));
 
             start_angle = end_angle;
@@ -164,25 +170,10 @@ impl Tile for Languages {
             ));
         }
 
-        // Dynamic height based on number of languages
-        let legend_height = (lang_data.len() - 1) * LEGEND_ROW_HEIGHT + LEGEND_ITEM_HEIGHT;
-        let donut_diameter = (DONUT_OUTER_RADIUS * 2.0) as usize;
-        let height = legend_height.max(donut_diameter);
+        // Height is based on legend, width includes scaled donut
+        let donut_diameter = (donut_outer_radius * 2.0) as usize;
+        let height = legend_height;
         let width = LEGEND_WIDTH + LEGEND_DONUT_GAP + donut_diameter;
-
-        // Center legend vertically if shorter than donut
-        let legend_y_offset = (height as isize - legend_height as isize) / 2;
-        let legend_translated = if legend_y_offset > 0 {
-            format!(
-                r#"<g transform="translate(0, {})">{}</g>"#,
-                legend_y_offset, legend
-            )
-        } else {
-            legend
-        };
-
-        // Center donut vertically
-        let donut_y_offset = (height as isize - donut_diameter as isize) / 2;
 
         let bg_rect = if config.opaque {
             format!(
@@ -199,20 +190,11 @@ impl Tile for Languages {
   <style>{}</style>
   {}
   {}
-  <g transform="translate({}, {})">
+  <g transform="translate({}, 0)">
     {}
   </g>
 </svg>"#,
-            width,
-            height,
-            width,
-            height,
-            SVG_STYLES,
-            bg_rect,
-            legend_translated,
-            donut_x_offset,
-            donut_y_offset,
-            paths
+            width, height, width, height, SVG_STYLES, bg_rect, legend, donut_x_offset, paths
         )
     }
 }
