@@ -3,10 +3,6 @@ use oxvg_ast::serialize::Node as _;
 use oxvg_ast::visitor::Info;
 use oxvg_optimiser::Jobs;
 
-// Number formatting constants
-const THOUSANDS_THRESHOLD: u32 = 1000;
-const THOUSANDS_DIVISOR: f32 = THOUSANDS_THRESHOLD as f32;
-
 /// Optimizes an SVG string
 pub fn optimize(svg: &str) -> String {
     parse(svg, |dom, allocator| {
@@ -20,10 +16,12 @@ pub fn optimize(svg: &str) -> String {
     .unwrap_or_else(|_| svg.to_string())
 }
 
-/// Format a number with k suffix for thousands
+/// Format a number with a suffix for large values
 pub fn format_number(n: u32) -> String {
-    if n >= THOUSANDS_THRESHOLD {
-        format!("{:.1}k", n as f32 / THOUSANDS_DIVISOR)
+    if n >= 1_000_000 {
+        format!("{:.1}M", n as f32 / 1_000_000.0)
+    } else if n >= 1000 {
+        format!("{:.1}k", n as f32 / 1000.0)
     } else {
         n.to_string()
     }
