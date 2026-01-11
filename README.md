@@ -11,20 +11,22 @@
 - **Keyboard:** [Dygma Defy](https://dygma.com/pages/defy)
 - **Layout:** [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/statistics_dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/statistics_light.svg" />
-  <img src="./assets/statistics_dark.svg" />
-</picture>
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/statistics_dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/statistics_light.svg" />
+    <img src="./assets/statistics_dark.svg" />
+  </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/languages_dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/languages_light.svg" />
-  <img src="./assets/languages_dark.svg" />
-</picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/languages_dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/languages_light.svg" />
+    <img src="./assets/languages_dark.svg" />
+  </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions_dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="./assets/contributions_light.svg" />
-  <img src="./assets/contributions_dark.svg" />
-</picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions_dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions_light.svg" />
+    <img src="./assets/contributions_dark.svg" />
+  </picture>
+</div>
