@@ -14,20 +14,24 @@ use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
 #[command(about = "Generate GitHub stats SVGs")]
 struct Args {
     /// GitHub token (https://github.com/settings/tokens/new?scopes=repo,read:user&description=GitHub%20Tiles)
-    #[arg(short, long, env = "GITHUB_TOKEN")]
+    #[arg(long, env = "GITHUB_TOKEN")]
     token: String,
 
     /// Output directory
-    #[arg(short, long, default_value = "assets")]
+    #[arg(long, default_value = "assets")]
     output: String,
 
     /// Include private repositories
-    #[arg(short, long, default_value = "false")]
+    #[arg(long, default_value = "false")]
     private: bool,
 
     /// Show username in titles
-    #[arg(short, long, default_value = "false")]
+    #[arg(long, default_value = "false")]
     username: bool,
+
+    /// Render opaque background
+    #[arg(long, default_value = "false")]
+    opaque: bool,
 }
 
 #[tokio::main]
@@ -63,7 +67,7 @@ async fn main() -> Result<()> {
 
     // Generate SVGs for all themes
     for theme in theme::ALL {
-        let config = RenderConfig::new(username, show_username, theme);
+        let config = RenderConfig::new(username, show_username, theme, args.opaque);
 
         for tile in &tiles {
             let svg = svg::optimize(&tile.render(&config));

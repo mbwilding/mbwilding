@@ -84,7 +84,7 @@ impl Tile for Contributions {
         let title = config.title("Contributions");
 
         if self.repos.is_empty() {
-            return empty_svg("No External Contributions", theme);
+            return empty_svg("No External Contributions", theme, config.opaque);
         }
 
         let row_height = 32;
@@ -150,6 +150,15 @@ impl Tile for Contributions {
             ));
         }
 
+        let bg_rect = if config.opaque {
+            format!(
+                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
+                width, height, theme.bg
+            )
+        } else {
+            String::new()
+        };
+
         format!(
             r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>
@@ -157,21 +166,11 @@ impl Tile for Contributions {
     a {{ text-decoration: none; }}
     a:hover text {{ text-decoration: underline; }}
   </style>
-  <rect width="{}" height="{}" rx="4.5" fill="{}"/>
+  {}
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-            width,
-            height,
-            width,
-            height,
-            SVG_STYLES,
-            width,
-            height,
-            theme.bg,
-            theme.title,
-            title,
-            rows
+            width, height, width, height, SVG_STYLES, bg_rect, theme.title, title, rows
         )
     }
 }

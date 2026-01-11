@@ -12,14 +12,16 @@ pub struct RenderConfig<'a> {
     pub username: &'a str,
     pub show_username: bool,
     pub theme: Theme,
+    pub opaque: bool,
 }
 
 impl<'a> RenderConfig<'a> {
-    pub fn new(username: &'a str, show_username: bool, theme: Theme) -> Self {
+    pub fn new(username: &'a str, show_username: bool, theme: Theme, opaque: bool) -> Self {
         Self {
             username,
             show_username,
             theme,
+            opaque,
         }
     }
 
@@ -48,16 +50,24 @@ pub trait Tile {
 }
 
 /// Generate an empty placeholder SVG
-pub fn empty_svg(message: &str, theme: Theme) -> String {
+pub fn empty_svg(message: &str, theme: Theme, opaque: bool) -> String {
+    let bg_rect = if opaque {
+        format!(
+            r#"<rect width="350" height="100" rx="4.5" fill="{}"/>"#,
+            theme.bg
+        )
+    } else {
+        String::new()
+    };
     format!(
         r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="100" viewBox="0 0 350 100">
   <style>
     text {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }}
   </style>
-  <rect width="350" height="100" rx="4.5" fill="{}"/>
+  {}
   <text x="175" y="55" fill="{}" font-size="14" text-anchor="middle">{}</text>
 </svg>"#,
-        theme.bg, theme.text, message
+        bg_rect, theme.text, message
     )
 }
 

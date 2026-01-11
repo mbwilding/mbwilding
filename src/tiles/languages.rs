@@ -62,7 +62,7 @@ impl Tile for Languages {
         let top_langs: Vec<_> = self.languages.iter().take(8).collect();
 
         if top_langs.is_empty() {
-            return empty_svg("No Languages Found", theme);
+            return empty_svg("No Languages Found", theme, config.opaque);
         }
 
         // Calculate percentages
@@ -127,17 +127,26 @@ impl Tile for Languages {
         let donut_height = 50 + 190 + 15;
         let height = legend_height.max(donut_height);
 
+        let bg_rect = if config.opaque {
+            format!(
+                r#"<rect width="350" height="{}" rx="4.5" fill="{}"/>"#,
+                height, theme.bg
+            )
+        } else {
+            String::new()
+        };
+
         format!(
             r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
   <style>{}</style>
-  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  {}
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
   <g transform="translate(160, 50)">
     {}
   </g>
 </svg>"#,
-            height, height, SVG_STYLES, height, theme.bg, theme.title, title, legend, paths
+            height, height, SVG_STYLES, bg_rect, theme.title, title, legend, paths
         )
     }
 }

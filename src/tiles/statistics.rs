@@ -89,14 +89,23 @@ impl Tile for Statistics {
             ));
         }
 
+        let bg_rect = if config.opaque {
+            format!(
+                r#"<rect width="350" height="{}" rx="4.5" fill="{}"/>"#,
+                height, theme.bg
+            )
+        } else {
+            String::new()
+        };
+
         format!(
             r#"<svg xmlns="http://www.w3.org/2000/svg" width="350" height="{}" viewBox="0 0 350 {}">
   <style>{}</style>
-  <rect width="350" height="{}" rx="4.5" fill="{}"/>
+  {}
   <text x="25" y="35" fill="{}" font-size="16" font-weight="600">{}</text>
   {}
 </svg>"#,
-            height, height, SVG_STYLES, height, theme.bg, theme.title, title, rows
+            height, height, SVG_STYLES, bg_rect, theme.title, title, rows
         )
     }
 }
