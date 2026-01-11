@@ -161,7 +161,7 @@ impl Tile for Contributions {
                 </text>
                 <g transform="translate({}, 0)" fill="{}">
                     <g transform="translate(0, {})">{}</g>
-                    <text x="{}" y="{}" fill="{}" font-size="{}">{}</text>
+                    <text x="{}" y="{}" fill="{}" font-size="{}" font-weight="bold">{}</text>
                 </g>
             </g>"#,
                 y,
