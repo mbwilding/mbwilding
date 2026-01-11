@@ -12,6 +12,7 @@ const CONTENT_HEIGHT: usize = 16;
 const COL_GAP: usize = 20;
 const ICON_OFFSET: usize = 18;
 const TEXT_Y: usize = 12;
+const LABEL_NUMBER_GAP: usize = 5;
 
 /// Statistics data extracted from GitHub user
 pub struct Statistics {
@@ -110,7 +111,9 @@ impl Tile for Statistics {
 
             // Position for right-aligned number at end of column
             let number_x = ICON_OFFSET
-                + (((max_label_widths[col] + max_number_widths[col]) as f64) * CHAR_WIDTH) as usize;
+                + ((max_label_widths[col] as f64) * CHAR_WIDTH) as usize
+                + LABEL_NUMBER_GAP
+                + ((max_number_widths[col] as f64) * CHAR_WIDTH) as usize;
 
             rows.push_str(&format!(
                 r#"
