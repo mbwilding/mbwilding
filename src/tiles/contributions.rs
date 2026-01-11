@@ -1,10 +1,24 @@
-use super::{RenderConfig, SVG_STYLES, Tile, empty_svg};
+use super::{
+    BORDER_RADIUS, CHAR_WIDTH, FONT_SIZE, FONT_SIZE_SMALL, RenderConfig, SVG_STYLES, Tile,
+    empty_svg,
+};
 use crate::github::User;
 use crate::icons;
 use crate::svg::format_number;
 use anyhow::Result;
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
 use std::collections::HashMap;
+
+// Layout constants
+const MAX_CONTRIBUTIONS: usize = 10;
+const ROW_HEIGHT: usize = 24;
+const AVATAR_SIZE: usize = 20;
+const AVATAR_TEXT_GAP: usize = 8;
+const REPO_STAR_GAP: usize = 15;
+const STAR_AREA_WIDTH: usize = 60;
+const TEXT_Y: usize = 14;
+const STAR_ICON_X_OFFSET: usize = 18;
+const STAR_ICON_Y_OFFSET: usize = 4;
 
 /// A repository contribution entry
 pub struct ContributionEntry {
@@ -48,7 +62,7 @@ impl Contributions {
             .collect();
 
         repos.sort_by(|a, b| b.stars.cmp(&a.stars));
-        repos.truncate(10);
+        repos.truncate(MAX_CONTRIBUTIONS);
 
         Self { repos }
     }
@@ -90,12 +104,9 @@ impl Tile for Contributions {
             return empty_svg("No External Contributions", theme, config.opaque);
         }
 
-        let row_height = 24;
-        let avatar_size = 20;
-        let content_height = avatar_size; // avatar is the tallest element
+        let content_height = AVATAR_SIZE;
 
         // Calculate the longest repo text to determine star position
-        let char_width = 7.0;
         let max_repo_len = self
             .repos
             .iter()
@@ -103,15 +114,16 @@ impl Tile for Contributions {
             .max()
             .unwrap_or(0);
 
-        let text_x = avatar_size + 8;
-        let star_x = text_x + (max_repo_len as f64 * char_width) as usize + 15;
-        let width = star_x + 60;
+        let text_x = AVATAR_SIZE + AVATAR_TEXT_GAP;
+        let star_x = text_x + (max_repo_len as f64 * CHAR_WIDTH) as usize + REPO_STAR_GAP;
+        let width = star_x + STAR_AREA_WIDTH;
 
-        let height = (self.repos.len() - 1) * row_height + content_height;
+        let height = (self.repos.len() - 1) * ROW_HEIGHT + content_height;
         let mut rows = String::new();
 
+        let avatar_radius = AVATAR_SIZE / 2;
         for (i, entry) in self.repos.iter().enumerate() {
-            let y = i * row_height;
+            let y = i * ROW_HEIGHT;
             let repo_url = format!("https://github.com/{}/{}", entry.owner, entry.repo);
             rows.push_str(&format!(
                 r#"<g transform="translate(0, {})">
@@ -120,42 +132,48 @@ impl Tile for Contributions {
                 </clipPath>
                 <a href="{}" target="_blank">
                     <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
-                    <text x="{}" y="14" fill="{}" font-size="12">
+                    <text x="{}" y="{}" fill="{}" font-size="{}">
                         <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
                     </text>
                 </a>
                 <g transform="translate({}, 0)" fill="{}">
-                    <g transform="translate(0, 4)">{}</g>
-                    <text x="18" y="14" fill="{}" font-size="11">{}</text>
+                    <g transform="translate(0, {})">{}</g>
+                    <text x="{}" y="{}" fill="{}" font-size="{}">{}</text>
                 </g>
             </g>"#,
                 y,
                 i,
-                avatar_size / 2,
-                avatar_size / 2,
-                avatar_size / 2,
+                avatar_radius,
+                avatar_radius,
+                avatar_radius,
                 repo_url,
                 entry.avatar_data.as_deref().unwrap_or(""),
-                avatar_size,
-                avatar_size,
+                AVATAR_SIZE,
+                AVATAR_SIZE,
                 i,
                 text_x,
+                TEXT_Y,
                 theme.text,
+                FONT_SIZE,
                 theme.icon,
                 entry.owner,
                 entry.repo,
                 star_x,
                 theme.star,
+                STAR_ICON_Y_OFFSET,
                 icons::STAR,
+                STAR_ICON_X_OFFSET,
+                TEXT_Y,
                 theme.text,
+                FONT_SIZE_SMALL,
                 format_number(entry.stars)
             ));
         }
 
         let bg_rect = if config.opaque {
             format!(
-                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
-                width, height, theme.bg
+                r#"<rect width="{}" height="{}" rx="{}" fill="{}"/>"#,
+                width, height, BORDER_RADIUS, theme.bg
             )
         } else {
             String::new()

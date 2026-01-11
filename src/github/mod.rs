@@ -3,6 +3,12 @@ mod types;
 use anyhow::{Context, Result};
 pub use types::*;
 
+// GraphQL query constants
+const MAX_REPOS: u32 = 100;
+const MAX_LANGUAGES_PER_REPO: u32 = 10;
+const MAX_MERGED_PRS: u32 = 100;
+const AVATAR_SIZE: u32 = 32;
+
 /// Fetch GitHub user data via GraphQL API
 pub async fn fetch_user_data(
     client: &reqwest::Client,
@@ -24,12 +30,12 @@ pub async fn fetch_user_data(
                     totalCommitContributions
                     restrictedContributionsCount
                 }}
-                repositories(first: 100, ownerAffiliations: OWNER{}, orderBy: {{field: STARGAZERS, direction: DESC}}) {{
+                repositories(first: {}, ownerAffiliations: OWNER{}, orderBy: {{field: STARGAZERS, direction: DESC}}) {{
                     nodes {{
                         stargazerCount
                         forkCount
                         isFork
-                        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
+                        languages(first: {}, orderBy: {{field: SIZE, direction: DESC}}) {{
                             edges {{
                                 size
                                 node {{
@@ -46,14 +52,14 @@ pub async fn fetch_user_data(
                 issues(first: 1) {{
                     totalCount
                 }}
-                mergedPullRequests: pullRequests(first: 100, states: MERGED, orderBy: {{field: CREATED_AT, direction: DESC}}) {{
+                mergedPullRequests: pullRequests(first: {}, states: MERGED, orderBy: {{field: CREATED_AT, direction: DESC}}) {{
                     totalCount
                     nodes {{
                         repository {{
                             name
                             owner {{
                                 login
-                                avatarUrl(size: 32)
+                                avatarUrl(size: {})
                             }}
                             stargazerCount
                         }}
@@ -62,7 +68,7 @@ pub async fn fetch_user_data(
             }}
         }}
     "#,
-        privacy
+        MAX_REPOS, privacy, MAX_LANGUAGES_PER_REPO, MAX_MERGED_PRS, AVATAR_SIZE
     );
 
     let body = serde_json::json!({

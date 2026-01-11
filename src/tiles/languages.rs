@@ -1,6 +1,29 @@
-use super::{RenderConfig, SVG_STYLES, Tile, empty_svg};
+use super::{BORDER_RADIUS, FONT_SIZE_SMALL, RenderConfig, SVG_STYLES, Tile, empty_svg};
 use crate::github::User;
 use std::collections::HashMap;
+
+// Layout constants
+const DEFAULT_LANGUAGE_COLOR: &str = "#858585";
+const MAX_LANGUAGES: usize = 8;
+
+// Donut chart constants
+const DONUT_CX: f64 = 70.0;
+const DONUT_CY: f64 = 70.0;
+const DONUT_OUTER_RADIUS: f64 = 70.0;
+const DONUT_INNER_RADIUS: f64 = 42.0;
+const START_ANGLE_DEGREES: f64 = -90.0;
+const DEGREES_PER_PERCENT: f64 = 3.6; // 360.0 / 100.0
+const LARGE_ARC_THRESHOLD: f64 = 180.0;
+
+// Legend constants
+const LEGEND_ROW_HEIGHT: usize = 16;
+const LEGEND_ITEM_HEIGHT: usize = 12;
+const LEGEND_RECT_SIZE: usize = 12;
+const LEGEND_RECT_RADIUS: usize = 2;
+const LEGEND_TEXT_X: usize = 18;
+const LEGEND_TEXT_Y: usize = 10;
+const LEGEND_WIDTH: usize = 140;
+const LEGEND_DONUT_GAP: usize = 10;
 
 /// Language with byte count and color
 pub struct LanguageEntry {
@@ -26,9 +49,13 @@ impl Languages {
             }
             if let Some(languages) = &repo.languages {
                 for edge in &languages.edges {
-                    let entry = lang_bytes
-                        .entry(edge.node.name.clone())
-                        .or_insert((0, edge.node.color.clone().unwrap_or("#858585".to_string())));
+                    let entry = lang_bytes.entry(edge.node.name.clone()).or_insert((
+                        0,
+                        edge.node
+                            .color
+                            .clone()
+                            .unwrap_or(DEFAULT_LANGUAGE_COLOR.to_string()),
+                    ));
                     entry.0 += edge.size;
                 }
             }
@@ -58,7 +85,7 @@ impl Tile for Languages {
     fn render(&self, config: &RenderConfig) -> String {
         let theme = config.theme;
 
-        let top_langs: Vec<_> = self.languages.iter().take(8).collect();
+        let top_langs: Vec<_> = self.languages.iter().take(MAX_LANGUAGES).collect();
 
         if top_langs.is_empty() {
             return empty_svg("No Languages Found", theme, config.opaque);
@@ -74,35 +101,30 @@ impl Tile for Languages {
             .collect();
 
         // Generate donut chart
-        let cx = 70.0;
-        let cy = 70.0;
-        let r = 70.0;
-        let inner_r = 42.0;
-
         let mut paths = String::new();
-        let mut start_angle = -90.0_f64;
+        let mut start_angle = START_ANGLE_DEGREES;
 
         for (_, pct, color) in &lang_data {
-            let sweep = pct * 3.6;
+            let sweep = pct * DEGREES_PER_PERCENT;
             let end_angle = start_angle + sweep;
 
             let start_rad = start_angle.to_radians();
             let end_rad = end_angle.to_radians();
 
-            let x1 = cx + r * start_rad.cos();
-            let y1 = cy + r * start_rad.sin();
-            let x2 = cx + r * end_rad.cos();
-            let y2 = cy + r * end_rad.sin();
-            let x3 = cx + inner_r * end_rad.cos();
-            let y3 = cy + inner_r * end_rad.sin();
-            let x4 = cx + inner_r * start_rad.cos();
-            let y4 = cy + inner_r * start_rad.sin();
+            let x1 = DONUT_CX + DONUT_OUTER_RADIUS * start_rad.cos();
+            let y1 = DONUT_CY + DONUT_OUTER_RADIUS * start_rad.sin();
+            let x2 = DONUT_CX + DONUT_OUTER_RADIUS * end_rad.cos();
+            let y2 = DONUT_CY + DONUT_OUTER_RADIUS * end_rad.sin();
+            let x3 = DONUT_CX + DONUT_INNER_RADIUS * end_rad.cos();
+            let y3 = DONUT_CY + DONUT_INNER_RADIUS * end_rad.sin();
+            let x4 = DONUT_CX + DONUT_INNER_RADIUS * start_rad.cos();
+            let y4 = DONUT_CY + DONUT_INNER_RADIUS * start_rad.sin();
 
-            let large_arc = if sweep > 180.0 { 1 } else { 0 };
+            let large_arc = if sweep > LARGE_ARC_THRESHOLD { 1 } else { 0 };
 
             paths.push_str(&format!(
                 r#"<path d="M {:.2} {:.2} A {} {} 0 {} 1 {:.2} {:.2} L {:.2} {:.2} A {} {} 0 {} 0 {:.2} {:.2} Z" fill="{}"/>"#,
-                x1, y1, r, r, large_arc, x2, y2, x3, y3, inner_r, inner_r, large_arc, x4, y4, color
+                x1, y1, DONUT_OUTER_RADIUS, DONUT_OUTER_RADIUS, large_arc, x2, y2, x3, y3, DONUT_INNER_RADIUS, DONUT_INNER_RADIUS, large_arc, x4, y4, color
             ));
 
             start_angle = end_angle;
@@ -110,24 +132,32 @@ impl Tile for Languages {
 
         // Generate legend
         let mut legend = String::new();
-        let row_height = 16;
-        let content_height = 12; // rect height
         for (i, (name, pct, color)) in lang_data.iter().enumerate() {
-            let y = i * row_height;
+            let y = i * LEGEND_ROW_HEIGHT;
             legend.push_str(&format!(
                 r#"<g transform="translate(0, {})">
-                <rect width="12" height="12" rx="2" fill="{}"/>
-                <text x="18" y="10" fill="{}" font-size="11">{} ({:.1}%)</text>
+                <rect width="{}" height="{}" rx="{}" fill="{}"/>
+                <text x="{}" y="{}" fill="{}" font-size="{}">{} ({:.1}%)</text>
             </g>"#,
-                y, color, theme.text, name, pct
+                y,
+                LEGEND_RECT_SIZE,
+                LEGEND_RECT_SIZE,
+                LEGEND_RECT_RADIUS,
+                color,
+                LEGEND_TEXT_X,
+                LEGEND_TEXT_Y,
+                theme.text,
+                FONT_SIZE_SMALL,
+                name,
+                pct
             ));
         }
 
         // Dynamic height based on number of languages
-        let legend_height = (lang_data.len() - 1) * row_height + content_height;
-        let donut_diameter: usize = 140;
+        let legend_height = (lang_data.len() - 1) * LEGEND_ROW_HEIGHT + LEGEND_ITEM_HEIGHT;
+        let donut_diameter = (DONUT_OUTER_RADIUS * 2.0) as usize;
         let height = legend_height.max(donut_diameter);
-        let width = 140 + 10 + donut_diameter; // legend width + gap + donut
+        let width = LEGEND_WIDTH + LEGEND_DONUT_GAP + donut_diameter;
 
         // Center legend vertically if shorter than donut
         let legend_y_offset = (height as isize - legend_height as isize) / 2;
@@ -145,19 +175,20 @@ impl Tile for Languages {
 
         let bg_rect = if config.opaque {
             format!(
-                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
-                width, height, theme.bg
+                r#"<rect width="{}" height="{}" rx="{}" fill="{}"/>"#,
+                width, height, BORDER_RADIUS, theme.bg
             )
         } else {
             String::new()
         };
 
+        let donut_x_offset = LEGEND_WIDTH + LEGEND_DONUT_GAP;
         format!(
             r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
   <style>{}</style>
   {}
   {}
-  <g transform="translate(150, {})">
+  <g transform="translate({}, {})">
     {}
   </g>
 </svg>"#,
@@ -168,6 +199,7 @@ impl Tile for Languages {
             SVG_STYLES,
             bg_rect,
             legend_translated,
+            donut_x_offset,
             donut_y_offset,
             paths
         )

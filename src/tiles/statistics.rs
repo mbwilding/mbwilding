@@ -1,7 +1,17 @@
-use super::{RenderConfig, SVG_STYLES, Tile};
+use super::{BORDER_RADIUS, CHAR_WIDTH, FONT_SIZE, RenderConfig, SVG_STYLES, Tile};
 use crate::github::User;
 use crate::icons;
 use crate::svg::format_number;
+
+// Layout constants
+const ROW_HEIGHT: usize = 20;
+const NUM_ROWS: usize = 3;
+const NUM_COLS: usize = 2;
+const CONTENT_HEIGHT: usize = 16;
+const COL_WIDTH: usize = 170;
+const ICON_OFFSET: usize = 22;
+const TEXT_Y: usize = 12;
+const SEPARATOR_LEN: usize = 2; // ": "
 
 /// Statistics data extracted from GitHub user
 pub struct Statistics {
@@ -63,52 +73,49 @@ impl Tile for Statistics {
             ("Merged PRs", self.merged_prs, icons::CONTRIBUTION),
         ];
 
-        let row_height = 20;
-        let num_rows = 3;
-        let content_height = 16; // icon/text height
-        let height = (num_rows - 1) * row_height + content_height;
-        let col_width = 170;
+        let height = (NUM_ROWS - 1) * ROW_HEIGHT + CONTENT_HEIGHT;
         let mut rows = String::new();
 
         // Calculate max text width for each column
-        let char_width = 7.0;
-        let icon_offset = 22;
-        let mut max_col_widths = [0usize; 2];
+        let mut max_col_widths = [0usize; NUM_COLS];
 
         for (i, (label, value, _)) in items.iter().enumerate() {
-            let col = i % 2;
-            let text_len = label.len() + 2 + format_number(*value).len(); // +2 for ": "
-            let item_width = icon_offset + (text_len as f64 * char_width) as usize;
+            let col = i % NUM_COLS;
+            let text_len = label.len() + SEPARATOR_LEN + format_number(*value).len();
+            let item_width = ICON_OFFSET + (text_len as f64 * CHAR_WIDTH) as usize;
             max_col_widths[col] = max_col_widths[col].max(item_width);
         }
 
         for (i, (label, value, icon)) in items.iter().enumerate() {
-            let row = i / 2;
-            let col = i % 2;
-            let x = col * col_width;
-            let y = row * row_height;
+            let row = i / NUM_COLS;
+            let col = i % NUM_COLS;
+            let x = col * COL_WIDTH;
+            let y = row * ROW_HEIGHT;
 
             rows.push_str(&format!(
                 r#"
             <g transform="translate({}, {})">
                 <g fill="{}">{}</g>
-                <text x="22" y="12" fill="{}" font-size="12">{}: <tspan font-weight="bold">{}</tspan></text>
+                <text x="{}" y="{}" fill="{}" font-size="{}">{}: <tspan font-weight="bold">{}</tspan></text>
             </g>"#,
                 x,
                 y,
                 theme.icon,
                 icon,
+                ICON_OFFSET,
+                TEXT_Y,
                 theme.text,
+                FONT_SIZE,
                 label,
                 format_number(*value)
             ));
         }
 
-        let width = col_width + max_col_widths[1];
+        let width = COL_WIDTH + max_col_widths[1];
         let bg_rect = if config.opaque {
             format!(
-                r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
-                width, height, theme.bg
+                r#"<rect width="{}" height="{}" rx="{}" fill="{}"/>"#,
+                width, height, BORDER_RADIUS, theme.bg
             )
         } else {
             String::new()
