@@ -7,6 +7,7 @@ use crate::icons;
 use crate::svg::format_number;
 use anyhow::Result;
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
+use futures::future::join_all;
 use std::collections::HashMap;
 
 // Layout constants
@@ -69,23 +70,26 @@ impl Contributions {
 
     /// Fetch avatars and convert to base64 for embedding in SVG
     pub async fn fetch_avatars(&mut self, client: &reqwest::Client) -> Result<()> {
-        for entry in &mut self.repos {
-            let avatar_url = match &entry.avatar_data {
-                Some(url) => url.clone(),
-                None => continue,
-            };
-            let base64_data = match client.get(&avatar_url).send().await {
-                Ok(response) => {
-                    if let Ok(bytes) = response.bytes().await {
-                        let encoded = BASE64.encode(&bytes);
-                        Some(format!("data:image/png;base64,{}", encoded))
-                    } else {
-                        None
-                    }
+        let futures: Vec<_> = self
+            .repos
+            .iter()
+            .map(|entry| {
+                let avatar_url = entry.avatar_data.clone();
+                let client = client.clone();
+                async move {
+                    let url = avatar_url?;
+                    let response = client.get(&url).send().await.ok()?;
+                    let bytes = response.bytes().await.ok()?;
+                    let encoded = BASE64.encode(&bytes);
+                    Some(format!("data:image/png;base64,{}", encoded))
                 }
-                Err(_) => None,
-            };
-            entry.avatar_data = base64_data;
+            })
+            .collect();
+
+        let results = join_all(futures).await;
+
+        for (entry, result) in self.repos.iter_mut().zip(results) {
+            entry.avatar_data = result;
         }
 
         Ok(())
