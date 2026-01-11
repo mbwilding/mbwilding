@@ -67,12 +67,25 @@ impl Tile for Statistics {
         let num_rows = 3;
         let content_height = 16; // icon/text height
         let height = (num_rows - 1) * row_height + content_height;
+        let col_width = 170;
         let mut rows = String::new();
+
+        // Calculate max text width for each column
+        let char_width = 7.0;
+        let icon_offset = 22;
+        let mut max_col_widths = [0usize; 2];
+
+        for (i, (label, value, _)) in items.iter().enumerate() {
+            let col = i % 2;
+            let text_len = label.len() + 2 + format_number(*value).len(); // +2 for ": "
+            let item_width = icon_offset + (text_len as f64 * char_width) as usize;
+            max_col_widths[col] = max_col_widths[col].max(item_width);
+        }
 
         for (i, (label, value, icon)) in items.iter().enumerate() {
             let row = i / 2;
             let col = i % 2;
-            let x = col * 170;
+            let x = col * col_width;
             let y = row * row_height;
 
             rows.push_str(&format!(
@@ -91,7 +104,7 @@ impl Tile for Statistics {
             ));
         }
 
-        let width = 340;
+        let width = col_width + max_col_widths[1];
         let bg_rect = if config.opaque {
             format!(
                 r#"<rect width="{}" height="{}" rx="4.5" fill="{}"/>"#,
