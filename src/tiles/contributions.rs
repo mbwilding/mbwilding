@@ -8,6 +8,7 @@ use crate::svg::format_number;
 use anyhow::Result;
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64};
 use futures::future::join_all;
+use log::debug;
 use std::collections::HashMap;
 
 // Layout constants
@@ -37,6 +38,7 @@ pub struct Contributions {
 impl Contributions {
     /// Extract contribution data from GitHub user data
     pub fn from_user(user: &User, username: &str) -> Self {
+        debug!("Extracting contributions for user: {}", username);
         let mut seen: HashMap<(String, String), (u32, String)> = HashMap::new();
 
         for pr in &user.merged_pull_requests.nodes {
@@ -65,19 +67,30 @@ impl Contributions {
         repos.sort_by(|a, b| b.stars.cmp(&a.stars));
         repos.truncate(MAX_CONTRIBUTIONS);
 
+        debug!("Found {} external contributions", repos.len());
+        for entry in &repos {
+            debug!(
+                "Contribution: {}/{} ({} stars)",
+                entry.owner, entry.repo, entry.stars
+            );
+        }
+
         Self { repos }
     }
 
     /// Fetch avatars and convert to base64 for embedding in SVG
     pub async fn fetch_avatars(&mut self, client: &reqwest::Client) -> Result<()> {
+        debug!("Fetching {} avatars", self.repos.len());
         let futures: Vec<_> = self
             .repos
             .iter()
             .map(|entry| {
                 let avatar_url = entry.avatar_data.clone();
                 let client = client.clone();
+                let owner = entry.owner.clone();
                 async move {
                     let url = avatar_url?;
+                    debug!("Fetching avatar for {}", owner);
                     let response = client.get(&url).send().await.ok()?;
                     let bytes = response.bytes().await.ok()?;
                     let encoded = BASE64.encode(&bytes);
@@ -88,9 +101,18 @@ impl Contributions {
 
         let results = join_all(futures).await;
 
+        let mut success_count = 0;
         for (entry, result) in self.repos.iter_mut().zip(results) {
+            if result.is_some() {
+                success_count += 1;
+            }
             entry.avatar_data = result;
         }
+        debug!(
+            "Successfully fetched {}/{} avatars",
+            success_count,
+            self.repos.len()
+        );
 
         Ok(())
     }
@@ -102,6 +124,7 @@ impl Tile for Contributions {
     }
 
     fn render(&self, config: &RenderConfig) -> String {
+        debug!("Rendering contributions tile");
         let theme = config.theme;
 
         if self.repos.is_empty() {
@@ -128,18 +151,15 @@ impl Tile for Contributions {
         let avatar_radius = AVATAR_SIZE / 2;
         for (i, entry) in self.repos.iter().enumerate() {
             let y = i * ROW_HEIGHT;
-            let repo_url = format!("https://github.com/{}/{}", entry.owner, entry.repo);
             rows.push_str(&format!(
                 r#"<g transform="translate(0, {})">
                 <clipPath id="avatar-clip-{}">
                     <circle cx="{}" cy="{}" r="{}"/>
                 </clipPath>
-                <a href="{}" target="_blank">
-                    <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
-                    <text x="{}" y="{}" fill="{}" font-size="{}">
-                        <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
-                    </text>
-                </a>
+                <image href="{}" x="0" y="0" width="{}" height="{}" clip-path="url(#avatar-clip-{})"/>
+                <text x="{}" y="{}" fill="{}" font-size="{}">
+                    <tspan fill="{}">{}</tspan>/<tspan font-weight="600">{}</tspan>
+                </text>
                 <g transform="translate({}, 0)" fill="{}">
                     <g transform="translate(0, {})">{}</g>
                     <text x="{}" y="{}" fill="{}" font-size="{}">{}</text>
@@ -150,7 +170,6 @@ impl Tile for Contributions {
                 avatar_radius,
                 avatar_radius,
                 avatar_radius,
-                repo_url,
                 entry.avatar_data.as_deref().unwrap_or(""),
                 AVATAR_SIZE,
                 AVATAR_SIZE,
@@ -185,11 +204,7 @@ impl Tile for Contributions {
 
         format!(
             r#"<svg xmlns="http://www.w3.org/2000/svg" width="{}" height="{}" viewBox="0 0 {} {}">
-  <style>
-    {}
-    a {{ text-decoration: none; }}
-    a:hover text {{ text-decoration: underline; }}
-  </style>
+  <style>{}</style>
   {}
   {}
 </svg>"#,

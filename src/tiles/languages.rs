@@ -1,5 +1,6 @@
 use super::{BORDER_RADIUS, FONT_SIZE_SMALL, RenderConfig, SVG_STYLES, Tile, empty_svg};
 use crate::github::User;
+use log::debug;
 use std::collections::HashMap;
 
 // Layout constants
@@ -41,6 +42,7 @@ pub struct Languages {
 impl Languages {
     /// Extract language statistics from GitHub user data
     pub fn from_user(user: &User) -> Self {
+        debug!("Extracting language statistics");
         let mut lang_bytes: HashMap<String, (u64, String)> = HashMap::new();
 
         for repo in &user.repositories.nodes {
@@ -70,6 +72,16 @@ impl Languages {
 
         let total_bytes: u64 = languages.iter().map(|l| l.bytes).sum();
 
+        debug!(
+            "Found {} languages, {} total bytes",
+            languages.len(),
+            total_bytes
+        );
+        for lang in languages.iter().take(MAX_LANGUAGES) {
+            let pct = (lang.bytes as f64 / total_bytes as f64) * 100.0;
+            debug!("{}: {} bytes ({:.1}%)", lang.name, lang.bytes, pct);
+        }
+
         Self {
             languages,
             total_bytes,
@@ -83,6 +95,7 @@ impl Tile for Languages {
     }
 
     fn render(&self, config: &RenderConfig) -> String {
+        debug!("Rendering languages tile");
         let theme = config.theme;
 
         let top_langs: Vec<_> = self.languages.iter().take(MAX_LANGUAGES).collect();

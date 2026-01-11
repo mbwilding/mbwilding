@@ -2,6 +2,7 @@ use super::{BORDER_RADIUS, CHAR_WIDTH, FONT_SIZE, RenderConfig, SVG_STYLES, Tile
 use crate::github::User;
 use crate::icons;
 use crate::svg::format_number;
+use log::debug;
 
 // Layout constants
 const ROW_HEIGHT: usize = 20;
@@ -26,6 +27,7 @@ pub struct Statistics {
 impl Statistics {
     /// Extract statistics from GitHub user data
     pub fn from_user(user: &User) -> Self {
+        debug!("Extracting user statistics");
         let total_stars: u32 = user
             .repositories
             .nodes
@@ -45,14 +47,26 @@ impl Statistics {
         let total_commits = user.contributions_collection.total_commit_contributions
             + user.contributions_collection.restricted_contributions_count;
 
-        Self {
+        let stats = Self {
             total_stars,
             total_forks,
             total_commits,
             total_prs: user.pull_requests.total_count,
             total_issues: user.issues.total_count,
             merged_prs: user.merged_pull_requests.total_count,
-        }
+        };
+
+        debug!(
+            "Stats: {} stars, {} forks, {} commits, {} PRs, {} issues, {} merged PRs",
+            stats.total_stars,
+            stats.total_forks,
+            stats.total_commits,
+            stats.total_prs,
+            stats.total_issues,
+            stats.merged_prs
+        );
+
+        stats
     }
 }
 
@@ -62,6 +76,7 @@ impl Tile for Statistics {
     }
 
     fn render(&self, config: &RenderConfig) -> String {
+        debug!("Rendering statistics tile");
         let theme = config.theme;
 
         let items: [(&str, u32, &str); 6] = [

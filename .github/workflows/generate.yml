@@ -33,6 +33,7 @@ jobs:
       - name: Generate SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          RUST_LOG: debug
         run: ./target/release/${{ env.project }}
 
       - name: Commit

@@ -1,6 +1,7 @@
 mod types;
 
 use anyhow::{Context, Result};
+use log::debug;
 pub use types::*;
 
 // GraphQL query constants
@@ -15,6 +16,7 @@ pub async fn fetch_user_data(
     token: &str,
     include_private: bool,
 ) -> Result<UserData> {
+    debug!("Fetching user data (include_private: {})", include_private);
     let privacy = if include_private {
         ""
     } else {
@@ -75,6 +77,8 @@ pub async fn fetch_user_data(
         "query": query
     });
 
+    debug!("Sending GraphQL request to GitHub API");
+
     let response: GraphQLResponse<UserData> = client
         .post("https://api.github.com/graphql")
         .header("Authorization", format!("Bearer {}", token))
@@ -89,6 +93,8 @@ pub async fn fetch_user_data(
         let messages: Vec<_> = errors.iter().map(|e| e.message.as_str()).collect();
         anyhow::bail!("GraphQL errors: {}", messages.join(", "));
     }
+
+    debug!("Successfully fetched user data from GitHub API");
 
     response.data.context("No data in response")
 }

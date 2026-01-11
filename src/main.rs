@@ -6,6 +6,7 @@ mod tiles;
 
 use anyhow::{Context, Result};
 use clap::Parser;
+use log::{debug, info};
 use std::path::Path;
 use tiles::{Contributions, Languages, RenderConfig, Statistics, Tile};
 use tokio::fs;
@@ -32,10 +33,30 @@ struct Args {
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    let rust_log = std::env::var("RUST_LOG").unwrap_or_default();
+    let filter = match rust_log.as_str() {
+        "" => "warn,github_tiles=info".to_string(),
+        "trace" => rust_log.to_string(),
+        "debug" => format!("warn,github_tiles={}", rust_log),
+        "info" | "warn" | "error" => format!("warn,github_tiles={}", rust_log),
+        _ => {
+            if rust_log.contains("github_tiles") {
+                format!("warn,{}", rust_log)
+            } else {
+                format!("warn,github_tiles=info,{}", rust_log)
+            }
+        }
+    };
+
+    env_logger::Builder::new()
+        .parse_filters(&filter)
+        .format_target(false)
+        .init();
+
     let args = Args::parse();
     let client = reqwest::Client::new();
 
-    println!("Fetching GitHub data...");
+    info!("Fetching GitHub data...");
 
     let user_data = github::fetch_user_data(&client, &args.token, args.private).await?;
     let user = user_data
@@ -43,6 +64,7 @@ async fn main() -> Result<()> {
         .context("Failed to get authenticated user data")?;
 
     let username = &user.login;
+    debug!("Authenticated as: {}", username);
 
     // Extract tile data from user
     let statistics = Statistics::from_user(&user);
@@ -50,11 +72,12 @@ async fn main() -> Result<()> {
     let mut contributions = Contributions::from_user(&user, username);
 
     // Fetch avatars for contributions
-    println!("Fetching avatars...");
+    info!("Fetching avatars...");
     contributions.fetch_avatars(&client).await?;
 
     // Create output directory
     let output_path = Path::new(&args.output);
+    debug!("Output directory: {}", output_path.display());
     fs::create_dir_all(output_path).await?;
 
     // Collect all tiles
@@ -67,13 +90,14 @@ async fn main() -> Result<()> {
         for tile in &tiles {
             let svg = svg::optimize(&tile.render(&config));
             let filename = tile.filename(theme.name);
+            debug!("Writing: {}", filename);
             fs::write(output_path.join(&filename), &svg).await?;
         }
 
-        println!("Generated {} theme SVGs", theme.name);
+        info!("Generated {} theme SVGs", theme.name);
     }
 
-    println!("Done! SVGs saved to {}/", args.output);
+    info!("Done! SVGs saved to {}/", args.output);
 
     Ok(())
 }
