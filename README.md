@@ -6,13 +6,11 @@ Passionate about architecture, software, cloud, devops, and open source
 
 ## Setup
 
-Editor: [Neovim](https://neovim.io)
+Editor: [Neovim](https://neovim.io) | [Config](https://github.com/mbwilding/nvim)
 
-OS: [Arch Linux](https://archlinux.org) btw 😉
+OS: [Arch Linux](https://archlinux.org) btw 😉 | [Config](https://github.com/mbwilding/dotfiles)
 
-Keyboard: [Dygma Defy](https://dygma.com/pages/defy)
-
-Layout: [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
+Keyboard: [Dygma Defy](https://dygma.com/pages/defy) | [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
 ## Statistics
 
