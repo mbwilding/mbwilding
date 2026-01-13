@@ -1,13 +1,17 @@
 ### About Me
 
 .NET Engineer by day, Rust Enthusiast by night
+
 Passionate about architecture, software, cloud, devops, and open source
 
 ### Setup
 
 **Editor:** [Neovim](https://neovim.io)
+
 **OS:** [Arch Linux](https://archlinux.org) btw 😉
+
 **Keyboard:** [Dygma Defy](https://dygma.com/pages/defy)
+
 **Layout:** [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
 ### Statistics
