@@ -16,3 +16,4 @@ jobs:
         uses: mbwilding/github-tiles@v1
         with:
           token: ${{ secrets.TOKEN }}
+          languages-exclude: qml
