@@ -8,7 +8,7 @@ Passionate about architecture, software, cloud, devops, and open source
 
 Editor: [Neovim](https://neovim.io) | [Config](https://github.com/mbwilding/nvim)
 
-OS: [Arch Linux](https://archlinux.org) btw 😉 | [Config](https://github.com/mbwilding/dotfiles)
+OS: [NixOS](https://nixos.org) btw 😉 | [Config](https://github.com/mbwilding/nix)
 
 Keyboard: [Dygma Defy](https://dygma.com/pages/defy) | [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
