@@ -8,7 +8,7 @@ Passionate about architecture, software, cloud, devops, and open source
 
 OS: [NixOS](https://nixos.org) btw 😉 | [Config](https://github.com/mbwilding/nix)
 
-Editor: [Neovim](https://neovim.io) | [Config](https://github.com/mbwilding/nix/tree/main/modules/features/neovim%20%5Bn%5D)
+Editor: [Neovim](https://neovim.io) | [Config](https://github.com/mbwilding/nix/tree/main/modules/features/applications/neovim%20%5Bn%5D)
 
 Keyboard: [Dygma Defy](https://dygma.com/pages/defy) | [Dvorak](https://en.wikipedia.org/wiki/Dvorak_keyboard_layout)
 
